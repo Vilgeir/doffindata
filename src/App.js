@@ -11,14 +11,14 @@ function App() {
 
 	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 	const firebaseConfig = {
-		apiKey: 'AIzaSyBL4xBKNIhTXeWb3NzkshO3aOfc1mveRo4',
-		authDomain: 'doli-doffin.firebaseapp.com',
-		databaseURL: 'https://doli-doffin-default-rtdb.firebaseio.com',
-		projectId: 'doli-doffin',
-		storageBucket: 'doli-doffin.appspot.com',
-		messagingSenderId: '832880945140',
-		appId: '1:832880945140:web:4cb516ab0eb75e50db3ba1',
-		measurementId: 'G-DY94RRFXFK',
+		apiKey: "AIzaSyCMDIwwubzh4Xt6nujcK65akULxjgHnT3E",
+		authDomain: "doffin-bach.firebaseapp.com",
+		databaseURL: "https://doffin-bach-default-rtdb.europe-west1.firebasedatabase.app",
+		projectId: "doffin-bach",
+		storageBucket: "doffin-bach.appspot.com",
+		messagingSenderId: "16468608817",
+		appId: "1:16468608817:web:f708022a44a453b4ca1210",
+		measurementId: "G-QXSYS06S5N"
 	}
 
 	if (!firebase.apps.length) {
@@ -28,13 +28,14 @@ function App() {
 		firebase
 			.database()
 			.ref('formattedData/F02_2014')
+			.limitToFirst(10)	
 			.once('value')
 			.then((snapshot) => {
 				let data = []
 				data.push(snapshot.val())
 				setForm(data.map((item) => Object.values(item))[0])
 			})
-  })
+  	}, [])
 
 	const columns = [
 		{ field: 'bedrift', headerName: 'Bedrift', width: 200 },
@@ -50,12 +51,12 @@ function App() {
 		? (rows = form.map((item, i) => {
 				return {
 					id: i,
-					bedrift: item.Bedrift,
-					beskrivelse: item.Beskrivelse,
-					cpv: item.CPV,
-					dato: item.Dato,
-					kategori: item.Kategorier,
-					subkategori: item.Subkategori,
+					bedrift: item.bedrift,
+					beskrivelse: item.beskrivelse,
+					cpv: item.cpv,
+					dato: item.dato,
+					kategori: item.kategorier,
+					subkategori: item.subkategori,
 				}
 		  }))
 		: (rows = [
