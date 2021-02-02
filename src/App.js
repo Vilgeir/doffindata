@@ -6,6 +6,8 @@ import { DataGrid } from '@material-ui/data-grid'
 require('firebase/auth')
 require('firebase/database')
 
+
+
 function App() {
 	const [form, setForm] = useState(null)
 
@@ -28,7 +30,7 @@ function App() {
 		firebase
 			.database()
 			.ref('formattedData/F02_2014')
-			.limitToFirst(10)	
+			.limitToFirst(100)	
 			.once('value')
 			.then((snapshot) => {
 				let data = []
@@ -37,10 +39,13 @@ function App() {
 			})
   	}, [])
 
+
+    const gridStyle = { minHeight: 550 }
+  
 	const columns = [
 		{ field: 'bedrift', headerName: 'Bedrift', width: 200 },
 		{ field: 'beskrivelse', headerName: 'Beskrivelse', width: 700},
-		{ field: 'cpv', headerName: 'CPV', width: 100 },
+		{ field: 'cpv', headerName: 'CPV', width: 200 },
 		{ field: 'dato', headerName: 'Dato', width: 120 },
 		{ field: 'kategori', headerName: 'Kategori', width: 200 },
 		{ field: 'subkategori', headerName: 'Sub kategori', width: 300 },
@@ -76,10 +81,12 @@ function App() {
 			<h1>Form: F02_2014</h1>
 			<div style={{ height: 800, width: '100%' }}>
 				<DataGrid
-					rows={rows}
-					columns={columns}
-					pageSize={10000}
-					checkboxSelection
+					idProperty="id"
+					rowHeight={100}
+          columns={columns}
+          rows={rows}
+          multiline={true}
+          style={gridStyle}
 				/>
 			</div>
 			{/* </header> */}
