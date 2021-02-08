@@ -8,8 +8,12 @@ const functions = require("firebase-functions");
 //   response.send("Hello from Firebase!");
 // });
 
-// exports.helloWorld = functions.https.onRequest((req, res) => {
-//   res.send("Hello from Firebase");
-// });
-
-// functions.database.ref("formattedData/F02_2014/6191");
+// exports.test = functions.https.onRequest(async (req, res) => {
+//     const snap = await admin.database().ref('/formattedData/F02_2014/{id}/cpvmain').once('value')
+//     res.send(snap)
+// })
+    
+    // .onUpdate((snapshot) => {
+    //     console.log(snapshot.val())
+        
+    // })

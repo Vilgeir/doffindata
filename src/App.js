@@ -38,6 +38,8 @@ function App() {
       });
   }, []);
 
+  
+	
   const gridStyle = { minHeight: 550 };
 
   const columns = [
@@ -70,15 +72,17 @@ function App() {
           id: 520982058,
           bedrift: "Loading...",
           beskrivelse: "Loading...",
-          cpv: "Loading...",
+          cpvmain: "Loading...",
           cpv: "Loading...",
           dato: "Loading...",
           kategori: "Loading...",
           subkategori: "Loading...",
         },
-      ]);
-
-  return (
+	  ]);
+	
+	
+	return (
+	  
     <div className="App">
       <h1>Form: F02_2014</h1>
       <div style={{ height: 800, width: "100%" }}>
