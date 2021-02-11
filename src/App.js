@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import cpvMain from './cpvmain.json'
+import Count from './data/count'
 import logo from './logo.svg'
 import './App.css'
 import { firebase } from '@firebase/app'
@@ -8,7 +9,7 @@ require('firebase/auth')
 require('firebase/database')
 require('firebase/firestore')
 
-function App() {
+function App({ cpvCount }) {
 	const firebaseConfig = {
 		apiKey: 'AIzaSyCMDIwwubzh4Xt6nujcK65akULxjgHnT3E',
 		authDomain: 'doffin-bach.firebaseapp.com',
@@ -21,22 +22,25 @@ function App() {
 		measurementId: 'G-QXSYS06S5N',
 	}
 	const [form, setForm] = useState([])
-	const [cpv, setCpv] = useState()
+	const [cpv, setCpv] = useState(null)
 
 	if (!firebase.apps.length) {
 		firebase.initializeApp(firebaseConfig)
 	}
 
+	const handleChange = (e) => {
+		setCpv(e.target.value)
+	}
+
+	console.log(cpvCount)
+
 	let db = firebase.firestore()
 
 	// useEffect(() => {
+	// 	setForm([])
 	// 	db.collection('F02_2014')
-	// 		.where(
-	// 			'object.cpvmain',
-	// 			'==',
-	// 			'Business services: law, marketing, consulting, recruitment, printing and security',
-	// 		)
 	// 		.limit(10)
+	// 		.where('object.cpvmain', '==', cpv)
 	// 		.get()
 	// 		.then((querySnapshot) => {
 	// 			querySnapshot.forEach((doc) => {
@@ -45,7 +49,7 @@ function App() {
 	// 				setForm((prevState) => [...prevState, newArr])
 	// 			})
 	// 		})
-	// }, [])
+	// }, [cpv])
 
 	const gridStyle = { minHeight: 550 }
 
@@ -91,13 +95,12 @@ function App() {
 		<div className="App">
 			<h1>Form: F02_2014</h1>
 			<label for="cpvmain">Velg en kategori:</label>
-			<select
-				name="cpvmain"
-				id="cpvmain"
-				onChange={(e) => this.handleChange(e)}
-			>
+			<select name="cpvmain" id="cpvmain" onChange={handleChange}>
+				<option value="" disabled selected>
+					Velg hovedkategori
+				</option>
 				{cpvMain.map((item) => (
-					<option value={item.cpvmain}>{item.cpvmain}</option>
+					<option value={item.cpvmain}>{item.cpvmain} (3)</option>
 				))}
 			</select>
 			<div style={{ height: 800, width: '100%' }}>
@@ -110,6 +113,7 @@ function App() {
 					style={gridStyle}
 				/>
 			</div>
+			{/* <Count /> */}
 			{/* </header> */}
 		</div>
 	)
