@@ -1,4 +1,5 @@
 const fs = require('fs')
+var objectPath = require('object-path')
 
 fs.readFile(
   './src/data/doffin-bach-default-rtdb-F02_2014-export.json',
@@ -18,21 +19,23 @@ fs.readFile(
     firstThree.forEach((i) => (countThree[i] = (countThree[i] || 0) + 1))
     console.log(Object.keys(countThree))
 
-    let arr = []
+    let arr = {}
     for (const [key, value] of Object.entries(count)) {
-      for (const [k, v] of Object.entries(countThree)) {
-        obj = {
-          [key]: {
-            count: value,
-            [k]: {
-              count: v,
-            },
-          },
-        }
+      obj = {
+        [key]: {
+          count: value,
+        },
       }
-      arr.push(obj)
+      Object.assign(arr, obj)
     }
 
+    for (const [k, v] of Object.entries(countThree)) {
+      if (k.substring(0, 2) == 14) {
+        console.log()
+        obj = { [k]: { count: v } }
+        Object.assign(arr[14], obj)
+      }
+    }
     fs.writeFile('./src/data/count.json', JSON.stringify(arr), (err) => {
       err && console.log('error', err)
     })
