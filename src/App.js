@@ -10,19 +10,19 @@ require('firebase/database')
 require('firebase/firestore')
 
 function App() {
-	const [cpvCount, setCpvCount] = useState({})
+  const [cpvCount, setCpvCount] = useState({})
 
-	useEffect(() => {
-		let cpvNumbers = Object.values(jsonData).map((js) => js.cpvnumber)
+  useEffect(() => {
+    let cpvNumbers = Object.values(jsonData).map((js) => js.cpvnumber)
 
-		let firstTwo = cpvNumbers.map((js) => js.split('').slice(0, 2).join(''))
-		let count = {}
-		firstTwo.forEach((i) => (count[i] = (count[i] || 0) + 1))
-		console.log(Object.keys(count))
-		setCpvCount(count)
-	}, [])
+    let firstTwo = cpvNumbers.map((js) => js.split('').slice(0, 2).join(''))
+    let count = {}
+    firstTwo.forEach((i) => (count[i] = (count[i] || 0) + 1))
+    console.log(Object.keys(count))
+    setCpvCount(count)
+  }, [])
 
-	return <Home cpvCount={cpvCount}></Home>
+  return <Home cpvCount={cpvCount}></Home>
 }
 
 export default App
