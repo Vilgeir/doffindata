@@ -18,7 +18,7 @@ function App() {
     let firstTwo = cpvNumbers.map((js) => js.split('').slice(0, 2).join(''))
     let count = {}
     firstTwo.forEach((i) => (count[i] = (count[i] || 0) + 1))
-    console.log(Object.keys(count))
+    // console.log(Object.keys(count))
     setCpvCount(count)
   }, [])
 
