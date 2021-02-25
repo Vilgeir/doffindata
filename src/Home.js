@@ -27,12 +27,39 @@ function Home() {
   const [cpvstate, setCpv] = useState(null)
   const [subkat, setSubKat] = useState()
   const [cpvName, setCpvName] = useState([])
+  const [cpvNameSUBSUB, setCpvNameSUBSUB] = useState([])
+  const [chooseSubkat, setChooseSubkat] = useState()
+  const [subSubKat, setSubSubkat] = useState()
 
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig)
   }
-  console.log(data['2'].cpv)
-  let counter = 0
+
+  useEffect(() => {
+    let arr = []
+    if (subSubKat) {
+      let hello = Object.keys(subSubKat).filter((e) => e.length === 8)
+      console.log(hello)
+      let test2 = hello.map((item) => item.slice(0, 4))
+
+      for (let [k, v] of Object.entries(CPVcodes)) {
+        hello.includes(k) && arr.push([v, k])
+      }
+      console.log(arr)
+
+      let newArr = arr.filter(
+        (value, index, arr) => arr.indexOf(value) == index
+      )
+      setCpvNameSUBSUB(newArr)
+    }
+  }, [subSubKat])
+
+  useEffect(() => {
+    setSubSubkat(newCount[chooseSubkat])
+  }, [chooseSubkat])
+
+  console.log(chooseSubkat)
+  console.log(subSubKat)
   useEffect(() => {
     let arr = []
     if (subkat) {
@@ -40,8 +67,6 @@ function Home() {
       console.log(hello)
       let test2 = hello.map((item) => item.slice(0, 3))
       // console.log(test2)
-      console.log(CPVcodes)
-
       for (let [k, v] of Object.entries(CPVcodes)) {
         hello.includes(k) && arr.push([v, k])
       }
@@ -58,7 +83,10 @@ function Home() {
     setSubKat(newCount[cpvstate])
   }, [cpvstate])
 
+  const handleClick = (e) => setChooseSubkat(e.target.value)
+
   const handleChange = (e) => setCpv(e.target.value)
+
   // let db = firebase.firestore()
 
   // useEffect(() => {
@@ -89,8 +117,7 @@ function Home() {
 
   let newCount = Object.values(count)[0]
   let testData = Object.values(data)[0]
-  // console.log(testData)
-  // console.log(subkat)
+
   //  Cloudfunction i firebase
   // 52, 102, 02, 12, 21,
   let rows
@@ -120,9 +147,6 @@ function Home() {
         },
       ])
 
-  //   console.log(cpvCount)
-  //   console.log(cpvCount['03'])
-  //   console.log(cpvMain.map((item) => item.cpv.substring(0, 2)))
   return (
     <div className='App'>
       <h1>Form: F02_2014</h1>
@@ -134,7 +158,6 @@ function Home() {
 
         {cpvMain.map((item) => (
           <option value={item.cpv.substring(0, 2) + '000000'}>
-            {/* + item.cpvmain */}
             {item.cpvmain} (
             {newCount[item.cpv.substring(0, 2) + '000000'].count})
             {item.cpv.substring(0, 2) + '000000'}
@@ -144,7 +167,7 @@ function Home() {
       <div className='buttons'>
         {cpvName
           ? cpvName.map((e) => (
-              <button className='button'>
+              <button className='button' value={e[1]} onClick={handleClick}>
                 {e[0]} ({newCount[e[1].substring(0, 2) + '000000'][e[1]].count})
               </button>
             ))
@@ -163,6 +186,5 @@ function Home() {
     </div>
   )
 }
-// 100 av 100 sortert på data
 
 export default Home
