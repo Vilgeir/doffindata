@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import cpvMain from './cpvmain.json'
 import CPVcodes from './data/cpv.json'
@@ -11,10 +12,11 @@ require('firebase/auth')
 require('firebase/database')
 require('firebase/firestore')
 
+
 function Home() {
   const firebaseConfig = {
-    apiKey: 'AIzaSyCMDIwwubzh4Xt6nujcK65akULxjgHnT3E',
-    authDomain: 'doffin-bach.firebaseapp.com',
+    apiKey: "AIzaSyCMDIwwubzh4Xt6nujcK65akULxjgHnT3E",
+    authDomain: "doffin-bach.firebaseapp.com",
     databaseURL:
       'https://doffin-bach-default-rtdb.europe-west1.firebasedatabase.app',
     projectId: 'doffin-bach',
@@ -31,8 +33,9 @@ function Home() {
   const [chooseSubkat, setChooseSubkat] = useState()
   const [subSubKat, setSubSubkat] = useState()
 
+
   if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig)
+    firebase.initializeApp(firebaseConfig);
   }
 
   useEffect(() => {
@@ -89,6 +92,7 @@ function Home() {
 
   // let db = firebase.firestore()
 
+
   // useEffect(() => {
   //   setForm([])
   //   db.collection('F02_2014')
@@ -105,22 +109,24 @@ function Home() {
   // }, [cpv])
 
   const gridStyle = { minHeight: 550 }
+
   const columns = [
-    { field: 'bedrift', headerName: 'Bedrift', width: 200 },
-    { field: 'beskrivelse', headerName: 'Beskrivelse', width: 700 },
-    { field: 'cpv', headerName: 'CPV', width: 200 },
-    { field: 'cpvmain', headerName: 'CPV Kategori', width: 200 },
-    { field: 'dato', headerName: 'Dato', width: 120 },
-    { field: 'kategori', headerName: 'Kategori', width: 200 },
-    { field: 'subkategori', headerName: 'Sub kategori', width: 300 },
-  ]
+    { field: "bedrift", headerName: "Bedrift", width: 200 },
+    { field: "beskrivelse", headerName: "Beskrivelse", width: 700 },
+    { field: "cpv", headerName: "CPV", width: 200 },
+    { field: "cpvmain", headerName: "CPV Kategori", width: 200 },
+    { field: "dato", headerName: "Dato", width: 120 },
+    { field: "kategori", headerName: "Kategori", width: 200 },
+    { field: "subkategori", headerName: "Sub kategori", width: 300 },
+  ];
 
   let newCount = Object.values(count)[0]
   let testData = Object.values(data)[0]
 
+
   //  Cloudfunction i firebase
   // 52, 102, 02, 12, 21,
-  let rows
+  let rows;
   form
     ? (rows = form.map((item, i) => {
         return {
@@ -132,27 +138,27 @@ function Home() {
           dato: item.dato,
           kategori: item.kategorier,
           subkategori: item.subkategori,
-        }
+        };
       }))
     : (rows = [
         {
           id: 520982058,
-          bedrift: 'Loading...',
-          beskrivelse: 'Loading...',
-          cpvmain: 'Loading...',
-          cpv: 'Loading...',
-          dato: 'Loading...',
-          kategori: 'Loading...',
-          subkategori: 'Loading...',
+          bedrift: "Loading...",
+          beskrivelse: "Loading...",
+          cpvmain: "Loading...",
+          cpv: "Loading...",
+          dato: "Loading...",
+          kategori: "Loading...",
+          subkategori: "Loading...",
         },
-      ])
+      ]);
 
   return (
-    <div className='App'>
+    <div className="App">
       <h1>Form: F02_2014</h1>
-      <label for='cpvmain'>Velg en kategori:</label>
-      <select name='cpvmain' id='cpvmain' onChange={handleChange}>
-        <option value='' disabled selected>
+      <label for="cpvmain">Velg en kategori:</label>
+      <select name="cpvmain" id="cpvmain" onChange={handleChange}>
+        <option value="" disabled selected>
           Velg hovedkategori
         </option>
 
@@ -175,7 +181,7 @@ function Home() {
       </div>
       <div style={{ height: 800, width: '100%' }}>
         <DataGrid
-          idProperty='id'
+          idProperty="id"
           rowHeight={100}
           columns={columns}
           rows={rows}
@@ -184,7 +190,7 @@ function Home() {
         />
       </div>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
