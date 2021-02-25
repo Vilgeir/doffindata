@@ -1,38 +1,39 @@
-import React, { useEffect, useState } from 'react'
-import cpvMain from './cpvmain.json'
-import logo from './logo.svg'
-import count from './data/count.json'
-import './App.css'
-import { firebase } from '@firebase/app'
-import { DataGrid } from '@material-ui/data-grid'
-require('firebase/auth')
-require('firebase/database')
-require('firebase/firestore')
+import React, { useEffect, useState } from "react";
+import cpvMain from "./cpvmain.json";
+import logo from "./logo.svg";
+import count from "./data/count.json";
+import "./App.css";
+import { firebase } from "@firebase/app";
+import { DataGrid } from "@material-ui/data-grid";
+require("firebase/auth");
+require("firebase/database");
+require("firebase/firestore");
 
 function Home({ cpvCount }) {
   const firebaseConfig = {
-    apiKey: 'AIzaSyCMDIwwubzh4Xt6nujcK65akULxjgHnT3E',
-    authDomain: 'doffin-bach.firebaseapp.com',
+    apiKey: "AIzaSyCMDIwwubzh4Xt6nujcK65akULxjgHnT3E",
+    authDomain: "doffin-bach.firebaseapp.com",
     databaseURL:
-      'https://doffin-bach-default-rtdb.europe-west1.firebasedatabase.app',
-    projectId: 'doffin-bach',
-    storageBucket: 'doffin-bach.appspot.com',
-    messagingSenderId: '16468608817',
-    appId: '1:16468608817:web:f708022a44a453b4ca1210',
-    measurementId: 'G-QXSYS06S5N',
-  }
-  const [form, setForm] = useState([])
-  const [cpv, setCpv] = useState(null)
+      "https://doffin-bach-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "doffin-bach",
+    storageBucket: "doffin-bach.appspot.com",
+    messagingSenderId: "16468608817",
+    appId: "1:16468608817:web:f708022a44a453b4ca1210",
+    measurementId: "G-QXSYS06S5N",
+  };
+  const [form, setForm] = useState([]);
+  const [cpv, setCpv] = useState(null);
 
   if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig)
+    firebase.initializeApp(firebaseConfig);
   }
 
   const handleChange = (e) => {
-    setCpv(e.target.value)
-  }
+    setCpv(e);
+  };
+  console.log(cpv);
 
-  let db = firebase.firestore()
+  let db = firebase.firestore();
 
   // useEffect(() => {
   // 	setForm([])
@@ -49,23 +50,23 @@ function Home({ cpvCount }) {
   // 		})
   // }, [cpv])
 
-  const gridStyle = { minHeight: 550 }
+  const gridStyle = { minHeight: 550 };
 
   const columns = [
-    { field: 'bedrift', headerName: 'Bedrift', width: 200 },
-    { field: 'beskrivelse', headerName: 'Beskrivelse', width: 700 },
-    { field: 'cpv', headerName: 'CPV', width: 200 },
-    { field: 'cpvmain', headerName: 'CPV Kategori', width: 200 },
-    { field: 'dato', headerName: 'Dato', width: 120 },
-    { field: 'kategori', headerName: 'Kategori', width: 200 },
-    { field: 'subkategori', headerName: 'Sub kategori', width: 300 },
-  ]
+    { field: "bedrift", headerName: "Bedrift", width: 200 },
+    { field: "beskrivelse", headerName: "Beskrivelse", width: 700 },
+    { field: "cpv", headerName: "CPV", width: 200 },
+    { field: "cpvmain", headerName: "CPV Kategori", width: 200 },
+    { field: "dato", headerName: "Dato", width: 120 },
+    { field: "kategori", headerName: "Kategori", width: 200 },
+    { field: "subkategori", headerName: "Sub kategori", width: 300 },
+  ];
 
-  let newCount = Object.values(count)[0]
-  console.log(newCount)
+  let newCount = Object.values(count)[0];
+  console.log(newCount);
   //  Cloudfunction i firebase
   // 52, 102, 02, 12, 21,
-  let rows
+  let rows;
   form
     ? (rows = form.map((item, i) => {
         return {
@@ -77,43 +78,43 @@ function Home({ cpvCount }) {
           dato: item.dato,
           kategori: item.kategorier,
           subkategori: item.subkategori,
-        }
+        };
       }))
     : (rows = [
         {
           id: 520982058,
-          bedrift: 'Loading...',
-          beskrivelse: 'Loading...',
-          cpvmain: 'Loading...',
-          cpv: 'Loading...',
-          dato: 'Loading...',
-          kategori: 'Loading...',
-          subkategori: 'Loading...',
+          bedrift: "Loading...",
+          beskrivelse: "Loading...",
+          cpvmain: "Loading...",
+          cpv: "Loading...",
+          dato: "Loading...",
+          kategori: "Loading...",
+          subkategori: "Loading...",
         },
-      ])
+      ]);
 
   //   console.log(cpvCount)
   //   console.log(cpvCount['03'])
   //   console.log(cpvMain.map((item) => item.cpv.substring(0, 2)))
 
   return (
-    <div className='App'>
+    <div className="App">
       <h1>Form: F02_2014</h1>
-      <label for='cpvmain'>Velg en kategori:</label>
-      <select name='cpvmain' id='cpvmain' onChange={handleChange}>
-        <option value='' disabled selected>
+      <label for="cpvmain">Velg en kategori:</label>
+      <select name="cpvmain" id="cpvmain" onChange={handleChange}>
+        <option value="" disabled selected>
           Velg hovedkategori
         </option>
         {cpvMain.map((item) => (
           <option value={item.cpvmain}>
             {item.cpvmain} (
-            {newCount[item.cpv.substring(0, 2) + '000000'].count})
+            {newCount[item.cpv.substring(0, 2) + "000000"].count})
           </option>
         ))}
       </select>
-      <div style={{ height: 800, width: '100%' }}>
+      <div style={{ height: 800, width: "100%" }}>
         <DataGrid
-          idProperty='id'
+          idProperty="id"
           rowHeight={100}
           columns={columns}
           rows={rows}
@@ -124,8 +125,8 @@ function Home({ cpvCount }) {
       {/* <Count /> */}
       {/* </header> */}
     </div>
-  )
+  );
 }
 // 100 av 100 sortert på data
 
-export default Home
+export default Home;
