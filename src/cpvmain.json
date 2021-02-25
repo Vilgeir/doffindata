@@ -1,182 +1,178 @@
 [
-    {
-        "cpv": "03000000",
-        "cpvmain": "Agricultural, farming, fishing, forestry and related products"
-    },
-    {
-        "cpv": "09000000",
-        "cpvmain": "Petroleum products, fuel, electricity and other sources of energy"
-    },
-    {
-        "cpv": "14000000",
-        "cpvmain": "Mining, basic metals and related products"
-    },
-    {
-        "cpv": "15000000",
-        "cpvmain": "Food, beverages, tobacco and related products"
-    },
-    {
-        "cpv": "16000000",
-        "cpvmain": "Agricultural machinery"
-    },
-    {
-        "cpv": "18000000",
-        "cpvmain": "Clothing, footwear, luggage articles and accessories"
-    },
-    {
-        "cpv": "19000000",
-        "cpvmain": "Leather and textile fabrics, plastic and rubber materials"
-    },
-    {
-        "cpv": "22000000",
-        "cpvmain": "Printed matter and related products"
-    },
-    {
-        "cpv": "24000000",
-        "cpvmain": "Chemical products"
-    },
-    {
-        "cpv": "30000000",
-        "cpvmain": "Office and computing machinery, equipment and supplies except furniture and software packages"
-    },
-    {
-        "cpv": "31000000",
-        "cpvmain": "Electrical machinery, apparatus, equipment and consumables; lighting"
-    },
-    {
-        "cpv": "32000000",
-        "cpvmain": "Radio, television, communication, telecommunication and related equipment"
-    },
-    {
-        "cpv": "33000000",
-        "cpvmain": "Medical equipments, pharmaceuticals and personal care products"
-    },
-    {
-        "cpv": "34000000",
-        "cpvmain": "Transport equipment and auxiliary products to transportation"
-    },
-    {
-        "cpv": "35000000",
-        "cpvmain": "Security, fire-fighting, police and defence equipment"
-    },
-    {
-        "cpv": "37000000",
-        "cpvmain": "Musical instruments, sport goods, games, toys, handicraft, art materials and accessories"
-    },
-    {
-        "cpv": "38000000",
-        "cpvmain": "Laboratory, optical and precision equipments (excl. glasses)"
-    },
-    {
-        "cpv": "39000000",
-        "cpvmain": "Furniture (incl. office furniture), furnishings, domestic appliances (excl. lighting) and cleaning products"
-    },
-    {
-        "cpv": "42000000",
-        "cpvmain": "Collected and purified water"
-    },
-    {
-        "cpv": "43000000",
-        "cpvmain": "Industrial machinery"
-    },
-    {
-        "cpv": "44000000",
-        "cpvmain": "Machinery for mining, quarrying, construction equipment"
-    },
-    {
-        "cpv": "45000000",
-        "cpvmain": "Construction structures and materials; auxiliary products to construction (except electric apparatus)"
-    },
-    {
-        "cpv": "48000000",
-        "cpvmain": "Construction work"
-    },
-    {
-        "cpv": "50000000",
-        "cpvmain": "Software package and information systems"
-    },
-    {
-        "cpv": "51000000",
-        "cpvmain": "Repair and maintenance services"
-    },
-    {
-        "cpv": "55000000",
-        "cpvmain": "Installation services (except software)"
-    },
-    {
-        "cpv": "60000000",
-        "cpvmain": "Camping sites and other non-hotel accommodation"
-    },
-    {
-        "cpv": "63000000",
-        "cpvmain": "Transport services (excl. Waste transport)"
-    },
-    {
-        "cpv": "64000000",
-        "cpvmain": "Supporting and auxiliary transport services; travel agencies services"
-    },
-    {
-        "cpv": "65000000",
-        "cpvmain": "Postal and telecommunications services"
-    },
-    {
-        "cpv": "66000000",
-        "cpvmain": "Public utilities"
-    },
-    {
-        "cpv": "70000000",
-        "cpvmain": "Financial and insurance services"
-    },
-    {
-        "cpv": "71000000",
-        "cpvmain": "Real estate services"
-    },
-    {
-        "cpv": "72000000",
-        "cpvmain": "Architectural, construction, engineering and inspection services"
-    },
-    {
-        "cpv": "73000000",
-        "cpvmain": "IT services: consulting, software development, Internet and support"
-    },
-    {
-        "cpv": "75000000",
-        "cpvmain": "Research and development services and related consultancy services"
-    },
-    {
-        "cpv": "76000000",
-        "cpvmain": "Administration, defence and social security services"
-    },
-    {
-        "cpv": "77000000",
-        "cpvmain": "Services related to the oil and gas industry"
-    },
-    {
-        "cpv": "79000000",
-        "cpvmain": "Agricultural, forestry, horticultural, aquacultural and apicultural services"
-    },
-    {
-        "cpv": "79000000",
-        "cpvmain": "Business services: law, marketing, consulting, recruitment, printing and security"
-    },
-    {
-        "cpv": "80000000",
-        "cpvmain": "Education and training services"
-    },
-    {
-        "cpv": "85000000",
-        "cpvmain": "Health and social work services"
-    },
-    {
-        "cpv": "90000000",
-        "cpvmain": "Sewage, refuse, cleaning and environmental services"
-    },
-    {
-        "cpv": "92000000",
-        "cpvmain": "Recreational, cultural and sporting services"
-    },
-    {
-        "cpv": "98000000",
-        "cpvmain": "Other community, social and personal services"
-    }
+  {
+    "cpv": "03000000",
+    "cpvmain": "Agricultural, farming, fishing, forestry and related products"
+  },
+  {
+    "cpv": "09000000",
+    "cpvmain": "Petroleum products, fuel, electricity and other sources of energy"
+  },
+  {
+    "cpv": "14000000",
+    "cpvmain": "Mining, basic metals and related products"
+  },
+  {
+    "cpv": "15000000",
+    "cpvmain": "Food, beverages, tobacco and related products"
+  },
+  {
+    "cpv": "16000000",
+    "cpvmain": "Agricultural machinery"
+  },
+  {
+    "cpv": "18000000",
+    "cpvmain": "Clothing, footwear, luggage articles and accessories"
+  },
+  {
+    "cpv": "19000000",
+    "cpvmain": "Leather and textile fabrics, plastic and rubber materials"
+  },
+  {
+    "cpv": "22000000",
+    "cpvmain": "Printed matter and related products"
+  },
+  {
+    "cpv": "24000000",
+    "cpvmain": "Chemical products"
+  },
+  {
+    "cpv": "30000000",
+    "cpvmain": "Office and computing machinery, equipment and supplies except furniture and software packages"
+  },
+  {
+    "cpv": "31000000",
+    "cpvmain": "Electrical machinery, apparatus, equipment and consumables; lighting"
+  },
+  {
+    "cpv": "32000000",
+    "cpvmain": "Radio, television, communication, telecommunication and related equipment"
+  },
+  {
+    "cpv": "33000000",
+    "cpvmain": "Medical equipments, pharmaceuticals and personal care products"
+  },
+  {
+    "cpv": "34000000",
+    "cpvmain": "Transport equipment and auxiliary products to transportation"
+  },
+  {
+    "cpv": "35000000",
+    "cpvmain": "Security, fire-fighting, police and defence equipment"
+  },
+  {
+    "cpv": "37000000",
+    "cpvmain": "Musical instruments, sport goods, games, toys, handicraft, art materials and accessories"
+  },
+  {
+    "cpv": "38000000",
+    "cpvmain": "Laboratory, optical and precision equipments (excl. glasses)"
+  },
+  {
+    "cpv": "39000000",
+    "cpvmain": "Furniture (incl. office furniture), furnishings, domestic appliances (excl. lighting) and cleaning products"
+  },
+  {
+    "cpv": "42000000",
+    "cpvmain": "Industrial machinery"
+  },
+  {
+    "cpv": "43000000",
+    "cpvmain": "Machinery for mining, quarrying, construction equipment"
+  },
+  {
+    "cpv": "44000000",
+    "cpvmain": "Construction structures and materials; auxiliary products to construction (except electric apparatus)"
+  },
+  {
+    "cpv": "45000000",
+    "cpvmain": "Construction work"
+  },
+  {
+    "cpv": "48000000",
+    "cpvmain": "Software package and information systems"
+  },
+  {
+    "cpv": "50000000",
+    "cpvmain": "Repair and maintenance services"
+  },
+  {
+    "cpv": "51000000",
+    "cpvmain": "Installation services (except software)"
+  },
+  {
+    "cpv": "55000000",
+    "cpvmain": "Hotel, restaurant and retail trade services"
+  },
+  {
+    "cpv": "60000000",
+    "cpvmain": "Transport services (excl. Waste transport)"
+  },
+  {
+    "cpv": "63000000",
+    "cpvmain": "Supporting and auxiliary transport services; travel agencies services"
+  },
+  {
+    "cpv": "64000000",
+    "cpvmain": "Postal and telecommunications services"
+  },
+  {
+    "cpv": "65000000",
+    "cpvmain": "Public utilities"
+  },
+  {
+    "cpv": "66000000",
+    "cpvmain": "Financial and insurance services"
+  },
+  {
+    "cpv": "70000000",
+    "cpvmain": "Real estate services"
+  },
+  {
+    "cpv": "71000000",
+    "cpvmain": "Architectural, construction, engineering and inspection services"
+  },
+  {
+    "cpv": "72000000",
+    "cpvmain": "IT services: consulting, software development, Internet and support"
+  },
+  {
+    "cpv": "73000000",
+    "cpvmain": "Research and development services and related consultancy services"
+  },
+  {
+    "cpv": "75000000",
+    "cpvmain": "Administration, defence and social security services"
+  },
+  {
+    "cpv": "76000000",
+    "cpvmain": "Services related to the oil and gas industry"
+  },
+  {
+    "cpv": "77000000",
+    "cpvmain": "Agricultural, forestry, horticultural, aquacultural and apicultural services"
+  },
+  {
+    "cpv": "79000000",
+    "cpvmain": "Business services: law, marketing, consulting, recruitment, printing and security"
+  },
+  {
+    "cpv": "80000000",
+    "cpvmain": "Education and training services"
+  },
+  {
+    "cpv": "85000000",
+    "cpvmain": "Health and social work services"
+  },
+  {
+    "cpv": "90000000",
+    "cpvmain": "Sewage, refuse, cleaning and environmental services"
+  },
+  {
+    "cpv": "92000000",
+    "cpvmain": "Recreational, cultural and sporting services"
+  },
+  {
+    "cpv": "98000000",
+    "cpvmain": "Other community, social and personal services"
+  }
 ]
