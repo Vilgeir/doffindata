@@ -24,3 +24,4 @@ yarn-error.log*
 
 .eslintcache
 src/doffin-bach-firebase-adminsdk.json
+src/firebaseConfig.js

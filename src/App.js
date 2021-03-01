@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div className="main-container">
-      {/* <Home cpvCount={cpvCount}></Home> */}
+      <Home cpvCount={cpvCount}></Home>
       <Filter></Filter>
     </div>
   );
