@@ -4,7 +4,7 @@ import CPVcodes from './data/cpv.json'
 import logo from './logo.svg'
 import count from './data/count.json'
 import data from './data/doffin-bach-default-rtdb-F02_2014-export.json'
-import firebaseConf from './firebaseConfig'
+import firebaseConf from './firebaseConfig.json'
 import './App.css'
 import { firebase } from '@firebase/app'
 import { DataGrid } from '@material-ui/data-grid'
@@ -23,7 +23,7 @@ function Home() {
   const [subSubKat, setSubSubkat] = useState()
 
   if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConf.firebaseConfig)
+    firebase.initializeApp(firebaseConf)
   }
 
   useEffect(() => {
