@@ -83,23 +83,23 @@ function Home() {
   }
   console.log(cpvstate && cpvstate.number)
 
-  let db = firebase.firestore()
+  // let db = firebase.firestore()
 
-  useEffect(() => {
-    setForm([])
-    db.collection('F02_2014')
-      .limit(10)
-      .where('object.cpvmain', '==', cpvstate && cpvstate.name)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          console.log(Object.values(doc.data())[0])
-          let newArr = Object.values(doc.data())[0]
-          setForm((prevState) => [...prevState, newArr])
-        })
-      })
-      console.log(form)
-  }, [cpvstate])
+  // useEffect(() => {
+  //   setForm([])
+  //   db.collection('F02_2014')
+  //     .limit(10)
+  //     .where('object.cpvmain', '==', cpvstate && cpvstate.name)
+  //     .get()
+  //     .then((querySnapshot) => {
+  //       querySnapshot.forEach((doc) => {
+  //         console.log(Object.values(doc.data())[0])
+  //         let newArr = Object.values(doc.data())[0]
+  //         setForm((prevState) => [...prevState, newArr])
+  //       })
+  //     })
+  //     console.log(form)
+  // }, [cpvstate])
 
   const gridStyle = { minHeight: 550 }
   const columns = [

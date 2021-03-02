@@ -79,10 +79,10 @@ function Filter() {
             {console.log(cpvName)}
             {cpvName
               ? cpvName.map((e) => (
-                  <button className="button" value={e[1]} onClick={handleClick}>
+                  <p className="button" value={e[1]} onClick={handleClick}>
                     {e[0]} (
                     {newCount[e[1].substring(0, 2) + "000000"][e[1]].count})
-                  </button>
+                  </p>
                 ))
               : ""}
           </div>
