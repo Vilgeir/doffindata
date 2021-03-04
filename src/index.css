@@ -30,9 +30,11 @@ code {
 }
 
 .button {
+  color: brown;
   width: 20rem;
   margin: 0.2rem;
   font-size: 1rem;
+  padding-left: 2rem;
 }
 
 .button:first-child {

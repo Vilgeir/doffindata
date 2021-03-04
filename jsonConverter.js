@@ -12,7 +12,7 @@ fs.readFile(
     let firstTwo = cpvNumbers.map(
       (js) => js.split('').slice(0, 2).join('') + '000000'
     )
-    let count = {}
+    let count = {} 
     firstTwo.forEach((i) => (count[i] = (count[i] || 0) + 1))
 
     // first three numbers

@@ -19,22 +19,21 @@ function Filter() {
   useEffect(() => {
     let arr = [];
     if (subkat) {
-      let hello = Object.keys(subkat).filter((e) => e.length === 8);
-      console.log(hello);
-      let test2 = hello.map((item) => item.slice(0, 3));
-      // console.log(test2)
+      let filterlength = Object.keys(subkat).filter((e) => e.length === 8);
+      // let test2 = hello.map((item) => item.slice(0, 3));
       for (let [k, v] of Object.entries(CPVcodes)) {
-        hello.includes(k) && arr.push([v, k]);
+        filterlength.includes(k) && arr.push([v, k]);
       }
-      console.log(arr);
 
       let newArr = arr.filter(
         (value, index, arr) => arr.indexOf(value) == index
       );
-      setCpvName(newArr);
+      setCpvName(prevState => [...prevState, newArr]);
     }
   }, [subkat]);
 
+
+  console.log(cpvName)
   useEffect(() => {
     setSubKat(newCount[cpvstate]);
   }, [cpvstate]);
@@ -51,14 +50,20 @@ function Filter() {
   };
 
   const handleClick = (e) => setChooseSubkat(e.target.value);
-  console.log(check);
   //   const myInput = <h1>{input}</h1>;
 
   const handleChecked = () => {
     return <h1>{input}</h1>;
   };
 
-  const hello = <input type="checkbox"></input>;
+  const subkattt = (cpvName ? cpvName.map((f) => (
+    f.map((e) => (
+    <p className="button" value={e[1]} onClick={handleClick}>
+      {e[1].substring(0,2) && e[0]} (
+      {newCount[e[1].substring(0, 2) + "000000"][e[1]].count})
+    </p>
+))))
+: "")
 
   return (
     <div>
@@ -76,15 +81,8 @@ function Filter() {
               {item.cpvmain} (
               {newCount[item.cpv.substring(0, 2) + "000000"].count})
             </label>
-            {console.log(cpvName)}
-            {cpvName
-              ? cpvName.map((e) => (
-                  <p className="button" value={e[1]} onClick={handleClick}>
-                    {e[0]} (
-                    {newCount[e[1].substring(0, 2) + "000000"][e[1]].count})
-                  </p>
-                ))
-              : ""}
+            {check.map(i => item.cpv === i.cpv && i.checked === true ? subkattt : '')}
+            
           </div>
         ))}
       </form>
