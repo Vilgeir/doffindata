@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import logo from './logo.svg'
 import Home from './Home'
 // import Filter from "./Filter";
-import Filter from './components/filter'
+import Filter from './components/Filter'
 import './App.css'
 import { firebase } from '@firebase/app'
 import { DataGrid } from '@material-ui/data-grid'

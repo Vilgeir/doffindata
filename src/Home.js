@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import cpvMain from './cpvmain.json'
 import CPVcodes from './data/cpv.json'
 import logo from './logo.svg'
-import count from './data/count.json'
 import data from './data/doffin-bach-default-rtdb-F02_2014-export.json'
 import firebaseConf from './firebaseConfig.json'
 import './App.css'
@@ -13,7 +12,6 @@ require('firebase/database')
 require('firebase/firestore')
 
 function Home() {
-
   const [form, setForm] = useState([])
   const [cpvstate, setCpv] = useState(null)
   const [subkat, setSubKat] = useState()
@@ -30,13 +28,12 @@ function Home() {
     let arr = []
     if (subSubKat) {
       let hello = Object.keys(subSubKat).filter((e) => e.length === 8)
-      console.log(hello)
+
       let test2 = hello.map((item) => item.slice(0, 4))
 
       for (let [k, v] of Object.entries(CPVcodes)) {
         hello.includes(k) && arr.push([v, k])
       }
-      console.log(arr)
 
       let newArr = arr.filter(
         (value, index, arr) => arr.indexOf(value) == index
@@ -45,21 +42,20 @@ function Home() {
     }
   }, [subSubKat])
 
-  useEffect(() => {
-    setSubSubkat(newCount[chooseSubkat])
-  }, [chooseSubkat])
+  // useEffect(() => {
+  //   setSubSubkat(newCount[chooseSubkat])
+  // }, [chooseSubkat])
 
   useEffect(() => {
     let arr = []
     if (subkat) {
       let hello = Object.keys(subkat).filter((e) => e.length === 8)
-      console.log(hello)
+
       let test2 = hello.map((item) => item.slice(0, 3))
       // console.log(test2)
       for (let [k, v] of Object.entries(CPVcodes)) {
         hello.includes(k) && arr.push([v, k])
       }
-      console.log(arr)
 
       let newArr = arr.filter(
         (value, index, arr) => arr.indexOf(value) == index
@@ -68,20 +64,16 @@ function Home() {
     }
   }, [subkat])
 
-
-
-  useEffect(() => {
-    setSubKat(newCount[cpvstate && cpvstate.number])
-  }, [cpvstate])
+  // useEffect(() => {
+  //   setSubKat(newCount[cpvstate && cpvstate.number])
+  // }, [cpvstate])
 
   const handleClick = (e) => setChooseSubkat(e.target.value)
 
   const handleChange = (e) => {
-
     let numbersAndName = e.target.value.split(' , ')
-    setCpv({'number': numbersAndName[0], 'name': numbersAndName[1]})
+    setCpv({ number: numbersAndName[0], name: numbersAndName[1] })
   }
-  console.log(cpvstate && cpvstate.number)
 
   // let db = firebase.firestore()
 
@@ -112,7 +104,7 @@ function Home() {
     { field: 'subkategori', headerName: 'Sub kategori', width: 300 },
   ]
 
-  let newCount = Object.values(count)[0]
+  // let newCount = Object.values(count)[0]
   let testData = Object.values(data)[0]
 
   //  Cloudfunction i firebase
@@ -143,7 +135,6 @@ function Home() {
           subkategori: 'Loading...',
         },
       ])
-      console.log(cpvName)
 
   return (
     <div className='App'>
@@ -155,10 +146,12 @@ function Home() {
         </option>
 
         {cpvMain.map((item) => (
-          <option value={item.cpv.substring(0, 2) + '000000' +' , '+ item.cpvmain}>
-          {/* <option value={item}> */}
+          <option
+            value={item.cpv.substring(0, 2) + '000000' + ' , ' + item.cpvmain}
+          >
+            {/* <option value={item}> */}
             {item.cpvmain} (
-            {newCount[item.cpv.substring(0, 2) + '000000'].count})
+            {/* {newCount[item.cpv.substring(0, 2) + '000000'].count}) */}
             {item.cpv.substring(0, 2) + '000000'}
           </option>
         ))}
@@ -167,7 +160,7 @@ function Home() {
         {cpvName
           ? cpvName.map((e) => (
               <button className='button' value={e[1]} onClick={handleClick}>
-                {e[0]} ({newCount[e[1].substring(0, 2) + '000000'][e[1]].count})
+                {/* {e[0]} ({newCount[e[1].substring(0, 2) + '000000'][e[1]].count}) */}
               </button>
             ))
           : ''}

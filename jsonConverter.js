@@ -258,7 +258,6 @@ fs.readFile(
         })
       }
 
-      console.log(arr)
       // let newObject = Object.values(arr)[0]
       fs.writeFile('./src/data/count.jsx', JSON.stringify(arr), (err) => {
         err && console.log('error', err)
