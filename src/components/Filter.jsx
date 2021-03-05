@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import structure from '../data/count.structure'
+import fylker from '../data/fylker'
+import Categories from '../pages/Categories'
 
 function Filter() {
   //   const [checked, setChecked] = useState({ cpv: '', checked: '' })
@@ -13,7 +16,10 @@ function Filter() {
 
   return (
     <div>
-      {structure.map((item, i) => (
+      <h3>Filter</h3>
+      <h4>Kategorier</h4>
+      <Link to='/categories'>Alle Kategorier</Link>
+      {/* {structure.map((item, i) => (
         <div>
           <input
             key={i}
@@ -31,6 +37,23 @@ function Filter() {
                 {i.name} ({i.count})
               </p>
             ))}
+        </div>
+      ))} */}
+
+      {structure[0].children.map((item, i) => (
+        <div>
+          <input key={i} type='checkbox' value={item.code}></input>
+          <label>
+            {item.name} ({item.count})
+          </label>
+        </div>
+      ))}
+
+      <h4>Fylker</h4>
+      {fylker.map((item, i) => (
+        <div>
+          <input key={i} type='checkbox' value={item.navn}></input>
+          <label>{item.navn}</label>
         </div>
       ))}
     </div>

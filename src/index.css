@@ -45,3 +45,11 @@ code {
   background-color: #a4c8fa;
   height: 15rem;
 }
+
+.container {
+  display: flex;
+}
+
+.search {
+  width: 30rem;
+}
