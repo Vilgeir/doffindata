@@ -89,7 +89,7 @@ fs.readFile(
       // console.log(arr[0].code === '14000000')
       // console.log(arr.map((a) => a.name))
       // arr.push(arr[0].code === '14000000', { hello: 'world' })
-      let testArr = Object.assign({}, arr)
+      // let testArr = Object.assign({}, arr)
       // console.log(arr)
       // for (const [k, v] of Object.entries(countThree)) {
       //   obj = { [k]: { count: v } }
@@ -135,15 +135,52 @@ fs.readFile(
         //   obj
         // )
       }
-      // for (const [k, v] of Object.entries(countFive)) {
-      //   obj = { [k]: { count: v } }
-      //   Object.assign(
-      //     arr[k.substring(0, 2) + '000000'][k.substring(0, 3) + '00000'][
-      //       k.substring(0, 4) + '0000'
-      //     ],
-      //     obj
-      //   )
-      // }
+      for (const [k, v] of Object.entries(countFive)) {
+        obj = {
+          code: k,
+          name: cpvName[k],
+          count: v,
+          children: [],
+        }
+
+        arr.map((i) => {
+          i.children.map((item) =>
+            item.children.map(
+              (it) =>
+                it.code === k.substring(0, 4) + '0000' && it.children.push(obj)
+            )
+          )
+        })
+
+        // obj = { [k]: { count: v } }
+        // Object.assign(
+        //   arr[k.substring(0, 2) + '000000'][k.substring(0, 3) + '00000'][
+        //     k.substring(0, 4) + '0000'
+        //   ],
+        //   obj
+        // )
+      }
+
+      for (const [k, v] of Object.entries(countSix)) {
+        obj = {
+          code: k,
+          name: cpvName[k],
+          count: v,
+          children: [],
+        }
+
+        arr.map((i) => {
+          i.children.map((item) =>
+            item.children.map((it) =>
+              it.children.map(
+                (ite) =>
+                  ite.code === k.substring(0, 5) + '000' &&
+                  ite.children.push(obj)
+              )
+            )
+          )
+        })
+      }
       // for (const [k, v] of Object.entries(countSix)) {
       //   obj = { [k]: { count: v } }
       //   Object.assign(
@@ -162,6 +199,29 @@ fs.readFile(
       //     obj
       //   )
       // }
+
+      for (const [k, v] of Object.entries(countSeven)) {
+        obj = {
+          code: k,
+          name: cpvName[k],
+          count: v,
+          children: [],
+        }
+
+        arr.map((i) => {
+          i.children.map((item) =>
+            item.children.map((it) =>
+              it.children.map((ite) =>
+                ite.children.map(
+                  (itemseven) =>
+                    itemseven.code === k.substring(0, 6) + '00' &&
+                    itemseven.children.push(obj)
+                )
+              )
+            )
+          )
+        })
+      }
       // for (const [k, v] of Object.entries(countEight)) {
       //   obj = { [k]: { count: v } }
       //   Object.assign(
@@ -173,9 +233,34 @@ fs.readFile(
       //     obj
       //   )
       // }
+
+      for (const [k, v] of Object.entries(countEight)) {
+        obj = {
+          code: k,
+          name: cpvName[k],
+          count: v,
+        }
+
+        arr.map((i) => {
+          i.children.map((item) =>
+            item.children.map((it) =>
+              it.children.map((ite) =>
+                ite.children.map((itemseven) =>
+                  itemseven.children.map(
+                    (itemeight) =>
+                      itemeight.code === k.substring(0, 7) + '0' &&
+                      itemeight.children.push(obj)
+                  )
+                )
+              )
+            )
+          )
+        })
+      }
+
       console.log(arr)
       // let newObject = Object.values(arr)[0]
-      fs.writeFile('./src/data/test.jsx', JSON.stringify(arr), (err) => {
+      fs.writeFile('./src/data/count.jsx', JSON.stringify(arr), (err) => {
         err && console.log('error', err)
       })
     })
