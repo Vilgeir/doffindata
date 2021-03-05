@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import logo from './logo.svg'
-import Home from './Home'
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
+import Home from './pages/Home'
+import DetailedList from './pages/DetailedList'
+import Categories from './pages/Categories'
 // import Filter from "./Filter";
 import Filter from './components/Filter'
 import './App.css'
@@ -25,10 +27,13 @@ function App() {
   }, [])
 
   return (
-    <div className='main-container'>
-      <Home cpvCount={cpvCount}></Home>
-      <Filter></Filter>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path={'/'} component={Home} />
+        <Route exact path={'/categories'} component={Categories} />
+        <Route exact path={'/details'} component={DetailedList} />
+      </Switch>
+    </BrowserRouter>
   )
 }
 
