@@ -9,6 +9,7 @@ import './App.css'
 import { firebase } from '@firebase/app'
 import { DataGrid } from '@material-ui/data-grid'
 import jsonData from './data/doffin-bach-default-rtdb-F02_2014-export.json'
+import Header from './components/Header'
 require('firebase/auth')
 require('firebase/database')
 require('firebase/firestore')
@@ -27,13 +28,16 @@ function App() {
   }, [])
 
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path={'/'} component={Home} />
-        <Route exact path={'/categories'} component={Categories} />
-        <Route exact path={'/details'} component={DetailedList} />
-      </Switch>
-    </BrowserRouter>
+    <>
+      <Header />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path={'/'} component={Home} />
+          <Route exact path={'/categories'} component={Categories} />
+          <Route exact path={'/details'} component={DetailedList} />
+        </Switch>
+      </BrowserRouter>
+    </>
   )
 }
 

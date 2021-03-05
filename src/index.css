@@ -40,3 +40,8 @@ code {
 .button:first-child {
   margin-top: 0.5rem;
 }
+
+.header {
+  background-color: #a4c8fa;
+  height: 15rem;
+}
