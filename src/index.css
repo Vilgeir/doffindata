@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -27,7 +27,7 @@ main > * {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -73,6 +73,22 @@ code {
   width: 30rem;
 }
 
+.main-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.main-boxes {
+  width: 10rem;
+  height: 10rem;
+  background-color: royalblue;
+}
+.main-boxes-2 {
+  width: 10rem;
+  height: 10rem;
+  background-color: green;
+
 /* Card */
 
 .card {
@@ -93,4 +109,5 @@ code {
 
 div > p {
   margin: 0 0 0 0;
+
 }
