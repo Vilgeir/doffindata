@@ -29,14 +29,21 @@ function App() {
 
   return (
     <>
-      <Header />
-      <BrowserRouter>
-        <Switch>
-          <Route exact path={"/"} component={Home} />
-          <Route exact path={"/categories"} component={Categories} />
-          <Route exact path={"/categories/:details"} component={DetailedList} />
-        </Switch>
-      </BrowserRouter>
+      {/* <Header /> */}
+      <header />
+      <main>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path={'/'} component={Home} />
+            <Route exact path={'/categories'} component={Categories} />
+            <Route
+              exact
+              path={'/categories/:details'}
+              component={DetailedList}
+            />
+          </Switch>
+        </BrowserRouter>
+      </main>
     </>
   );
 }
