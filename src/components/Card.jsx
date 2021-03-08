@@ -1,20 +1,22 @@
 import React from 'react'
 
-function Card() {
+function Card({ i }) {
   return (
     <div className='card'>
-      <h1>ANSK-0003-20 Rammeavtale Blomster</h1>
-      <p>Publisert av: Noen</p>
+      <h2>{i.tittel}</h2>
+      <p>Publisert av: {i.bedrift}</p>
       <div className='dates'>
         <div>
           <h3>Kunngjøringsdato</h3>
-          <p>dato</p>
+          <p>{i.dato}</p>
         </div>
         <div>
           <h3>Tilbudsfrist</h3>
           <p>2021-02-27</p>
         </div>
-        <p>Fylke</p>
+        <div>
+          <h3>{i.bedrift}</h3>
+        </div>
       </div>
     </div>
   )
