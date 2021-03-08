@@ -34,7 +34,7 @@ function App() {
         <Switch>
           <Route exact path={'/'} component={Home} />
           <Route exact path={'/categories'} component={Categories} />
-          <Route exact path={'/details'} component={DetailedList} />
+          <Route exact path={'/categories/:details'} component={DetailedList} />
         </Switch>
       </BrowserRouter>
     </>

@@ -6,8 +6,17 @@ fs.readFile(
   'utf8',
   (err, data) => {
     err && console.log(err)
+    let regex = /[0-9]/g
+    let threeMonths = Object.values(JSON.parse(data)).map((js) =>
+      js.dato.substring(0, 8) === '2020-09-'
+        ? js.cpvnumber
+        : js.dato.substring(0, 8) === '2020-10-'
+        ? js.cpvnumber
+        : js.dato.substring(0, 8) === '2020-11-' && js.cpvnumber
+    )
+    // js.dato == '2020-09-' + regex ? js.cpvnumber : ''
 
-    let cpvNumbers = Object.values(JSON.parse(data)).map((js) => js.cpvnumber)
+    let cpvNumbers = threeMonths.filter(Boolean)
 
     let firstTwo = cpvNumbers.map(
       (js) => js.split('').slice(0, 2).join('') + '000000'
@@ -68,7 +77,7 @@ fs.readFile(
     //   }
     //   Object.assign(arr, obj)
     // }
-
+    console.log(countEight)
     fs.readFile('./src/data/cpv.json', 'utf8', (err, cpvname) => {
       err && console.log(err)
       let cpvName = JSON.parse(cpvname)
@@ -79,10 +88,12 @@ fs.readFile(
         obj = {
           code: key,
           name: cpvName[key],
-          count: value,
+          countWithoutChildren: countEight[key],
+          countWithChildren: value,
           children: [],
         }
         arr.push(obj)
+
         // Object.assign(arr, obj)
       }
 
@@ -99,14 +110,16 @@ fs.readFile(
         obj = {
           code: k,
           name: cpvName[k],
-          count: v,
+          countWithoutChildren: countEight[k],
+          countWithChildren: v,
           children: [],
         }
 
         arr.map((i) => {
-          i.code === k.substring(0, 2) + '000000' && i.children.push(obj)
+          i.code === k.substring(0, 2) + '000000' &&
+            i.code !== k &&
+            i.children.push(obj)
         })
-
         // arr.push(
         //   newArr.map((a) => a === [k.substring(0, 2) + '000000']),
         //   obj
@@ -118,7 +131,8 @@ fs.readFile(
         obj = {
           code: k,
           name: cpvName[k],
-          count: v,
+          countWithoutChildren: countEight[k],
+          countWithChildren: v,
           children: [],
         }
 
@@ -127,6 +141,7 @@ fs.readFile(
             (item) =>
               // i.code === k.substring(0, 2) + '000000' &&
               item.code === k.substring(0, 3) + '00000' &&
+              item.code !== k &&
               item.children.push(obj)
           )
         })
@@ -139,7 +154,8 @@ fs.readFile(
         obj = {
           code: k,
           name: cpvName[k],
-          count: v,
+          countWithoutChildren: countEight[k],
+          countWithChildren: v,
           children: [],
         }
 
@@ -147,7 +163,9 @@ fs.readFile(
           i.children.map((item) =>
             item.children.map(
               (it) =>
-                it.code === k.substring(0, 4) + '0000' && it.children.push(obj)
+                it.code === k.substring(0, 4) + '0000' &&
+                it.code !== k &&
+                it.children.push(obj)
             )
           )
         })
@@ -165,7 +183,8 @@ fs.readFile(
         obj = {
           code: k,
           name: cpvName[k],
-          count: v,
+          countWithoutChildren: countEight[k],
+          countWithChildren: v,
           children: [],
         }
 
@@ -175,6 +194,7 @@ fs.readFile(
               it.children.map(
                 (ite) =>
                   ite.code === k.substring(0, 5) + '000' &&
+                  ite.code !== k &&
                   ite.children.push(obj)
               )
             )
@@ -204,7 +224,8 @@ fs.readFile(
         obj = {
           code: k,
           name: cpvName[k],
-          count: v,
+          countWithoutChildren: countEight[k],
+          countWithChildren: v,
           children: [],
         }
 
@@ -215,6 +236,7 @@ fs.readFile(
                 ite.children.map(
                   (itemseven) =>
                     itemseven.code === k.substring(0, 6) + '00' &&
+                    itemseven.code !== k &&
                     itemseven.children.push(obj)
                 )
               )
@@ -249,6 +271,7 @@ fs.readFile(
                   itemseven.children.map(
                     (itemeight) =>
                       itemeight.code === k.substring(0, 7) + '0' &&
+                      itemeight.code !== k &&
                       itemeight.children.push(obj)
                   )
                 )
@@ -259,7 +282,7 @@ fs.readFile(
       }
 
       // let newObject = Object.values(arr)[0]
-      fs.writeFile('./src/data/count.jsx', JSON.stringify(arr), (err) => {
+      fs.writeFile('./src/data/test.jsx', JSON.stringify(arr), (err) => {
         err && console.log('error', err)
       })
     })
