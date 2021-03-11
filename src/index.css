@@ -8,11 +8,12 @@ body {
 }
 
 main {
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
   display: grid;
   grid-template-columns:
     [full-start] minmax(1rem, 1fr)
-    [main-start] minmax(0, 50rem) [main-end]
+    [main-start] minmax(0, 60rem) [main-end]
     minmax(1em, 1fr) [full-end];
 }
 header {
@@ -70,7 +71,8 @@ code {
 }
 
 .search {
-  width: 30rem;
+  width: 35rem;
+  padding: 1rem;
 }
 
 .home-container {
@@ -105,21 +107,52 @@ code {
 /* Card */
 
 .card {
+  /* border: 1px solid grey; */
+  margin: 2rem 0;
   display: flex;
   flex-direction: column;
   padding: 0 1rem 0 0;
 }
 
 .dates {
-  display: flex;
-  flex-direction: row;
+  /* display: flex; */
+  /* flex-direction: row;
   justify-content: space-between;
+  align-items: flex-end; */
+  display: grid;
+  grid-template-columns:
+    [start] minmax(14rem, 14rem) [middle] minmax(1rem, 1fr)
+    [second] minmax(1rem, 1fr) [last] minmax(1rem, 1fr);
 }
 
-.card h1 {
-  margin: 1rem 0 0 0;
-}
-
-div > p {
+h2,
+h3 {
   margin: 0 0 0 0;
+}
+
+.publishedby {
+  margin: 0 0 2rem 0;
+}
+
+div > p,
+label {
+  margin: 0.3rem 0 0 0;
+  font-size: 1.3rem;
+}
+
+.town {
+  display: flex;
+  grid-column: last;
+  color: #bdbdbd;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+h4 {
+  background-color: #f5f7ff;
+  padding: 1rem;
+}
+
+input {
+  width: 20px;
 }
