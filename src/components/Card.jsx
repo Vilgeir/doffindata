@@ -1,21 +1,30 @@
 import React from 'react'
 
 function Card({ i }) {
+  const capitalize = (str) => {
+    let lower = str.toLowerCase()
+    return str.charAt(0).toUpperCase() + lower.slice(1)
+  }
+
+  const reverse = (date) => {
+    return date.split('-').reverse().join('.')
+  }
+
   return (
     <div className='card'>
       <h2>{i.tittel}</h2>
-      <p>Publisert av: {i.bedrift}</p>
+      <h3 className='publishedby'>Publisert av: {capitalize(i.bedrift)}</h3>
       <div className='dates'>
         <div>
-          <h3>Kunngjøringsdato</h3>
-          <p>{i.dato}</p>
+          <h3>Kunngjøringsdato:</h3>
+          <p>{reverse(i.kunngjoringsdato)}</p>
         </div>
         <div>
-          <h3>Tilbudsfrist</h3>
-          <p>2021-02-27</p>
+          <h3>Tilbudsfrist:</h3>
+          <p>{i.tilbudsfrist ? reverse(i.tilbudsfrist) : 'Ikke annonsert'}</p>
         </div>
-        <div>
-          <h3>{i.bedrift}</h3>
+        <div className='town'>
+          <p>{capitalize(i.sted)}</p>
         </div>
       </div>
     </div>

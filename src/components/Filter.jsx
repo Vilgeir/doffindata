@@ -20,32 +20,12 @@ function Filter({ details }) {
       <h3>Filter</h3>
       <h4>Kategorier</h4>
       <Link to='/categories'>Alle Kategorier</Link>
-      {/* {structure.map((item, i) => (
-        <div>
-          <input
-            key={i}
-            type='checkbox'
-            value={item.code}
-            onClick={handleChange}
-          ></input>
-          <label>
-            {item.name} ({item.count})
-          </label>
-          {checked.cpv === item.code &&
-            checked.checked === true &&
-            item.children.map((i) => (
-              <p className='button'>
-                {i.name} ({i.count})
-              </p>
-            ))}
-        </div>
-      ))} */}
 
       {structure.map(
         (i) =>
           i.code === details &&
           i.children.map((item, i) => (
-            <div>
+            <div className='checkboxes'>
               <input key={i} type='checkbox' value={item.code}></input>
               <label>
                 {item.name} ({item.countWithChildren})
@@ -56,11 +36,34 @@ function Filter({ details }) {
 
       <h4>Fylker</h4>
       {fylker.map((item, i) => (
-        <div>
+        <div className='checkboxes'>
           <input key={i} type='checkbox' value={item.navn}></input>
           <label>{item.navn}</label>
         </div>
       ))}
+
+      <h4>Kunngjøringsdato</h4>
+      <p>Kalender</p>
+
+      <h4>Tilbudsfrist</h4>
+      <p>Kalender</p>
+
+      <h4>Publikasjonstype</h4>
+      <div className='checkboxes'>
+        <input type='checkbox' value='nasjonal'></input>
+        <label>Nasjonal</label>
+        {/* <span className='checkmark'></span> */}
+      </div>
+      <div className='checkboxes'>
+        <input type='checkbox' value='europeisk'></input>
+        <label>Europeisk</label>
+        {/* <span className='checkmark'></span> */}
+      </div>
+      <div className='checkboxes'>
+        {/* <span className='checkmark'></span> */}
+        <input type='checkbox' value='marketcunsulting'></input>
+        <label>Market Cunsulting</label>
+      </div>
     </div>
   )
 }
