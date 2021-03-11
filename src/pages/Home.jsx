@@ -6,16 +6,21 @@ import "../index.css";
 function Home() {
   return (
     <div className="home-container">
-      <h1>Dette er starten på alt godt!</h1>
       <div>
         <input type="text" placeholder="Søk etter anbud eller CPV koder.." />
       </div>
-      <Link to={"categories"}>
-        <div className="main-boxes">box1</div>
-        <div className="main-boxes">box2</div>
-        <div className="main-boxes">box3</div>
-        <div className="main-boxes">box4</div>
-        <button>Neste side</button>
+      <h2>Velg hovedkategori</h2>
+      <Link to={"categories/"}>
+        <div className="box-container">
+          <div className="box-row">
+            <div className="main-boxes">Varer</div>
+            <div className="main-boxes">Bygg og anlegg</div>
+          </div>
+          <div className="box-row">
+            <div className="main-boxes">Tjenester</div>
+            <div className="main-boxes">Resterende</div>
+          </div>
+        </div>
       </Link>
     </div>
   );
