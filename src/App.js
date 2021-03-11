@@ -34,11 +34,11 @@ function App() {
       <main>
         <BrowserRouter>
           <Switch>
-            <Route exact path={'/'} component={Home} />
-            <Route exact path={'/categories'} component={Categories} />
+            <Route exact path={"/"} component={Home} />
+            <Route exact path={"/:category"} component={Categories} />
             <Route
               exact
-              path={'/categories/:details'}
+              path={"/:category/:details"}
               component={DetailedList}
             />
           </Switch>
