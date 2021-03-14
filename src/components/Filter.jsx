@@ -5,7 +5,7 @@ import structure from '../data/test'
 import fylker from '../data/fylker'
 import Categories from '../pages/Categories'
 
-function Filter({ details }) {
+function Filter({ details, subcategory }) {
   //   const [checked, setChecked] = useState({ cpv: '', checked: '' })
   const [checked, setChecked] = useState(
     structure.map((item) => ({ cpv: item.code, checked: false }))
@@ -26,10 +26,26 @@ function Filter({ details }) {
           i.code === details &&
           i.children.map((item, i) => (
             <div className='checkboxes'>
-              <input key={i} type='checkbox' value={item.code}></input>
-              <label>
-                {item.name} ({item.countWithChildren})
-              </label>
+              {subcategory && subcategory === item.code ? (
+                <>
+                  <input
+                    key={i}
+                    type='checkbox'
+                    value={item.code}
+                    checked
+                  ></input>
+                  <label>
+                    {item.name} ({item.countWithChildren})
+                  </label>{' '}
+                </>
+              ) : (
+                <>
+                  <input key={i} type='checkbox' value={item.code}></input>
+                  <label>
+                    {item.name} ({item.countWithChildren})
+                  </label>
+                </>
+              )}
             </div>
           ))
       )}
