@@ -1,7 +1,14 @@
+:root {
+  --darkBlue: #2958e5;
+  --mediumBlue: #a5b5e5;
+  --lightBlue: #f5f7ff;
+  --gray: #333333;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,7 +35,7 @@ main > * {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
@@ -85,8 +92,11 @@ code {
 
 .box-container {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row;
+  width: 60%;
+  justify-self: center;
+  flex-wrap: wrap;
+  padding: 1rem;
   height: 26rem;
 }
 
@@ -94,14 +104,17 @@ code {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
   width: 26rem;
 }
 
 .main-boxes {
   width: 8rem;
   height: 8rem;
-  padding: 2rem;
-  border: 0.1rem solid black;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #f5f7ff;
+  color: #2958e5;
 }
 
 /* Card */
@@ -155,4 +168,40 @@ h4 {
 
 input {
   width: 20px;
+}
+
+a {
+  display: flex;
+  justify-content: center;
+}
+.categories {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.category-card {
+  background-color: var(--lightBlue);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+  margin: 1rem;
+  width: 25rem;
+}
+
+.category-card > h3,
+a,
+p {
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+}
+.category-card > h3 {
+  color: var(--darkBlue);
+}
+.category-card > p {
+  color: var(--gray);
+  font-weight: 400;
 }
