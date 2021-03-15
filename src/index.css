@@ -27,7 +27,7 @@ header {
   grid-column: full;
   background-color: #a4c8fa;
   width: 100%;
-  height: 15rem;
+  height: 10rem;
 }
 
 main > * {
@@ -68,17 +68,16 @@ code {
   margin-top: 0.5rem;
 }
 
-.header {
-  background-color: #a4c8fa;
-  height: 15rem;
-}
-
 .container {
   display: flex;
 }
 
+.headline {
+  margin-bottom: 1rem;
+}
+
 .search {
-  width: 35rem;
+  width: 32rem;
   padding: 1rem;
 }
 

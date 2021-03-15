@@ -1,18 +1,18 @@
-import React from 'react'
-import Filter from '../components/Filter'
-import Card from '../components/Card'
-import { useParams } from 'react-router-dom'
-import structure from '../data/withMainCategories'
-import data from '../data/doffin-bach-default-rtdb-F02_2014-export.json'
+import React from "react";
+import Filter from "../components/Filter";
+import Card from "../components/Card";
+import { useParams } from "react-router-dom";
+import structure from "../data/withMainCategories";
+import data from "../data/doffin-bach-default-rtdb-F02_2014-export.json";
 
 function DetailedList() {
-  const { category, details, subcategory } = useParams()
+  const { category, details, subcategory } = useParams();
 
-  console.log(subcategory)
-  let arr = ['2020-09-', '2020-10-', '2020-11-']
+  console.log(subcategory);
+  let arr = ["2020-09-", "2020-10-", "2020-11-"];
   return (
-    <div className='container'>
-      <div className='search'>
+    <div className="container">
+      <div className="search">
         <Filter details={details} subcategory={subcategory} />
       </div>
       <div>
@@ -44,7 +44,7 @@ function DetailedList() {
                 )
             )}
         <select>
-          <option value=''>Sorter etter</option>
+          <option value="">Sorter etter</option>
         </select>
         {subcategory
           ? Object.values(data).map(
@@ -69,7 +69,7 @@ function DetailedList() {
             )}
       </div>
     </div>
-  )
+  );
 }
 
-export default DetailedList
+export default DetailedList;
