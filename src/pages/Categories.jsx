@@ -8,17 +8,19 @@ function Categories() {
 
   return (
     <div className="home-container">
-      <h3 className="headline">Søk i anbud</h3>
-      <input
-        className="search"
-        placeholder="Søk i kategorier, CPV-koder"
-      ></input>
-      <h1>{category}</h1>
+      <div className="head">
+        <h3 className="headline">Søk i anbud</h3>
+        <input
+          className="searchbar"
+          placeholder="Søk i kategorier, CPV-koder"
+        ></input>
+        <h3>{category}</h3>
+      </div>
       <div class="categories">
         {structure.map(
           (i) =>
             i.main === category &&
-            i.children.map((item) => (
+            i.children.map((item, i) => (
               <div className="category-card">
                 <Link to={"/" + category + "/" + item.code}>
                   <h3>

@@ -6,13 +6,15 @@ import "../index.css";
 function Home() {
   return (
     <div className="home-container">
-      <h3 className="headline">Velg hovedkategori</h3>
-      <div>
-        <input
-          type="text"
-          className="search"
-          placeholder="Søk etter anbud eller CPV koder.."
-        />
+      <div className="head">
+        <h3 className="headline">Velg hovedkategori</h3>
+        <div>
+          <input
+            type="text"
+            className="searchbar"
+            placeholder="Søk etter anbud eller CPV koder.."
+          />
+        </div>
       </div>
 
       <div className="box-container">
