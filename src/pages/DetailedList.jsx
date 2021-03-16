@@ -1,19 +1,30 @@
-import React from "react";
-import Filter from "../components/Filter";
-import Card from "../components/Card";
-import { useParams } from "react-router-dom";
-import structure from "../data/withMainCategories";
-import data from "../data/doffin-bach-default-rtdb-F02_2014-export.json";
+import React, { useEffect, useState } from 'react'
+import Filter from '../components/Filter'
+import Card from '../components/Card'
+import { useParams } from 'react-router-dom'
+import structure from '../data/withMainCategories'
+import data from '../data/doffin-bach-default-rtdb-F02_2014-export.json'
 
 function DetailedList() {
-  const { category, details, subcategory } = useParams();
+  const [checkedValues, setCheckedValues] = useState([])
 
-  console.log(subcategory);
-  let arr = ["2020-09-", "2020-10-", "2020-11-"];
+  const { category, details, subcategory } = useParams()
+
+  useEffect(() => {
+    subcategory && setCheckedValues([subcategory])
+  }, [])
+
+  let arr = ['2020-09-', '2020-10-', '2020-11-']
   return (
-    <div className="container">
-      <div className="search">
-        <Filter details={details} subcategory={subcategory} />
+    <div className='container'>
+      <div className='search'>
+        <Filter
+          details={details}
+          subcategory={subcategory}
+          category={category}
+          setCheckedValues={setCheckedValues}
+          checkedValues={checkedValues}
+        />
       </div>
       <div>
         {subcategory
@@ -44,8 +55,9 @@ function DetailedList() {
                 )
             )}
         <select>
-          <option value="">Sorter etter</option>
+          <option value=''>Sorter etter</option>
         </select>
+        <button>{checkedValues}</button>
         {subcategory
           ? Object.values(data).map(
               (i) =>
@@ -69,7 +81,7 @@ function DetailedList() {
             )}
       </div>
     </div>
-  );
+  )
 }
 
-export default DetailedList;
+export default DetailedList
