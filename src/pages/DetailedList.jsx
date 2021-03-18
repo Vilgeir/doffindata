@@ -57,7 +57,10 @@ function DetailedList() {
         <select>
           <option value=''>Sorter etter</option>
         </select>
-        <button>{checkedValues}</button>
+        {checkedValues.map((i) => (
+          <button>{i}</button>
+        ))}
+
         {subcategory
           ? Object.values(data).map(
               (i) =>
@@ -83,5 +86,7 @@ function DetailedList() {
     </div>
   )
 }
+
+// RENDRE BASERT På hva som finnes i checked values!!! Og hvis den er tom. ReNDRE ALT SOM ER I DETAILS!! :D
 
 export default DetailedList
