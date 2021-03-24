@@ -6,15 +6,17 @@ import structure from '../data/withMainCategories'
 import data from '../data/doffin-bach-default-rtdb-F02_2014-export.json'
 
 function DetailedList() {
-  const [checkedValues, setCheckedValues] = useState([])
+  const [checkedCategories, setcheckedCategories] = useState([])
+  const [checkedSubCategory, setcheckedSubCategory] = useState([])
 
   const { category, details, subcategory } = useParams()
 
   useEffect(() => {
-    subcategory && setCheckedValues([subcategory])
+    subcategory && setcheckedCategories([{ [subcategory]: [] }])
   }, [])
 
   let arr = ['2020-09-', '2020-10-', '2020-11-']
+
   return (
     <div className='container'>
       <div className='search'>
@@ -22,8 +24,10 @@ function DetailedList() {
           details={details}
           subcategory={subcategory}
           category={category}
-          setCheckedValues={setCheckedValues}
-          checkedValues={checkedValues}
+          setcheckedCategories={setcheckedCategories}
+          checkedCategories={checkedCategories}
+          checkedSubCategory={checkedSubCategory}
+          setcheckedSubCategory={setcheckedSubCategory}
         />
       </div>
       <div>
@@ -35,7 +39,7 @@ function DetailedList() {
                   it.children.map(
                     (i) =>
                       i.code === subcategory && (
-                        <h1>
+                        <h1 key={i}>
                           {i.name} (CPV {i.code})
                         </h1>
                       )
@@ -48,7 +52,7 @@ function DetailedList() {
                 item.children.map(
                   (i) =>
                     i.code === details && (
-                      <h1>
+                      <h1 key={i}>
                         {i.name} (CPV {i.code})
                       </h1>
                     )
@@ -57,20 +61,44 @@ function DetailedList() {
         <select>
           <option value=''>Sorter etter</option>
         </select>
-        {checkedValues.map((i) => (
-          <button>{i}</button>
-        ))}
+        <div>
+          <h3>CPV:</h3>
+          {checkedCategories.map((i) => (
+            <>
+              <button>{Object.keys(i)[0]}</button>
+              {Object.values(i)[0].map((item) => (
+                <button>{item}</button>
+              ))}
+            </>
+          ))}
+        </div>
 
-        {subcategory
-          ? Object.values(data).map(
-              (i) =>
-                i.cpvnumber.substring(0, 3) === subcategory.substring(0, 3) &&
-                arr.map(
-                  (item) =>
-                    item.includes(i.kunngjoringsdato.substring(0, 8)) && (
-                      <Card i={i} />
+        {checkedCategories.length > 0
+          ? Object.values(data).map((i) =>
+              checkedCategories.map((checked) =>
+                Object.values(checked)[0].length > 0
+                  ? Object.values(checked)[0].map(
+                      (check) =>
+                        i.cpvnumber
+                          .substring(0, 4)
+                          .includes(check.substring(0, 4)) &&
+                        arr.map(
+                          (item) =>
+                            item.includes(
+                              i.kunngjoringsdato.substring(0, 8)
+                            ) && <Card key={i} i={i} />
+                        )
                     )
-                )
+                  : i.cpvnumber
+                      .substring(0, 3)
+                      .includes(Object.keys(checked)[0].substring(0, 3)) &&
+                    arr.map(
+                      (item) =>
+                        item.includes(i.kunngjoringsdato.substring(0, 8)) && (
+                          <Card key={i} i={i} />
+                        )
+                    )
+              )
             )
           : Object.values(data).map(
               (i) =>
@@ -78,7 +106,7 @@ function DetailedList() {
                 arr.map(
                   (item) =>
                     item.includes(i.kunngjoringsdato.substring(0, 8)) && (
-                      <Card i={i} />
+                      <Card key={i} i={i} />
                     )
                 )
             )}
@@ -86,7 +114,5 @@ function DetailedList() {
     </div>
   )
 }
-
-// RENDRE BASERT På hva som finnes i checked values!!! Og hvis den er tom. ReNDRE ALT SOM ER I DETAILS!! :D
 
 export default DetailedList
