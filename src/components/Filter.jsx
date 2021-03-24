@@ -4,27 +4,70 @@ import { Link } from 'react-router-dom'
 import structure from '../data/withMainCategories'
 import fylker from '../data/fylker'
 import Categories from '../pages/Categories'
-import CheckedValues from './CheckedValues'
 
 function Filter({
   category,
   details,
   subcategory,
-  checkedValues,
-  setCheckedValues,
+  checkedCategories,
+  setcheckedCategories,
+  checkedSubCategory,
+  setcheckedSubCategory,
 }) {
   const handleClick = (e) => {
-    checkedValues.map(
+    checkedCategories.map(
       (i) =>
-        i === e.target.value &&
-        setCheckedValues((prevstate) => [
-          ...prevstate.filter((item) => item !== e.target.value),
+        Object.keys(i).join() === e.target.value &&
+        // console.log(Object.keys(i).join())
+
+        setcheckedCategories((prevstate) => [
+          ...prevstate.filter(
+            (item) => Object.keys(item).join() != [e.target.value]
+          ),
         ])
     )
 
     e.target.checked === true &&
-      setCheckedValues((prevstate) => [...prevstate, e.target.value])
+      setcheckedCategories((prevState) => [
+        ...prevState,
+        { [e.target.value]: [] },
+      ])
   }
+
+  const handleChange = (e) => {
+    e.target.checked === false &&
+      setcheckedCategories((prevState) =>
+        prevState.map((i) =>
+          Object.keys(i).join().substring(0, 3) ===
+          e.target.value.substring(0, 3)
+            ? {
+                [Object.keys(i).join()]: [
+                  ...Object.values(i)[0].filter(
+                    (item) => item !== e.target.value
+                  ),
+                ],
+              }
+            : i
+        )
+      )
+
+    e.target.checked === true &&
+      setcheckedCategories((prevState) =>
+        prevState.map((i) =>
+          Object.keys(i).join().substring(0, 3) ===
+          e.target.value.substring(0, 3)
+            ? {
+                [Object.keys(i).join()]: [
+                  ...Object.values(i)[0],
+                  e.target.value,
+                ],
+              }
+            : i
+        )
+      )
+  }
+
+  console.log(checkedCategories)
 
   return (
     <div>
@@ -38,7 +81,7 @@ function Filter({
             (i) =>
               i.code === details &&
               i.children.map((item, i) => (
-                <div className='checkboxes'>
+                <div key={i} className='checkboxes'>
                   {subcategory && subcategory === item.code ? (
                     <>
                       <input
@@ -51,16 +94,16 @@ function Filter({
                       <label>
                         {item.name} ({item.countWithChildren})
                       </label>
-                      {checkedValues.map(
+                      {checkedCategories.map(
                         (check) =>
-                          check.includes(item.code) &&
+                          Object.keys(check).includes(item.code) &&
                           item.children.map((it, index) => (
-                            <div className='subcheckboxes'>
+                            <div key={it} className='subcheckboxes'>
                               <input
                                 key={index}
                                 type='checkbox'
                                 value={it.code}
-                                onClick={handleClick}
+                                onClick={handleChange}
                               ></input>
                               <label>
                                 {it.name} ({it.countWithChildren})
@@ -80,16 +123,16 @@ function Filter({
                       <label>
                         {item.name} ({item.countWithChildren})
                       </label>
-                      {checkedValues.map(
+                      {checkedCategories.map(
                         (check) =>
-                          check.includes(item.code) &&
+                          Object.keys(check).includes(item.code) &&
                           item.children.map((it, index) => (
-                            <div className='subcheckboxes'>
+                            <div key={index} className='subcheckboxes'>
                               <input
                                 key={index}
                                 type='checkbox'
                                 value={it.code}
-                                onClick={handleClick}
+                                onClick={handleChange}
                               ></input>
                               <label>
                                 {it.name} ({it.countWithChildren})
