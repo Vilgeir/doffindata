@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react'
-import Filter from '../components/Filter'
-import Card from '../components/Card'
-import { useParams } from 'react-router-dom'
-import structure from '../data/withMainCategories'
-import data from '../data/doffin-bach-default-rtdb-F02_2014-export.json'
+import React, { useEffect, useState } from "react";
+import Filter from "../components/Filter";
+import Card from "../components/Card";
+import { useParams } from "react-router-dom";
+import structure from "../data/withMainCategories";
+import data from "../data/doffin-bach-default-rtdb-F02_2014-export.json";
 
 function DetailedList() {
-  const [checkedValues, setCheckedValues] = useState([])
+  const [checkedValues, setCheckedValues] = useState([]);
 
-  const { category, details, subcategory } = useParams()
+  const { category, details, subcategory } = useParams();
 
   useEffect(() => {
-    subcategory && setCheckedValues([subcategory])
-  }, [])
+    subcategory && setCheckedValues([subcategory]);
+  }, []);
 
-  let arr = ['2020-09-', '2020-10-', '2020-11-']
+  let arr = ["2020-09-", "2020-10-", "2020-11-"];
   return (
-    <div className='container'>
-      <div className='search'>
+    <div className="detail-container">
+      <div className="search">
         <Filter
           details={details}
           subcategory={subcategory}
@@ -26,7 +26,7 @@ function DetailedList() {
           checkedValues={checkedValues}
         />
       </div>
-      <div>
+      <div className="info-container">
         {subcategory
           ? structure.map(
               (item) =>
@@ -55,10 +55,10 @@ function DetailedList() {
                 )
             )}
         <select>
-          <option value=''>Sorter etter</option>
+          <option value="cpv-sort">Sorter etter</option>
         </select>
         {checkedValues.map((i) => (
-          <button>{i}</button>
+          <button className="cpv-button">{i}</button>
         ))}
 
         {subcategory
@@ -84,9 +84,9 @@ function DetailedList() {
             )}
       </div>
     </div>
-  )
+  );
 }
 
 // RENDRE BASERT På hva som finnes i checked values!!! Og hvis den er tom. ReNDRE ALT SOM ER I DETAILS!! :D
 
-export default DetailedList
+export default DetailedList;

@@ -12,7 +12,7 @@ function Categories() {
         <h3 className="headline">Søk i anbud</h3>
         <input
           className="searchbar"
-          placeholder="Søk i kategorier, CPV-koder"
+          placeholder="Søk etter anbud eller CPV koder"
         ></input>
         <h3>{category}</h3>
       </div>

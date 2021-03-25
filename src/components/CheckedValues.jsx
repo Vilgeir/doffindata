@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import structure from '../data/withMainCategories'
+import React, { useEffect, useState } from "react";
+import structure from "../data/withMainCategories";
 
 function CheckedValues(props) {
   let structs = props.structure
@@ -11,16 +11,18 @@ function CheckedValues(props) {
             it.code === props.details && it.children.map((item) => item.name)
         )
     )
-    .filter((i) => i)
-  let one = structs.filter((i) => i !== false)
+    .filter((i) => i);
+  let one = structs.filter((i) => i !== false);
 
-  console.log(one)
+  console.log(one);
   const handleChecked = (e) => {
-    const struct = structs[e.target.dataset.id]
-    let newCheckedValues = props.checkedValues.filter((item) => item !== struct)
-    if (e.target.checked) newCheckedValues.push(struct)
-    props.setCheckedValues(newCheckedValues)
-  }
+    const struct = structs[e.target.dataset.id];
+    let newCheckedValues = props.checkedValues.filter(
+      (item) => item !== struct
+    );
+    if (e.target.checked) newCheckedValues.push(struct);
+    props.setCheckedValues(newCheckedValues);
+  };
   return (
     <div>
       {props.structure.map(
@@ -33,11 +35,11 @@ function CheckedValues(props) {
                 <>
                   <label key={id}>
                     <input
-                      type='checkbox'
+                      type="checkbox"
                       data-id={id}
                       onClick={handleChecked}
                     />
-                    {item.name}
+                    <label className="check-label">{item.name}</label>
                   </label>
                 </>
               ))
@@ -46,7 +48,7 @@ function CheckedValues(props) {
 
       {/* <h1>{props..children}</h1> */}
     </div>
-  )
+  );
 }
 
-export default CheckedValues
+export default CheckedValues;
