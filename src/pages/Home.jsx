@@ -12,7 +12,7 @@ function Home() {
           <input
             type="text"
             className="searchbar"
-            placeholder="Søk etter anbud eller CPV koder.."
+            placeholder="Søk etter anbud eller CPV koder"
           />
         </div>
       </div>

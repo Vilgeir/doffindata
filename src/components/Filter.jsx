@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 // import structure from '../data/count.structure'
-import structure from '../data/withMainCategories'
-import fylker from '../data/fylker'
-import Categories from '../pages/Categories'
+import structure from "../data/withMainCategories";
+import fylker from "../data/fylker";
+import Categories from "../pages/Categories";
 
 function Filter({
   category,
@@ -25,14 +25,14 @@ function Filter({
             (item) => Object.keys(item).join() != [e.target.value]
           ),
         ])
-    )
+    );
 
     e.target.checked === true &&
       setcheckedCategories((prevState) => [
         ...prevState,
         { [e.target.value]: [] },
-      ])
-  }
+      ]);
+  };
 
   const handleChange = (e) => {
     e.target.checked === false &&
@@ -49,7 +49,7 @@ function Filter({
               }
             : i
         )
-      )
+      );
 
     e.target.checked === true &&
       setcheckedCategories((prevState) =>
@@ -64,16 +64,29 @@ function Filter({
               }
             : i
         )
-      )
-  }
+      );
+  };
 
-  console.log(checkedCategories)
+  console.log(checkedCategories);
 
   return (
     <div>
-      <h3>Filter</h3>
+      <h3 className="">Søk</h3>
+      {/* <label className="check-container">
+        <input type="checkbox"></input>
+        <span className="checkmark"></span>
+      </label> */}
+      <div>
+        <input
+          type="text"
+          className="searchbar"
+          id="detail-search"
+          placeholder="Søk"
+        />
+      </div>
+      <h3 className="">Filter</h3>
       <h4>Kategorier</h4>
-      <Link to='/categories'>Alle Kategorier</Link>
+      <Link to="/categories">Alle Kategorier</Link>
       {structure.map(
         (it) =>
           it.main === category &&
@@ -81,60 +94,63 @@ function Filter({
             (i) =>
               i.code === details &&
               i.children.map((item, i) => (
-                <div key={i} className='checkboxes'>
+                <div className="checkboxes">
                   {subcategory && subcategory === item.code ? (
-                    <>
-                      <input
-                        key={i}
-                        type='checkbox'
-                        value={item.code}
-                        defaultChecked={true}
-                        onClick={handleClick}
-                      ></input>
-                      <label>
-                        {item.name} ({item.countWithChildren})
-                      </label>
-                      {checkedCategories.map(
+                    <div className="check-container">
+                      <div>
+                        <input
+                          key={i}
+                          type="checkbox"
+                          value={item.code}
+                          defaultChecked={true}
+                          onClick={handleClick}
+                        ></input>
+                        <label className="check-label">
+                          {item.name} ({item.countWithChildren})
+                        </label>
+                      </div>
+
+                      {checkedValues.map(
                         (check) =>
                           Object.keys(check).includes(item.code) &&
                           item.children.map((it, index) => (
-                            <div key={it} className='subcheckboxes'>
+                            <div className="subcheckboxes">
                               <input
                                 key={index}
-                                type='checkbox'
+                                type="checkbox"
                                 value={it.code}
                                 onClick={handleChange}
                               ></input>
-                              <label>
+                              <label className="check-label">
                                 {it.name} ({it.countWithChildren})
                               </label>
                             </div>
                           ))
                       )}
-                    </>
+                    </div>
                   ) : (
                     <>
                       <input
                         key={i}
-                        type='checkbox'
+                        type="checkbox"
                         value={item.code}
                         onClick={handleClick}
                       ></input>
-                      <label>
+                      <label className="check-label">
                         {item.name} ({item.countWithChildren})
                       </label>
                       {checkedCategories.map(
                         (check) =>
                           Object.keys(check).includes(item.code) &&
                           item.children.map((it, index) => (
-                            <div key={index} className='subcheckboxes'>
+                            <div key={index} className="subcheckboxes">
                               <input
                                 key={index}
-                                type='checkbox'
+                                type="checkbox"
                                 value={it.code}
                                 onClick={handleChange}
                               ></input>
-                              <label>
+                              <label className="check-label">
                                 {it.name} ({it.countWithChildren})
                               </label>
                             </div>
@@ -149,8 +165,8 @@ function Filter({
 
       <h4>Fylker</h4>
       {fylker.map((item, i) => (
-        <div className='checkboxes'>
-          <input key={i} type='checkbox' value={item.navn}></input>
+        <div className="checkboxes">
+          <input key={i} type="checkbox" value={item.navn}></input>
           <label>{item.navn}</label>
         </div>
       ))}
@@ -162,23 +178,23 @@ function Filter({
       <p>Kalender</p>
 
       <h4>Publikasjonstype</h4>
-      <div className='checkboxes'>
-        <input type='checkbox' value='nasjonal'></input>
+      <div className="checkboxes">
+        <input type="checkbox" value="nasjonal"></input>
         <label>Nasjonal</label>
         {/* <span className='checkmark'></span> */}
       </div>
-      <div className='checkboxes'>
-        <input type='checkbox' value='europeisk'></input>
+      <div className="checkboxes">
+        <input type="checkbox" value="europeisk"></input>
         <label>Europeisk</label>
         {/* <span className='checkmark'></span> */}
       </div>
-      <div className='checkboxes'>
+      <div className="checkboxes">
         {/* <span className='checkmark'></span> */}
-        <input type='checkbox' value='marketcunsulting'></input>
+        <input type="checkbox" value="marketcunsulting"></input>
         <label>Market Cunsulting</label>
       </div>
     </div>
-  )
+  );
 }
 
-export default Filter
+export default Filter;

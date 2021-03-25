@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import Filter from '../components/Filter'
-import Card from '../components/Card'
-import { useParams } from 'react-router-dom'
-import structure from '../data/withMainCategories'
-import data from '../data/doffin-bach-default-rtdb-F02_2014-export.json'
+import React, { useEffect, useState } from "react";
+import Filter from "../components/Filter";
+import Card from "../components/Card";
+import { useParams } from "react-router-dom";
+import structure from "../data/withMainCategories";
+import data from "../data/doffin-bach-default-rtdb-F02_2014-export.json";
 
 function DetailedList() {
-  const [checkedCategories, setcheckedCategories] = useState([])
-  const [checkedSubCategory, setcheckedSubCategory] = useState([])
+  const [checkedCategories, setcheckedCategories] = useState([]);
+  const [checkedSubCategory, setcheckedSubCategory] = useState([]);
 
-  const { category, details, subcategory } = useParams()
+  const { category, details, subcategory } = useParams();
 
   useEffect(() => {
-    subcategory && setcheckedCategories([{ [subcategory]: [] }])
-  }, [])
+    subcategory && setcheckedCategories([{ [subcategory]: [] }]);
+  }, []);
 
-  let arr = ['2020-09-', '2020-10-', '2020-11-']
+  let arr = ["2020-09-", "2020-10-", "2020-11-"];
 
   return (
-    <div className='container'>
-      <div className='search'>
+    <div className="detail-container">
+      <div className="search">
         <Filter
           details={details}
           subcategory={subcategory}
@@ -30,7 +30,7 @@ function DetailedList() {
           setcheckedSubCategory={setcheckedSubCategory}
         />
       </div>
-      <div>
+      <div className="info-container">
         {subcategory
           ? structure.map(
               (item) =>
@@ -59,13 +59,13 @@ function DetailedList() {
                 )
             )}
         <select>
-          <option value=''>Sorter etter</option>
+          <option value="cpv-sort">Sorter etter</option>
         </select>
         <div>
           <h3>CPV:</h3>
           {checkedCategories.map((i) => (
             <>
-              <button>{Object.keys(i)[0]}</button>
+              <button className="cpv-button">{Object.keys(i)[0]}</button>
               {Object.values(i)[0].map((item) => (
                 <button>{item}</button>
               ))}
@@ -112,7 +112,7 @@ function DetailedList() {
             )}
       </div>
     </div>
-  )
+  );
 }
 
-export default DetailedList
+export default DetailedList;
