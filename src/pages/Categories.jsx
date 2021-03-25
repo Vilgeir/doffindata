@@ -16,7 +16,7 @@ function Categories() {
         ></input>
         <h3>{category}</h3>
       </div>
-      <div class="categories">
+      <div className="categories">
         {structure.map(
           (i) =>
             i.main === category &&
