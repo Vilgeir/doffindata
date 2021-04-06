@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-// import structure from '../data/count.structure'
 import structure from '../data/withMainCategories'
 import fylker from '../data/fylker'
 import Categories from '../pages/Categories'
@@ -11,15 +10,12 @@ function Filter({
   subcategory,
   checkedCategories,
   setcheckedCategories,
-  checkedSubCategory,
-  setcheckedSubCategory,
+  removeChecked,
 }) {
   const handleClick = (e) => {
     checkedCategories.map(
       (i) =>
         Object.keys(i).join() === e.target.value &&
-        // console.log(Object.keys(i).join())
-
         setcheckedCategories((prevstate) => [
           ...prevstate.filter(
             (item) => Object.keys(item).join() != [e.target.value]
@@ -33,6 +29,11 @@ function Filter({
         { [e.target.value]: [] },
       ])
   }
+
+  useEffect(() => {
+    let checkbox = document.getElementById(removeChecked)
+    checkbox.checked = false
+  }, [removeChecked])
 
   const handleChange = (e) => {
     e.target.checked === false &&
@@ -72,10 +73,6 @@ function Filter({
   return (
     <div>
       <h3 className=''>Søk</h3>
-      {/* <label className="check-container">
-        <input type="checkbox"></input>
-        <span className="checkmark"></span>
-      </label> */}
       <div>
         <input
           type='text'
@@ -99,6 +96,7 @@ function Filter({
                     <div className='check-container'>
                       <div>
                         <input
+                          id={item.code}
                           key={i}
                           type='checkbox'
                           value={item.code}
@@ -116,6 +114,7 @@ function Filter({
                           item.children.map((it, index) => (
                             <div key={it} className='subcheckboxes'>
                               <input
+                                id={it.code}
                                 key={index}
                                 type='checkbox'
                                 value={it.code}
@@ -131,6 +130,7 @@ function Filter({
                   ) : (
                     <>
                       <input
+                        id={item.code}
                         key={i}
                         type='checkbox'
                         value={item.code}
@@ -148,6 +148,7 @@ function Filter({
                                 key={index}
                                 type='checkbox'
                                 value={it.code}
+                                id={it.code}
                                 onClick={handleChange}
                               ></input>
                               <label className='check-label'>
