@@ -31,8 +31,8 @@ function Filter({
   }
 
   useEffect(() => {
-    let checkbox = document.getElementById(removeChecked)
-    checkbox.checked = false
+    removeChecked.length === 8 &&
+      (document.getElementById(removeChecked).checked = false)
   }, [removeChecked])
 
   const handleChange = (e) => {
