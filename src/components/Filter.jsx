@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import structure from '../data/withMainCategories'
 import fylker from '../data/fylker'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Filter({
   category,
@@ -77,6 +79,10 @@ function Filter({
       )
   }
 
+  const goBack = () => {
+    window.history.back()
+  }
+
   console.log(checkedCategories)
 
   return (
@@ -97,7 +103,9 @@ function Filter({
         </button>
       )}
       <h4>Kategorier</h4>
-      <Link to='/categories'>Alle Kategorier</Link>
+      <a onClick={goBack}>
+        <FontAwesomeIcon icon={faArrowLeft} /> {category}
+      </a>
       {structure.map(
         (it) =>
           it.main === category &&
