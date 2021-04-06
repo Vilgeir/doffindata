@@ -32,7 +32,7 @@ function App() {
       {/* <Header /> */}
       <header />
       <main>
-        <BrowserRouter>
+        <BrowserRouter basename={window.location.pathname || ''}>
           <Switch>
             <Route exact path={'/'} component={Home} />
             <Route exact path={'/:category'} component={Categories} />
