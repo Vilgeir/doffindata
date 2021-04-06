@@ -29,7 +29,7 @@ function DetailedList() {
           Object.keys(i).join() === e.target.value &&
           setcheckedCategories((prevstate) => [
             ...prevstate.filter(
-              (item) => Object.keys(item).join() != [e.target.value]
+              (item) => Object.keys(item).join() !== [e.target.value]
             ),
           ])
       )
@@ -63,6 +63,7 @@ function DetailedList() {
           setcheckedCategories={setcheckedCategories}
           checkedCategories={checkedCategories}
           removeChecked={removeChecked}
+          setRemoveChecked={setRemoveChecked}
         />
       </div>
       <div className='info-container'>
