@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import structure from '../data/withMainCategories'
 import fylker from '../data/fylker'
@@ -14,6 +14,7 @@ function Filter({
   removeChecked,
   setRemoveChecked,
 }) {
+  const refcheckbox = useRef(null)
   const handleClick = (e) => {
     checkedCategories.map(
       (i) =>
@@ -32,8 +33,15 @@ function Filter({
       ])
   }
 
+  // const getRefs = () => {
+  //   for (let ref in refcheckbox) {
+  //     console.log(ref.value)
+  //   }
+  // }
+
   useEffect(() => {
     removeChecked.length === 8 &&
+      // getRefs()
       (document.getElementById(removeChecked).checked = false)
   }, [removeChecked])
 
@@ -118,6 +126,7 @@ function Filter({
                     <div className='check-container'>
                       <div>
                         <input
+                          ref={refcheckbox}
                           className='checkbox'
                           id={item.code}
                           key={i}
@@ -137,6 +146,7 @@ function Filter({
                           item.children.map((it, index) => (
                             <div key={it} className='subcheckboxes'>
                               <input
+                                ref={refcheckbox}
                                 className='checkbox'
                                 id={it.code}
                                 key={index}
@@ -154,6 +164,7 @@ function Filter({
                   ) : (
                     <>
                       <input
+                        ref={refcheckbox}
                         className='checkbox'
                         id={item.code}
                         key={i}
@@ -170,6 +181,7 @@ function Filter({
                           item.children.map((it, index) => (
                             <div key={index} className='subcheckboxes'>
                               <input
+                                ref={refcheckbox}
                                 className='checkbox'
                                 key={index}
                                 type='checkbox'
