@@ -18,10 +18,13 @@ function DetailedList() {
   let arr = ['2020-09-', '2020-10-', '2020-11-']
 
   const handleChange = (e) => {
+    console.log(e.target.value)
     let value = e.target.value
       .split('')
       .filter((item) => item === '0')
       .join('')
+
+    console.log(value.length)
 
     if (value.length === 5) {
       checkedCategories.map(
@@ -29,7 +32,7 @@ function DetailedList() {
           Object.keys(i).join() === e.target.value &&
           setcheckedCategories((prevstate) => [
             ...prevstate.filter(
-              (item) => Object.keys(item).join() !== [e.target.value]
+              (item) => Object.keys(item).join() != [e.target.value]
             ),
           ])
       )
