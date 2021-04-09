@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-// import structure from '../data/count.structure'
-import structure from "../data/withMainCategories";
-import fylker from "../data/fylker";
-import Categories from "../pages/Categories";
+import React, { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
+import structure from '../data/withMainCategories'
+import fylker from '../data/fylker'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Filter({
   category,
@@ -11,15 +11,14 @@ function Filter({
   subcategory,
   checkedCategories,
   setcheckedCategories,
-  checkedSubCategory,
-  setcheckedSubCategory,
+  removeChecked,
+  setRemoveChecked,
 }) {
+  const refcheckbox = useRef(null)
   const handleClick = (e) => {
     checkedCategories.map(
       (i) =>
         Object.keys(i).join() === e.target.value &&
-        // console.log(Object.keys(i).join())
-
         setcheckedCategories((prevstate) => [
           ...prevstate.filter(
             (item) => Object.keys(item).join() != [e.target.value]
@@ -33,6 +32,27 @@ function Filter({
         { [e.target.value]: [] },
       ]);
   };
+
+  // const getRefs = () => {
+  //   for (let ref in refcheckbox) {
+  //     console.log(ref.value)
+  //   }
+  // }
+
+  useEffect(() => {
+    removeChecked.length === 8 &&
+      // getRefs()
+      (document.getElementById(removeChecked).checked = false)
+  }, [removeChecked])
+
+  const removeFilters = () => {
+    setcheckedCategories([])
+    Object.values(document.getElementsByClassName('checkbox')).map(
+      (element) => {
+        element.checked = false
+      }
+    )
+  }
 
   const handleChange = (e) => {
     e.target.checked === false &&
@@ -67,15 +87,17 @@ function Filter({
       );
   };
 
-  //console.log(checkedCategories)
+
+  const goBack = () => {
+    window.history.back()
+  }
+
+  console.log(checkedCategories)
 
   return (
     <div>
-      <h3 className="">Søk</h3>
-      {/* <label className="check-container">
-        <input type="checkbox"></input>
-        <span className="checkmark"></span>
-      </label> */}
+      <h3 className=''>Søk</h3>
+        master
       <div>
         <input
           type="text"
@@ -84,9 +106,17 @@ function Filter({
           placeholder="Søk"
         />
       </div>
-      <h3 className="">Filter</h3>
+      <h3 className=''>Filter</h3>
+      {checkedCategories.length > 0 && (
+        <button className='cpv-button' onClick={removeFilters}>
+          Fjern alle filter
+        </button>
+      )}
       <h4>Kategorier</h4>
-      <Link to="/categories">Alle Kategorier</Link>
+      <a onClick={goBack}>
+        <FontAwesomeIcon icon={faArrowLeft} /> {category}
+      </a>
+         master
       {structure.map(
         (it) =>
           it.main === category &&
@@ -99,6 +129,9 @@ function Filter({
                     <div className="check-container">
                       <div>
                         <input
+                          ref={refcheckbox}
+                          className='checkbox'
+                          id={item.code}
                           key={i}
                           type="checkbox"
                           value={item.code}
@@ -116,6 +149,9 @@ function Filter({
                           item.children.map((it, index) => (
                             <div key={it} className="subcheckboxes">
                               <input
+                                ref={refcheckbox}
+                                className='checkbox'
+                                id={it.code}
                                 key={index}
                                 type="checkbox"
                                 value={it.code}
@@ -131,6 +167,9 @@ function Filter({
                   ) : (
                     <>
                       <input
+                        ref={refcheckbox}
+                        className='checkbox'
+                        id={item.code}
                         key={i}
                         type="checkbox"
                         value={item.code}
@@ -145,9 +184,12 @@ function Filter({
                           item.children.map((it, index) => (
                             <div key={index} className="subcheckboxes">
                               <input
+                                ref={refcheckbox}
+                                className='checkbox'
                                 key={index}
                                 type="checkbox"
                                 value={it.code}
+                                id={it.code}
                                 onClick={handleChange}
                               ></input>
                               <label className="check-label">

@@ -6,8 +6,10 @@ import structure from "../data/withMainCategories";
 import data from "../data/doffin-bach-default-rtdb-F02_2014-export.json";
 
 function DetailedList() {
+
   const [checkedCategories, setcheckedCategories] = useState([]);
   const [checkedSubCategory, setcheckedSubCategory] = useState([]);
+  const [removeChecked, setRemoveChecked] = useState([])
   const [sort, setSort] = useState();
 
   const { category, details, subcategory } = useParams();
@@ -41,6 +43,45 @@ function DetailedList() {
 
   console.log(sortedArray);
 
+  const handleChange = (e) => {
+    console.log(e.target.value)
+    let value = e.target.value
+      .split('')
+      .filter((item) => item === '0')
+      .join('')
+
+    console.log(value.length)
+
+    if (value.length === 5) {
+      checkedCategories.map(
+        (i) =>
+          Object.keys(i).join() === e.target.value &&
+          setcheckedCategories((prevstate) => [
+            ...prevstate.filter(
+              (item) => Object.keys(item).join() != [e.target.value]
+            ),
+          ])
+      )
+    } else {
+      setcheckedCategories((prevState) =>
+        prevState.map((i) =>
+          Object.keys(i).join().substring(0, 3) ===
+          e.target.value.substring(0, 3)
+            ? {
+                [Object.keys(i).join()]: [
+                  ...Object.values(i)[0].filter(
+                    (item) => item !== e.target.value
+                  ),
+                ],
+              }
+            : i
+        )
+      )
+    }
+
+    setRemoveChecked(e.target.value)
+  }
+
   return (
     <div className="detail-container">
       <div className="search">
@@ -50,8 +91,8 @@ function DetailedList() {
           category={category}
           setcheckedCategories={setcheckedCategories}
           checkedCategories={checkedCategories}
-          checkedSubCategory={checkedSubCategory}
-          setcheckedSubCategory={setcheckedSubCategory}
+          removeChecked={removeChecked}
+          setRemoveChecked={setRemoveChecked}
         />
       </div>
       <div className="info-container">
@@ -92,9 +133,21 @@ function DetailedList() {
           <h3>CPV:</h3>
           {checkedCategories.map((i) => (
             <>
-              <button className="cpv-button">{Object.keys(i)[0]}</button>
+              <button
+                value={Object.keys(i)[0]}
+                onClick={handleChange}
+                className='cpv-button'
+              >
+                {Object.keys(i)[0]}
+              </button>
               {Object.values(i)[0].map((item) => (
-                <button className="cpv-button">{item}</button>
+                <button
+                  value={item}
+                  onClick={handleChange}
+                  className='cpv-button'
+                >
+                  {item}
+                </button>
               ))}
             </>
           ))}

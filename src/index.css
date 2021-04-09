@@ -7,15 +7,15 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 main {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
   display: grid;
   grid-template-columns:
@@ -35,7 +35,7 @@ main > * {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
@@ -83,7 +83,6 @@ code {
   padding-right: 1rem;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
-  
 }
 
 .searchbar {
@@ -92,7 +91,6 @@ code {
   border: 0px;
   margin-bottom: 2rem;
   background-color: var(--lightBlue);
-  
 }
 
 ::placeholder {
@@ -185,7 +183,6 @@ input {
   width: 20px;
 }
 
-
 /* .categories {
   width: 100%;
   display: flex;
@@ -216,7 +213,6 @@ p {
   font-size: 16px;
   line-height: 18px;
   color: black;
-
 }
 
 .category-card h3 {
@@ -236,11 +232,9 @@ p {
 /* --- detailed list --- */
 
 .cpv-sort {
-  
 }
 
 .info-container {
-  
 }
 
 .cpv-button {
@@ -258,7 +252,6 @@ p {
 }
 
 .checkbox-input {
-  
 }
 
 .check-label {
@@ -279,4 +272,8 @@ p {
   height: 35px;
   border: 2px solid black;
   display: inline-block; */
+}
+
+a {
+  color: var(--darkBlue);
 }
