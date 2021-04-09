@@ -24,14 +24,14 @@ function Filter({
             (item) => Object.keys(item).join() != [e.target.value]
           ),
         ])
-    )
+    );
 
     e.target.checked === true &&
       setcheckedCategories((prevState) => [
         ...prevState,
         { [e.target.value]: [] },
-      ])
-  }
+      ]);
+  };
 
   // const getRefs = () => {
   //   for (let ref in refcheckbox) {
@@ -69,7 +69,7 @@ function Filter({
               }
             : i
         )
-      )
+      );
 
     e.target.checked === true &&
       setcheckedCategories((prevState) =>
@@ -84,8 +84,9 @@ function Filter({
               }
             : i
         )
-      )
-  }
+      );
+  };
+
 
   const goBack = () => {
     window.history.back()
@@ -96,12 +97,13 @@ function Filter({
   return (
     <div>
       <h3 className=''>Søk</h3>
+        master
       <div>
         <input
-          type='text'
-          className='searchbar'
-          id='detail-search'
-          placeholder='Søk'
+          type="text"
+          className="searchbar"
+          id="detail-search"
+          placeholder="Søk"
         />
       </div>
       <h3 className=''>Filter</h3>
@@ -114,6 +116,7 @@ function Filter({
       <a onClick={goBack}>
         <FontAwesomeIcon icon={faArrowLeft} /> {category}
       </a>
+         master
       {structure.map(
         (it) =>
           it.main === category &&
@@ -121,21 +124,21 @@ function Filter({
             (i) =>
               i.code === details &&
               i.children.map((item, i) => (
-                <div className='checkboxes'>
+                <div className="checkboxes">
                   {subcategory && subcategory === item.code ? (
-                    <div className='check-container'>
+                    <div className="check-container">
                       <div>
                         <input
                           ref={refcheckbox}
                           className='checkbox'
                           id={item.code}
                           key={i}
-                          type='checkbox'
+                          type="checkbox"
                           value={item.code}
                           defaultChecked={true}
                           onClick={handleClick}
                         ></input>
-                        <label className='check-label'>
+                        <label className="check-label">
                           {item.name} ({item.countWithChildren})
                         </label>
                       </div>
@@ -144,17 +147,17 @@ function Filter({
                         (check) =>
                           Object.keys(check).includes(item.code) &&
                           item.children.map((it, index) => (
-                            <div key={it} className='subcheckboxes'>
+                            <div key={it} className="subcheckboxes">
                               <input
                                 ref={refcheckbox}
                                 className='checkbox'
                                 id={it.code}
                                 key={index}
-                                type='checkbox'
+                                type="checkbox"
                                 value={it.code}
                                 onClick={handleChange}
                               ></input>
-                              <label className='check-label'>
+                              <label className="check-label">
                                 {it.name} ({it.countWithChildren})
                               </label>
                             </div>
@@ -168,28 +171,28 @@ function Filter({
                         className='checkbox'
                         id={item.code}
                         key={i}
-                        type='checkbox'
+                        type="checkbox"
                         value={item.code}
                         onClick={handleClick}
                       ></input>
-                      <label className='check-label'>
+                      <label className="check-label">
                         {item.name} ({item.countWithChildren})
                       </label>
                       {checkedCategories.map(
                         (check) =>
                           Object.keys(check).includes(item.code) &&
                           item.children.map((it, index) => (
-                            <div key={index} className='subcheckboxes'>
+                            <div key={index} className="subcheckboxes">
                               <input
                                 ref={refcheckbox}
                                 className='checkbox'
                                 key={index}
-                                type='checkbox'
+                                type="checkbox"
                                 value={it.code}
                                 id={it.code}
                                 onClick={handleChange}
                               ></input>
-                              <label className='check-label'>
+                              <label className="check-label">
                                 {it.name} ({it.countWithChildren})
                               </label>
                             </div>
@@ -204,8 +207,8 @@ function Filter({
 
       <h4>Fylker</h4>
       {fylker.map((item, i) => (
-        <div className='checkboxes'>
-          <input key={i} type='checkbox' value={item.navn}></input>
+        <div className="checkboxes">
+          <input key={i} type="checkbox" value={item.navn}></input>
           <label>{item.navn}</label>
         </div>
       ))}
@@ -217,23 +220,23 @@ function Filter({
       <p>Kalender</p>
 
       <h4>Publikasjonstype</h4>
-      <div className='checkboxes'>
-        <input type='checkbox' value='nasjonal'></input>
+      <div className="checkboxes">
+        <input type="checkbox" value="nasjonal"></input>
         <label>Nasjonal</label>
         {/* <span className='checkmark'></span> */}
       </div>
-      <div className='checkboxes'>
-        <input type='checkbox' value='europeisk'></input>
+      <div className="checkboxes">
+        <input type="checkbox" value="europeisk"></input>
         <label>Europeisk</label>
         {/* <span className='checkmark'></span> */}
       </div>
-      <div className='checkboxes'>
+      <div className="checkboxes">
         {/* <span className='checkmark'></span> */}
-        <input type='checkbox' value='marketcunsulting'></input>
+        <input type="checkbox" value="marketcunsulting"></input>
         <label>Market Cunsulting</label>
       </div>
     </div>
-  )
+  );
 }
 
-export default Filter
+export default Filter;
