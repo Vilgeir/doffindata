@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react'
 import structure from '../data/withMainCategories'
 import fylker from '../data/fylker'
@@ -5,6 +6,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Checkboxes from './Checkboxes'
 import { Link } from 'react-router-dom'
+
 
 function Filter({
   category,
@@ -17,6 +19,10 @@ function Filter({
   checked,
   setChecked,
 }) {
+
+  const refcheckbox = useRef(null);
+
+
   const handleClick = (e) => {
     checkedCategories.map(
       (i) =>
@@ -37,6 +43,7 @@ function Filter({
 
   useEffect(() => {
     removeChecked.length === 8 &&
+
       setChecked((prevState) => {
         if (prevState.includes(removeChecked)) {
           if (removeChecked.substring(3, 8).includes('00000')) {
@@ -65,6 +72,7 @@ function Filter({
         : [...prevState, e.target.value]
     )
   }
+
 
   const handleChange = (e) => {
     e.target.checked === false &&
@@ -96,17 +104,17 @@ function Filter({
               }
             : i
         )
+
       )
   }
 
   const goBack = () => {
-    window.history.back()
-  }
+    window.history.back();
+  };
 
   return (
     <div>
       <h3 className=''>Søk</h3>
-
       <div>
         <input
           type='text'
@@ -115,9 +123,9 @@ function Filter({
           placeholder='Søk'
         />
       </div>
-      <h3 className=''>Filter</h3>
+      <h3 className="">Filter</h3>
       {checkedCategories.length > 0 && (
-        <button className='cpv-button' onClick={removeFilters}>
+        <button className="cpv-button" onClick={removeFilters}>
           Fjern alle filter
         </button>
       )}
@@ -125,7 +133,6 @@ function Filter({
       <Link onClick={goBack}>
         <FontAwesomeIcon icon={faArrowLeft} /> {category}
       </Link>
-
       {structure.map(
         (it) =>
           it.main === category &&
@@ -148,7 +155,7 @@ function Filter({
                             checked={checked.includes(item.code) ? true : false}
                           />
                         ))}
-                        <label className='check-label'>
+                        <label className='check-label'
                           {item.name} ({item.countWithChildren})
                         </label>
                       </div>
@@ -178,6 +185,7 @@ function Filter({
                     </div>
                   ) : (
                     <>
+
                       <Checkboxes
                         value={item.code}
                         onChange={handleClick}

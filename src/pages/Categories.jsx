@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 function Categories() {
   const { category } = useParams()
 
+  console.log(category);
   return (
     <div className='home-container'>
       <div className='head'>
