@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import Filter from "../components/Filter";
 import Card from "../components/Card";
@@ -13,35 +14,42 @@ function DetailedList() {
   const [sort, setSort] = useState();
 
   const { category, details, subcategory, procurement } = useParams();
+  
+  const { category, details } = useParams()
+  let newdetails = details.split('+')
+  let categorycpv = newdetails[0]
+  let subcategory = newdetails[1]
+
 
   useEffect(() => {
-    subcategory && setcheckedCategories([{ [subcategory]: [] }]);
-  }, []);
+    subcategory && setcheckedCategories([{ [subcategory]: [] }])
+    subcategory && setChecked([subcategory])
+  }, [])
 
-  let arr = ["2020-09-", "2020-10-", "2020-11-"];
+  const [sort, setSort] = useState()
 
-  let newArray = [];
+  let arr = ['2020-09-', '2020-10-', '2020-11-']
 
-  const sortTest = Object.entries(data).map((i) => newArray.push(i[1]));
+  let newArray = []
+
+  Object.entries(data).map((i) => newArray.push(i[1]))
 
   const sorting = (a, b) => {
-    if (sort == "asc") {
-      return a.tittel > b.tittel ? 1 : -1;
-    } else if (sort == "desc") {
-      return a.tittel < b.tittel ? 1 : -1;
-    } else if (sort == "date") {
-      return a.kunngjoringsdato < b.kunngjoringsdato ? 1 : -1;
+    if (sort === 'asc') {
+      return a.tittel > b.tittel ? 1 : -1
+    } else if (sort === 'desc') {
+      return a.tittel < b.tittel ? 1 : -1
+    } else if (sort === 'date') {
+      return a.kunngjoringsdato < b.kunngjoringsdato ? 1 : -1
     }
-    return 0;
-  };
+    return 0
+  }
 
-  const sortedArray = newArray.sort(sorting);
+  const sortedArray = newArray.sort(sorting)
 
   const onChange = (event) => {
-    setSort(event.target.value);
-  };
-
-  console.log(sortedArray);
+    setSort(event.target.value)
+  }
 
   const handleChange = (e) => {
     console.log(e.target.value);
@@ -50,7 +58,6 @@ function DetailedList() {
       .filter((item) => item === "0")
       .join("");
 
-    console.log(value.length);
 
     if (value.length === 5) {
       checkedCategories.map(
@@ -83,19 +90,21 @@ function DetailedList() {
   };
 
   return (
-    <div className="detail-container">
-      <div className="search">
+    <div className='detail-container'>
+      <div className='search'>
         <Filter
-          details={details}
+          details={categorycpv}
           subcategory={subcategory}
           category={category}
           setcheckedCategories={setcheckedCategories}
           checkedCategories={checkedCategories}
           removeChecked={removeChecked}
           setRemoveChecked={setRemoveChecked}
+          checked={checked}
+          setChecked={setChecked}
         />
       </div>
-      <div className="info-container">
+      <div className='info-container'>
         {subcategory
           ? structure.map(
               (item) =>
@@ -116,7 +125,7 @@ function DetailedList() {
                 item.main === category &&
                 item.children.map(
                   (i) =>
-                    i.code === details && (
+                    i.code === categorycpv && (
                       <h1 key={i}>
                         {i.name} (CPV {i.code})
                       </h1>
@@ -124,10 +133,12 @@ function DetailedList() {
                 )
             )}
         <select onChange={onChange}>
-          <option value="cpv-sort">Sorter etter</option>
-          <option value="asc">ASC</option>
-          <option value="desc">DESC</option>
-          <option value="date">Publisert</option>
+          <option disabled value='cpv-sort'>
+            Sorter etter
+          </option>
+          <option value='asc'>ASC</option>
+          <option value='desc'>DESC</option>
+          <option value='date'>Publisert</option>
         </select>
         <div>
           <h3>CPV:</h3>
@@ -154,7 +165,9 @@ function DetailedList() {
         </div>
 
         {checkedCategories.length > 0
-          ? sortedArray.map((i) =>
+          ? //           ? data.map((i) =>
+
+            sortedArray.map((i) =>
               checkedCategories.map((checked) =>
                 Object.values(checked)[0].length > 0
                   ? Object.values(checked)[0].map(
@@ -180,9 +193,11 @@ function DetailedList() {
                     )
               )
             )
-          : sortedArray.map(
+          : //           : data.map(
+
+            sortedArray.map(
               (i) =>
-                i.cpvnumber.substring(0, 2) === details.substring(0, 2) &&
+                i.cpvnumber.substring(0, 2) === categorycpv.substring(0, 2) &&
                 arr.map(
                   (item) =>
                     item.includes(i.kunngjoringsdato.substring(0, 8)) && (
@@ -197,7 +212,7 @@ function DetailedList() {
             )}
       </div>
     </div>
-  );
+  )
 }
 
-export default DetailedList;
+export default DetailedList
