@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
-import structure from '../data/withMainCategories'
-import fylker from '../data/fylker'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import structure from "../data/withMainCategories";
+import fylker from "../data/fylker";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Filter({
   category,
@@ -14,7 +14,7 @@ function Filter({
   removeChecked,
   setRemoveChecked,
 }) {
-  const refcheckbox = useRef(null)
+  const refcheckbox = useRef(null);
   const handleClick = (e) => {
     checkedCategories.map(
       (i) =>
@@ -42,17 +42,17 @@ function Filter({
   useEffect(() => {
     removeChecked.length === 8 &&
       // getRefs()
-      (document.getElementById(removeChecked).checked = false)
-  }, [removeChecked])
+      (document.getElementById(removeChecked).checked = false);
+  }, [removeChecked]);
 
   const removeFilters = () => {
-    setcheckedCategories([])
-    Object.values(document.getElementsByClassName('checkbox')).map(
+    setcheckedCategories([]);
+    Object.values(document.getElementsByClassName("checkbox")).map(
       (element) => {
-        element.checked = false
+        element.checked = false;
       }
-    )
-  }
+    );
+  };
 
   const handleChange = (e) => {
     e.target.checked === false &&
@@ -87,17 +87,16 @@ function Filter({
       );
   };
 
-
   const goBack = () => {
-    window.history.back()
-  }
+    window.history.back();
+  };
 
-  console.log(checkedCategories)
+  console.log(checkedCategories);
 
   return (
     <div>
-      <h3 className=''>Søk</h3>
-        master
+      <h3 className="">Søk</h3>
+      master
       <div>
         <input
           type="text"
@@ -106,9 +105,9 @@ function Filter({
           placeholder="Søk"
         />
       </div>
-      <h3 className=''>Filter</h3>
+      <h3 className="">Filter</h3>
       {checkedCategories.length > 0 && (
-        <button className='cpv-button' onClick={removeFilters}>
+        <button className="cpv-button" onClick={removeFilters}>
           Fjern alle filter
         </button>
       )}
@@ -116,7 +115,7 @@ function Filter({
       <a onClick={goBack}>
         <FontAwesomeIcon icon={faArrowLeft} /> {category}
       </a>
-         master
+      master
       {structure.map(
         (it) =>
           it.main === category &&
@@ -130,7 +129,7 @@ function Filter({
                       <div>
                         <input
                           ref={refcheckbox}
-                          className='checkbox'
+                          className="checkbox"
                           id={item.code}
                           key={i}
                           type="checkbox"
@@ -150,7 +149,7 @@ function Filter({
                             <div key={it} className="subcheckboxes">
                               <input
                                 ref={refcheckbox}
-                                className='checkbox'
+                                className="checkbox"
                                 id={it.code}
                                 key={index}
                                 type="checkbox"
@@ -168,7 +167,7 @@ function Filter({
                     <>
                       <input
                         ref={refcheckbox}
-                        className='checkbox'
+                        className="checkbox"
                         id={item.code}
                         key={i}
                         type="checkbox"
@@ -185,7 +184,7 @@ function Filter({
                             <div key={index} className="subcheckboxes">
                               <input
                                 ref={refcheckbox}
-                                className='checkbox'
+                                className="checkbox"
                                 key={index}
                                 type="checkbox"
                                 value={it.code}
@@ -204,7 +203,6 @@ function Filter({
               ))
           )
       )}
-
       <h4>Fylker</h4>
       {fylker.map((item, i) => (
         <div className="checkboxes">
@@ -212,13 +210,10 @@ function Filter({
           <label>{item.navn}</label>
         </div>
       ))}
-
       <h4>Kunngjøringsdato</h4>
       <p>Kalender</p>
-
       <h4>Tilbudsfrist</h4>
       <p>Kalender</p>
-
       <h4>Publikasjonstype</h4>
       <div className="checkboxes">
         <input type="checkbox" value="nasjonal"></input>

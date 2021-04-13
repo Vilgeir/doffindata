@@ -4,15 +4,15 @@ import Card from "../components/Card";
 import { useParams } from "react-router-dom";
 import structure from "../data/withMainCategories";
 import data from "../data/doffin-bach-default-rtdb-F02_2014-export.json";
+import { Link } from "react-router-dom";
 
 function DetailedList() {
-
   const [checkedCategories, setcheckedCategories] = useState([]);
   const [checkedSubCategory, setcheckedSubCategory] = useState([]);
-  const [removeChecked, setRemoveChecked] = useState([])
+  const [removeChecked, setRemoveChecked] = useState([]);
   const [sort, setSort] = useState();
 
-  const { category, details, subcategory } = useParams();
+  const { category, details, subcategory, procurement } = useParams();
 
   useEffect(() => {
     subcategory && setcheckedCategories([{ [subcategory]: [] }]);
@@ -44,13 +44,13 @@ function DetailedList() {
   console.log(sortedArray);
 
   const handleChange = (e) => {
-    console.log(e.target.value)
+    console.log(e.target.value);
     let value = e.target.value
-      .split('')
-      .filter((item) => item === '0')
-      .join('')
+      .split("")
+      .filter((item) => item === "0")
+      .join("");
 
-    console.log(value.length)
+    console.log(value.length);
 
     if (value.length === 5) {
       checkedCategories.map(
@@ -61,7 +61,7 @@ function DetailedList() {
               (item) => Object.keys(item).join() != [e.target.value]
             ),
           ])
-      )
+      );
     } else {
       setcheckedCategories((prevState) =>
         prevState.map((i) =>
@@ -76,11 +76,11 @@ function DetailedList() {
               }
             : i
         )
-      )
+      );
     }
 
-    setRemoveChecked(e.target.value)
-  }
+    setRemoveChecked(e.target.value);
+  };
 
   return (
     <div className="detail-container">
@@ -136,7 +136,7 @@ function DetailedList() {
               <button
                 value={Object.keys(i)[0]}
                 onClick={handleChange}
-                className='cpv-button'
+                className="cpv-button"
               >
                 {Object.keys(i)[0]}
               </button>
@@ -144,7 +144,7 @@ function DetailedList() {
                 <button
                   value={item}
                   onClick={handleChange}
-                  className='cpv-button'
+                  className="cpv-button"
                 >
                   {item}
                 </button>
@@ -186,7 +186,12 @@ function DetailedList() {
                 arr.map(
                   (item) =>
                     item.includes(i.kunngjoringsdato.substring(0, 8)) && (
-                      <Card key={i} i={i} />
+                      <Link
+                        to={"/" + category + "/" + details + "/" + i.tittel}
+                        i={i}
+                      >
+                        <Card key={i} i={i} />
+                      </Link>
                     )
                 )
             )}
