@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import structure from '../data/withMainCategories'
 import { useParams } from 'react-router-dom'
@@ -20,16 +20,17 @@ function Categories() {
         {structure.map(
           (i) =>
             i.main === category &&
-            i.children.map((item, i) => (
+            i.children.map((item, idx) => (
               <div className='category-card'>
-                <Link to={'/' + category + '/' + item.code}>
+                <Link to={'/' + category + '/' + item.code} key={idx}>
                   <h3>
                     {item.name} {item.countWithChildren}
                   </h3>
                 </Link>
-                {item.children.map((items) => (
+                {item.children.map((items, index) => (
                   <Link
                     to={'/' + category + '/' + item.code + '+' + items.code}
+                    key={index}
                   >
                     <p>
                       {items.name} {items.countWithChildren}
