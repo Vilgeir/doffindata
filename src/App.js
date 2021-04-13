@@ -32,7 +32,8 @@ function App() {
       {/* <Header /> */}
       <header />
       <main>
-        <BrowserRouter basename={window.location.pathname || ''}>
+        {/* <BrowserRouter basename={window.location.pathname || ''}> */}
+        <BrowserRouter basename='/doffindata'>
           <Switch>
             <Route exact path={'/'} component={Home} />
             <Route exact path={'/:category'} component={Categories} />
@@ -41,11 +42,11 @@ function App() {
               path={'/:category/:details'}
               component={DetailedList}
             />
-            <Route
+            {/* <Route
               exact
               path={'/:category/:details/:subcategory'}
               component={DetailedList}
-            />
+            /> */}
           </Switch>
         </BrowserRouter>
       </main>
