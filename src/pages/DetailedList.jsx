@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react'
 import Filter from '../components/Filter'
 import Card from '../components/Card'
@@ -8,9 +7,7 @@ import structure from '../data/withMainCategories'
 import data from '../data/doffin-form2.json'
 
 function DetailedList() {
-
-  const [checkedCategories, setcheckedCategories] = useState([]);
-  const [checkedSubCategory, setcheckedSubCategory] = useState([]);
+  const [checkedCategories, setcheckedCategories] = useState([])
   const [removeChecked, setRemoveChecked] = useState([])
 
   const [checked, setChecked] = useState([])
@@ -25,32 +22,30 @@ function DetailedList() {
     subcategory && setChecked([subcategory])
   }, [])
 
-  const [sort, setSort] = useState();
+  const [sort, setSort] = useState()
 
-  let arr = ["2020-09-", "2020-10-", "2020-11-"];
+  let arr = ['2020-09-', '2020-10-', '2020-11-']
 
-  let newArray = [];
+  let newArray = []
 
-  const sortTest = Object.entries(data).map((i) => newArray.push(i[1]));
+  Object.entries(data).map((i) => newArray.push(i[1]))
 
   const sorting = (a, b) => {
-    if (sort == "asc") {
-      return a.tittel > b.tittel ? 1 : -1;
-    } else if (sort == "desc") {
-      return a.tittel < b.tittel ? 1 : -1;
-    } else if (sort == "date") {
-      return a.kunngjoringsdato < b.kunngjoringsdato ? 1 : -1;
+    if (sort === 'asc') {
+      return a.tittel > b.tittel ? 1 : -1
+    } else if (sort === 'desc') {
+      return a.tittel < b.tittel ? 1 : -1
+    } else if (sort === 'date') {
+      return a.kunngjoringsdato < b.kunngjoringsdato ? 1 : -1
     }
-    return 0;
-  };
+    return 0
+  }
 
-  const sortedArray = newArray.sort(sorting);
+  const sortedArray = newArray.sort(sorting)
 
   const onChange = (event) => {
-    setSort(event.target.value);
-  };
-
-  console.log(sortedArray);
+    setSort(event.target.value)
+  }
 
   const handleChange = (e) => {
     console.log(e.target.value)
@@ -58,8 +53,6 @@ function DetailedList() {
       .split('')
       .filter((item) => item === '0')
       .join('')
-
-    console.log(value.length)
 
     if (value.length === 5) {
       checkedCategories.map(
@@ -92,8 +85,8 @@ function DetailedList() {
   }
 
   return (
-    <div className="detail-container">
-      <div className="search">
+    <div className='detail-container'>
+      <div className='search'>
         <Filter
           details={categorycpv}
           subcategory={subcategory}
@@ -106,7 +99,7 @@ function DetailedList() {
           setChecked={setChecked}
         />
       </div>
-      <div className="info-container">
+      <div className='info-container'>
         {subcategory
           ? structure.map(
               (item) =>
@@ -135,10 +128,12 @@ function DetailedList() {
                 )
             )}
         <select onChange={onChange}>
-          <option value="cpv-sort">Sorter etter</option>
-          <option value="asc">ASC</option>
-          <option value="desc">DESC</option>
-          <option value="date">Publisert</option>
+          <option disabled value='cpv-sort'>
+            Sorter etter
+          </option>
+          <option value='asc'>ASC</option>
+          <option value='desc'>DESC</option>
+          <option value='date'>Publisert</option>
         </select>
         <div>
           <h3>CPV:</h3>
@@ -165,10 +160,9 @@ function DetailedList() {
         </div>
 
         {checkedCategories.length > 0
+          ? //           ? data.map((i) =>
 
-//           ? data.map((i) =>
-
-          ? sortedArray.map((i) =>
+            sortedArray.map((i) =>
               checkedCategories.map((checked) =>
                 Object.values(checked)[0].length > 0
                   ? Object.values(checked)[0].map(
@@ -194,10 +188,9 @@ function DetailedList() {
                     )
               )
             )
+          : //           : data.map(
 
-//           : data.map(
-
-          : sortedArray.map(
+            sortedArray.map(
               (i) =>
                 i.cpvnumber.substring(0, 2) === categorycpv.substring(0, 2) &&
                 arr.map(
@@ -209,7 +202,7 @@ function DetailedList() {
             )}
       </div>
     </div>
-  );
+  )
 }
 
-export default DetailedList;
+export default DetailedList
