@@ -1,32 +1,29 @@
-
-import React, { useEffect, useState } from "react";
-import Filter from "../components/Filter";
-import Card from "../components/Card";
-import { useParams } from "react-router-dom";
-import structure from "../data/withMainCategories";
-import data from "../data/doffin-bach-default-rtdb-F02_2014-export.json";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import Filter from '../components/Filter'
+import Card from '../components/Card'
+import { useParams } from 'react-router-dom'
+import structure from '../data/withMainCategories'
+import data from '../data/doffin-form2.json'
+import { Link } from 'react-router-dom'
 
 function DetailedList() {
-  const [checkedCategories, setcheckedCategories] = useState([]);
-  const [checkedSubCategory, setcheckedSubCategory] = useState([]);
-  const [removeChecked, setRemoveChecked] = useState([]);
-  const [sort, setSort] = useState();
+  const [checkedCategories, setcheckedCategories] = useState([])
+  const [removeChecked, setRemoveChecked] = useState([])
+  const [sort, setSort] = useState()
+  const [checked, setChecked] = useState([])
 
-  const { category, details, subcategory, procurement } = useParams();
-  
   const { category, details } = useParams()
+
+  // const { category, details } = useParams()
   let newdetails = details.split('+')
   let categorycpv = newdetails[0]
   let subcategory = newdetails[1]
 
-
+  console.log(categorycpv)
   useEffect(() => {
     subcategory && setcheckedCategories([{ [subcategory]: [] }])
     subcategory && setChecked([subcategory])
   }, [])
-
-  const [sort, setSort] = useState()
 
   let arr = ['2020-09-', '2020-10-', '2020-11-']
 
@@ -46,18 +43,17 @@ function DetailedList() {
   }
 
   const sortedArray = newArray.sort(sorting)
-
+  console.log(sortedArray)
   const onChange = (event) => {
     setSort(event.target.value)
   }
 
   const handleChange = (e) => {
-    console.log(e.target.value);
+    console.log(e.target.value)
     let value = e.target.value
-      .split("")
-      .filter((item) => item === "0")
-      .join("");
-
+      .split('')
+      .filter((item) => item === '0')
+      .join('')
 
     if (value.length === 5) {
       checkedCategories.map(
@@ -68,7 +64,7 @@ function DetailedList() {
               (item) => Object.keys(item).join() != [e.target.value]
             ),
           ])
-      );
+      )
     } else {
       setcheckedCategories((prevState) =>
         prevState.map((i) =>
@@ -83,11 +79,11 @@ function DetailedList() {
               }
             : i
         )
-      );
+      )
     }
 
-    setRemoveChecked(e.target.value);
-  };
+    setRemoveChecked(e.target.value)
+  }
 
   return (
     <div className='detail-container'>
@@ -147,7 +143,7 @@ function DetailedList() {
               <button
                 value={Object.keys(i)[0]}
                 onClick={handleChange}
-                className="cpv-button"
+                className='cpv-button'
               >
                 {Object.keys(i)[0]}
               </button>
@@ -155,7 +151,7 @@ function DetailedList() {
                 <button
                   value={item}
                   onClick={handleChange}
-                  className="cpv-button"
+                  className='cpv-button'
                 >
                   {item}
                 </button>
@@ -179,7 +175,7 @@ function DetailedList() {
                           (item) =>
                             item.includes(
                               i.kunngjoringsdato.substring(0, 8)
-                            ) && <Card key={i} i={i} />
+                            ) && <Card i={i} />
                         )
                     )
                   : i.cpvnumber
@@ -188,7 +184,7 @@ function DetailedList() {
                     arr.map(
                       (item) =>
                         item.includes(i.kunngjoringsdato.substring(0, 8)) && (
-                          <Card key={i} i={i} />
+                          <Card i={i} />
                         )
                     )
               )
@@ -202,10 +198,10 @@ function DetailedList() {
                   (item) =>
                     item.includes(i.kunngjoringsdato.substring(0, 8)) && (
                       <Link
-                        to={"/" + category + "/" + details + "/" + i.tittel}
+                        to={'/' + category + '/' + categorycpv + '/' + i.tittel}
                         i={i}
                       >
-                        <Card key={i} i={i} />
+                        <Card i={i} />
                       </Link>
                     )
                 )

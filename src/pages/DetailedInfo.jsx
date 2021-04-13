@@ -1,14 +1,19 @@
-import React from "react";
-import { useParams } from "react-router";
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router'
+import data from '../data/doffin-form2.json'
 
 function DetailedInfo({ i }) {
-  const { procurement } = useParams();
+  const [procurementData, setProcurement] = useState()
+  const { procurement } = useParams()
 
-  console.log({ i });
+  useEffect(() => {
+    setProcurement(data.filter((i) => i.tittel === procurement))
+  }, [])
 
+  // console.log(procurementData[0].beskrivelse)
   return (
     <div>
-      <h1>hello</h1>
+      <h1>{procurementData && procurementData[0].tittel}</h1>
       <button>Meld interesse</button>
       <div>
         <h3>Kunngjøringsdetaljer</h3>
@@ -16,7 +21,7 @@ function DetailedInfo({ i }) {
       </div>
       <div>
         <h3>Beskrivelse av anbud</h3>
-        <p>text</p>
+        <p>{procurementData && procurementData[0].beskrivelse}</p>
       </div>
       <div>
         <h3>Dokumenter</h3>
@@ -28,7 +33,7 @@ function DetailedInfo({ i }) {
       </div>
       <button>Meld interesse</button>
     </div>
-  );
+  )
 }
 
-export default DetailedInfo;
+export default DetailedInfo
