@@ -1,58 +1,79 @@
 const axios = require('axios')
 const { parse } = require('node-html-parser')
 const fs = require('fs')
+const firebase = require('firebase')
+const firestore = require('firebase/firestore')
+// const firebaseConfig = require('./firebaseConfig')
 
-let arr = []
-fs.readFile('src/data/doffin-form2.json', 'utf8', (err, data) => {
-  err && console.log(err)
+const fb =
+  firebase.apps.length > 0
+    ? firebase.app()
+    : firebase.initializeApp(firebaseConfig)
 
-  JSON.parse(data).map((i, index) => {
-    i.url_dokumentasjon.substring(8, 17) === 'permalink' &&
-      axios
-        .get(i.url_dokumentasjon)
-        .then((res) => {
-          const dom = parse(res.data)
-          let files = dom.querySelector('#fileslist').querySelectorAll('a')
+const db = fb.firestore()
 
-          let docs = {
-            title: i.tittel,
-            docs: files.map((node) => ({
-              name: node.text,
-              url: node.getAttribute('href'),
-            })),
-          }
-          // console.log(docs)
+const getData = async (nameCollection) => {
+  await db
+    .collection(nameCollection)
+    // .limit(4)
+    .get()
+    .then((querySnapshot) =>
+      querySnapshot.forEach((doc) => {
+        data = { ...doc.data(), id: doc.id }
+        writeData(data)
+      })
+    )
+}
 
-          // arr.push(docs)
-          // console.log(arr)
-          // fs.appendFile(
-          //   'src/data/documents.json',
-          //   JSON.stringify(docs),
-          //   (err) => {
-          //     err && console.log('error', err)
-          //   }
-          // )
-          arr.push(docs)
-          fs.writeFile('src/data/docs.json', JSON.stringify(arr), (err) => {
-            err && console.log('error', err)
-          })
-          // export default getFiles
-        })
-        .catch((err) => {
-          // console.log(i.url_dokumentasjon)
-          console.log(err.response.data)
-        })
-    // }
+const writeData = (data) => {
+  // console.log(data)
+  // data.url_dokumentasjon.substring(8, 17) === 'permalink' &&
+  //   axios.get(data.url_dokumentasjon).then((res) => {
+  //     const dom = parse(res.data)
+  //     let files = dom.querySelector('#fileslist').querySelectorAll('a')
 
-    // ? axios
+  let docs = {
+    form: data.form,
+    kunngjoringsdato: data.kunngjoringsdato,
+    tilleggsCPV: data.tilleggsCPV,
+    sted: data.sted,
+    epost: data.epost,
+    nettside: data.nettside,
+    url_deltakelse: data.url_deltakelse,
+    cpvnumber: data.cpvnumber,
+    cpvnumbermain: data.cpvnumber.substring(0, 2) + '000000',
+    cpvnumbersub: data.cpvnumber.substring(0, 3) + '00000',
+    url_dokumentasjon: data.url_dokumentasjon,
+    oppdragsgiver: data.oppdragsgiver,
+    cpv: data.cpv,
+    cpvmain: data.cpvmain,
+    tilbudsfrist: data.tilbudsfrist,
+    tittel: data.tittel,
+    orgnr: data.orgnr,
+    beskrivelse: data.beskrivelse,
+    adresse: data.adresse,
+    id: data.id,
+    documents: data.documents ? data.documents : null,
+    // documents: files.map((node) => ({
+    //   name: node.text,
+    //   url: node.getAttribute('href'),
+    // })),
+  }
 
-    // : console.log('NOPE')
-    //   console.log(i.url_dokumentasjon)
-    //   )
-  })
+  writeToFirestore(data, docs)
+  // })
+}
 
-  // arr &&
-})
-// }
+const writeToFirestore = async (data, docs) => {
+  console.log(docs)
 
-// getFiles('https://permalink.mercell.com/141274239.aspx')
+  let documents = db.collection('F02_2014').doc(docs.id)
+  try {
+    await documents.update(docs)
+    console.log('Document successfully written!')
+  } catch (error) {
+    console.error('Error writing document: ', error)
+  }
+}
+let data
+getData('F02_2014', data)

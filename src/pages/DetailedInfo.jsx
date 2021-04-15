@@ -7,15 +7,16 @@ function DetailedInfo({ i }) {
   const { procurement } = useParams();
 
   useEffect(() => {
-    setProcurement(data.filter((i) => i.tittel === procurement));
+    getProcurement("F02_2014", procurement, setProcurement);
+    // setProcurement(data.filter((i) => i.tittel === procurement))
   }, []);
 
-  // console.log(procurementData[0].beskrivelse);
+  console.log(procurementData);
   return (
-    <div className="info-container">
-      <h1>{procurementData && procurementData[0].tittel}</h1>
-      <button className="button">Meld interesse</button>
-      <div className="info-card">
+    <div>
+      <h1>{procurementData.tittel}</h1>
+      <button>Meld interesse</button>
+      <div>
         <h3>Kunngjøringsdetaljer</h3>
         <p>
           Kunngjøringsdato:{" "}
@@ -30,11 +31,17 @@ function DetailedInfo({ i }) {
       </div>
       <div className="info-card">
         <h3>Beskrivelse av anbud</h3>
-        <p>{procurementData && procurementData[0].beskrivelse}</p>
+        <p>{procurementData.beskrivelse}</p>
       </div>
       <div className="info-card">
         <h3>Dokumenter</h3>
-        <p>text</p>
+        {procurementData.documents
+          ? procurementData.documents.map((i, index) => (
+              <a key={index} href={"https://www.mercell.com" + i.url}>
+                {i.name}
+              </a>
+            ))
+          : procurementData.url_dokumentasjon}
       </div>
       <div className="info-card">
         <h3>Behov for sortiment</h3>
