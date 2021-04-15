@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import data from "../data/doffin-form2.json";
+import { getProcurement } from "../helpers/handleData";
 
 function DetailedInfo({ i }) {
-  const [procurementData, setProcurement] = useState();
+  const [procurementData, setProcurement] = useState([]);
   const { procurement } = useParams();
 
   useEffect(() => {
@@ -15,19 +15,16 @@ function DetailedInfo({ i }) {
   return (
     <div>
       <h1>{procurementData.tittel}</h1>
-      <button>Meld interesse</button>
-      <div>
+      <button className="button">Meld interesse</button>
+      <div className="info-card">
         <h3>Kunngjøringsdetaljer</h3>
+        <p>Kunngjøringsdato: {procurementData.kunngjoringsdato}</p>
         <p>
-          Kunngjøringsdato:{" "}
-          {procurementData && procurementData[0].kunngjoringsdato}
+          Adresse: {procurementData.adresse}
+          {", "} {procurementData.sted}
         </p>
-        <p>
-          Adresse: {procurementData && procurementData[0].adresse}
-          {", "} {procurementData && procurementData[0].sted}
-        </p>
-        <p>E-post: {procurementData && procurementData[0].epost}</p>
-        <p>Nettside: {procurementData && procurementData[0].nettside}</p>
+        <p>E-post: {procurementData.epost}</p>
+        <p>Nettside: {procurementData.nettside}</p>
       </div>
       <div className="info-card">
         <h3>Beskrivelse av anbud</h3>

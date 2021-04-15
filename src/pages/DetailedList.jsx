@@ -208,7 +208,7 @@ function DetailedList() {
                     item.includes(i.kunngjoringsdato.substring(0, 8)) && (
                       <Link
                         style={{ textDecoration: "none", color: "black" }}
-                        to={"/" + category + "/" + categorycpv + "/" + i.tittel}
+                        to={"/" + category + "/" + categorycpv + "/" + i.id}
                         i={i}
                       >
                         <Card i={i} />
