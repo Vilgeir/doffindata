@@ -1,59 +1,59 @@
-import React, { useEffect, useState } from 'react'
-import Filter from '../components/Filter'
-import Card from '../components/Card'
-import { useParams } from 'react-router-dom'
-import structure from '../data/withMainCategories'
-import data from '../data/doffin-form2.json'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import Filter from "../components/Filter";
+import Card from "../components/Card";
+import { useParams } from "react-router-dom";
+import structure from "../data/withMainCategories";
+import data from "../data/doffin-form2.json";
+import { Link } from "react-router-dom";
 
 function DetailedList() {
-  const [checkedCategories, setcheckedCategories] = useState([])
-  const [removeChecked, setRemoveChecked] = useState([])
-  const [sort, setSort] = useState()
-  const [checked, setChecked] = useState([])
+  const [checkedCategories, setcheckedCategories] = useState([]);
+  const [removeChecked, setRemoveChecked] = useState([]);
+  const [sort, setSort] = useState();
+  const [checked, setChecked] = useState([]);
 
-  const { category, details } = useParams()
+  const { category, details } = useParams();
 
   // const { category, details } = useParams()
-  let newdetails = details.split('+')
-  let categorycpv = newdetails[0]
-  let subcategory = newdetails[1]
+  let newdetails = details.split("+");
+  let categorycpv = newdetails[0];
+  let subcategory = newdetails[1];
 
-  console.log(categorycpv)
+  console.log(categorycpv);
   useEffect(() => {
-    subcategory && setcheckedCategories([{ [subcategory]: [] }])
-    subcategory && setChecked([subcategory])
-  }, [])
+    subcategory && setcheckedCategories([{ [subcategory]: [] }]);
+    subcategory && setChecked([subcategory]);
+  }, []);
 
-  let arr = ['2020-09-', '2020-10-', '2020-11-']
+  let arr = ["2020-09-", "2020-10-", "2020-11-"];
 
-  let newArray = []
+  let newArray = [];
 
-  Object.entries(data).map((i) => newArray.push(i[1]))
+  Object.entries(data).map((i) => newArray.push(i[1]));
 
   const sorting = (a, b) => {
-    if (sort === 'asc') {
-      return a.tittel > b.tittel ? 1 : -1
-    } else if (sort === 'desc') {
-      return a.tittel < b.tittel ? 1 : -1
-    } else if (sort === 'date') {
-      return a.kunngjoringsdato < b.kunngjoringsdato ? 1 : -1
+    if (sort === "asc") {
+      return a.tittel > b.tittel ? 1 : -1;
+    } else if (sort === "desc") {
+      return a.tittel < b.tittel ? 1 : -1;
+    } else if (sort === "date") {
+      return a.kunngjoringsdato < b.kunngjoringsdato ? 1 : -1;
     }
-    return 0
-  }
+    return 0;
+  };
 
-  const sortedArray = newArray.sort(sorting)
-  console.log(sortedArray)
+  const sortedArray = newArray.sort(sorting);
+  console.log(sortedArray);
   const onChange = (event) => {
-    setSort(event.target.value)
-  }
+    setSort(event.target.value);
+  };
 
   const handleChange = (e) => {
-    console.log(e.target.value)
+    console.log(e.target.value);
     let value = e.target.value
-      .split('')
-      .filter((item) => item === '0')
-      .join('')
+      .split("")
+      .filter((item) => item === "0")
+      .join("");
 
     if (value.length === 5) {
       checkedCategories.map(
@@ -64,7 +64,7 @@ function DetailedList() {
               (item) => Object.keys(item).join() != [e.target.value]
             ),
           ])
-      )
+      );
     } else {
       setcheckedCategories((prevState) =>
         prevState.map((i) =>
@@ -79,15 +79,15 @@ function DetailedList() {
               }
             : i
         )
-      )
+      );
     }
 
-    setRemoveChecked(e.target.value)
-  }
+    setRemoveChecked(e.target.value);
+  };
 
   return (
-    <div className='detail-container'>
-      <div className='search'>
+    <div className="detail-container">
+      <div className="search">
         <Filter
           details={categorycpv}
           subcategory={subcategory}
@@ -100,7 +100,7 @@ function DetailedList() {
           setChecked={setChecked}
         />
       </div>
-      <div className='info-container'>
+      <div className="info-container">
         {subcategory
           ? structure.map(
               (item) =>
@@ -129,12 +129,12 @@ function DetailedList() {
                 )
             )}
         <select onChange={onChange}>
-          <option disabled value='cpv-sort'>
+          <option disabled value="cpv-sort">
             Sorter etter
           </option>
-          <option value='asc'>ASC</option>
-          <option value='desc'>DESC</option>
-          <option value='date'>Publisert</option>
+          <option value="asc">ASC</option>
+          <option value="desc">DESC</option>
+          <option value="date">Publisert</option>
         </select>
         <div>
           <h3>CPV:</h3>
@@ -143,7 +143,7 @@ function DetailedList() {
               <button
                 value={Object.keys(i)[0]}
                 onClick={handleChange}
-                className='cpv-button'
+                className="cpv-button"
               >
                 {Object.keys(i)[0]}
               </button>
@@ -151,7 +151,7 @@ function DetailedList() {
                 <button
                   value={item}
                   onClick={handleChange}
-                  className='cpv-button'
+                  className="cpv-button"
                 >
                   {item}
                 </button>
@@ -198,7 +198,7 @@ function DetailedList() {
                   (item) =>
                     item.includes(i.kunngjoringsdato.substring(0, 8)) && (
                       <Link
-                        to={'/' + category + '/' + categorycpv + '/' + i.tittel}
+                        to={"/" + category + "/" + categorycpv + "/" + i.tittel}
                         i={i}
                       >
                         <Card i={i} />
@@ -208,7 +208,7 @@ function DetailedList() {
             )}
       </div>
     </div>
-  )
+  );
 }
 
-export default DetailedList
+export default DetailedList;
