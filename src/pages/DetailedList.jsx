@@ -5,12 +5,15 @@ import { useParams } from 'react-router-dom'
 import structure from '../data/withMainCategories'
 import data from '../data/doffin-form2.json'
 import { Link } from 'react-router-dom'
+import { getData } from '../helpers/handleData'
 
 function DetailedList() {
   const [checkedCategories, setcheckedCategories] = useState([])
   const [removeChecked, setRemoveChecked] = useState([])
   const [sort, setSort] = useState()
   const [checked, setChecked] = useState([])
+
+  const [documents, setDocuments] = useState([])
 
   const { category, details } = useParams()
 
@@ -25,11 +28,17 @@ function DetailedList() {
     subcategory && setChecked([subcategory])
   }, [])
 
+  useEffect(() => {
+    getData('F02_2014', 'cpvnumbermain', categorycpv, setDocuments)
+  }, [])
+
+  console.log(documents)
+
   let arr = ['2020-09-', '2020-10-', '2020-11-']
 
   let newArray = []
 
-  Object.entries(data).map((i) => newArray.push(i[1]))
+  Object.entries(documents).map((i) => newArray.push(i[1]))
 
   const sorting = (a, b) => {
     if (sort === 'asc') {
@@ -198,7 +207,7 @@ function DetailedList() {
                   (item) =>
                     item.includes(i.kunngjoringsdato.substring(0, 8)) && (
                       <Link
-                        to={'/' + category + '/' + categorycpv + '/' + i.tittel}
+                        to={'/' + category + '/' + categorycpv + '/' + i.id}
                         i={i}
                       >
                         <Card i={i} />
