@@ -100,7 +100,7 @@ function DetailedList() {
           setChecked={setChecked}
         />
       </div>
-      <div className="info-container">
+      <div className="list-container">
         {subcategory
           ? structure.map(
               (item) =>
@@ -198,6 +198,7 @@ function DetailedList() {
                   (item) =>
                     item.includes(i.kunngjoringsdato.substring(0, 8)) && (
                       <Link
+                        style={{ textDecoration: "none", color: "black" }}
                         to={"/" + category + "/" + categorycpv + "/" + i.tittel}
                         i={i}
                       >
