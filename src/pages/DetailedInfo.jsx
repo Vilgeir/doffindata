@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import data from '../data/doffin-form2.json'
+import { getProcurement } from '../helpers/handleData'
 
-function DetailedInfo({ i }) {
-  const [procurementData, setProcurement] = useState()
+function DetailedInfo() {
+  const [procurementData, setProcurement] = useState([])
   const { procurement } = useParams()
 
   useEffect(() => {
-    setProcurement(data.filter((i) => i.tittel === procurement))
+    getProcurement('F02_2014', procurement, setProcurement)
+    // setProcurement(data.filter((i) => i.tittel === procurement))
   }, [])
 
-  // console.log(procurementData[0].beskrivelse)
+  console.log(procurementData)
   return (
     <div>
-      <h1>{procurementData && procurementData[0].tittel}</h1>
+      <h1>{procurementData.tittel}</h1>
       <button>Meld interesse</button>
       <div>
         <h3>Kunngjøringsdetaljer</h3>
@@ -21,11 +22,17 @@ function DetailedInfo({ i }) {
       </div>
       <div>
         <h3>Beskrivelse av anbud</h3>
-        <p>{procurementData && procurementData[0].beskrivelse}</p>
+        <p>{procurementData.beskrivelse}</p>
       </div>
       <div>
         <h3>Dokumenter</h3>
-        <p>text</p>
+        {procurementData.documents
+          ? procurementData.documents.map((i, index) => (
+              <a key={index} href={'https://www.mercell.com' + i.url}>
+                {i.name}
+              </a>
+            ))
+          : procurementData.url_dokumentasjon}
       </div>
       <div>
         <h3>Behov for sortiment</h3>
