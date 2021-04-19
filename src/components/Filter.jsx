@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
-import structure from '../data/withMainCategories'
-import fylker from '../data/fylker'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Checkboxes from './Checkboxes'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from "react";
+import structure from "../data/withMainCategories";
+import fylker from "../data/fylker";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Checkboxes from "./Checkboxes";
+import { Link } from "react-router-dom";
 
 function Filter({
   category,
@@ -26,12 +26,13 @@ function Filter({
             (item) => Object.keys(item).join() !== [e.target.value]
           ),
         ])
-    )
+    );
 
     e.target.checked === true &&
       setcheckedCategories((prevState) => [
         ...prevState,
         { [e.target.value]: [] },
+
       ])
     handleCheck(e)
   }
@@ -40,32 +41,32 @@ function Filter({
     removeChecked.length === 8 &&
       setChecked((prevState) => {
         if (prevState.includes(removeChecked)) {
-          if (removeChecked.substring(3, 8).includes('00000')) {
+          if (removeChecked.substring(3, 8).includes("00000")) {
             return [
               ...prevState.filter(
                 (i) => i.substring(0, 3) !== removeChecked.substring(0, 3)
               ),
-            ]
+            ];
           }
-          return [...prevState.filter((i) => i !== removeChecked)]
+          return [...prevState.filter((i) => i !== removeChecked)];
         } else {
-          return [...prevState, removeChecked]
+          return [...prevState, removeChecked];
         }
-      })
-  }, [removeChecked])
+      });
+  }, [removeChecked]);
 
   const removeFilters = () => {
-    setcheckedCategories([])
-    setChecked([])
-  }
+    setcheckedCategories([]);
+    setChecked([]);
+  };
 
   const handleCheck = (e) => {
     setChecked((prevState) =>
       prevState.includes(e.target.value)
         ? [...prevState.filter((i) => i !== e.target.value)]
         : [...prevState, e.target.value]
-    )
-  }
+    );
+  };
 
   const storeData = () => {
     window.localStorage.setItem(
@@ -93,7 +94,7 @@ function Filter({
               }
             : i
         )
-      )
+      );
 
     e.target.checked === true &&
       setcheckedCategories((prevState) =>
@@ -112,26 +113,29 @@ function Filter({
     handleCheck(e)
   }
 
+
   const goBack = () => {
-    window.history.back()
-  }
+    window.history.back();
+  };
 
   return (
     <div>
-      <h3 className=''>Søk</h3>
+      <h3 className="">Søk</h3>
+      <button className="button">Lagre søk</button>
       <div>
         <input
-          type='text'
-          className='searchbar'
-          id='detail-search'
-          placeholder='Søk'
+          type="text"
+          className="searchbar"
+          id="detail-search"
+          placeholder="Søk i anbud"
         />
       </div>
 
       <button onClick={() => storeData()}>Lagre søk </button>
       <h3 className=''>Filter</h3>
+
       {checkedCategories.length > 0 && (
-        <button className='cpv-button' onClick={removeFilters}>
+        <button className="cpv-button" onClick={removeFilters}>
           Fjern alle filter
         </button>
       )}
@@ -146,9 +150,9 @@ function Filter({
             (i) =>
               i.code === details &&
               i.children.map((item, i) => (
-                <div className='checkboxes'>
+                <div className="checkboxes">
                   {subcategory && subcategory === item.code ? (
-                    <div className='check-container'>
+                    <div className="check-container">
                       <div>
                         <Checkboxes
                           key={i}
@@ -160,6 +164,7 @@ function Filter({
                         />
                         )}
                         <label className='check-label'>
+
                           {item.name} ({item.countWithChildren})
                         </label>
                       </div>
@@ -168,7 +173,7 @@ function Filter({
                         (check) =>
                           Object.keys(check).includes(item.code) &&
                           item.children.map((it, index) => (
-                            <div key={it} className='subcheckboxes'>
+                            <div key={it} className="subcheckboxes">
                               <Checkboxes
                                 key={index}
                                 value={it.code}
@@ -179,7 +184,7 @@ function Filter({
                                   checked.includes(it.code) ? true : false
                                 }
                               />
-                              <label className='check-label'>
+                              <label className="check-label">
                                 {it.name} ({it.countWithChildren})
                               </label>
                             </div>
@@ -197,14 +202,14 @@ function Filter({
                         checked={checked.includes(item.code) ? true : false}
                       />
 
-                      <label className='check-label'>
+                      <label className="check-label">
                         {item.name} ({item.countWithChildren})
                       </label>
                       {checkedCategories.map(
                         (check) =>
                           Object.keys(check).includes(item.code) &&
                           item.children.map((it, index) => (
-                            <div className='subcheckboxes'>
+                            <div className="subcheckboxes">
                               <Checkboxes
                                 key={index}
                                 value={it.code}
@@ -215,7 +220,7 @@ function Filter({
                                   checked.includes(it.code) ? true : false
                                 }
                               />
-                              <label className='check-label'>
+                              <label className="check-label">
                                 {it.name} ({it.countWithChildren})
                               </label>
                             </div>
@@ -229,8 +234,8 @@ function Filter({
       )}
       <h4>Fylker</h4>
       {fylker.map((item, i) => (
-        <div className='checkboxes'>
-          <input key={i} type='checkbox' value={item.navn}></input>
+        <div className="checkboxes">
+          <input key={i} type="checkbox" value={item.navn}></input>
           <label>{item.navn}</label>
         </div>
       ))}
@@ -239,23 +244,23 @@ function Filter({
       <h4>Tilbudsfrist</h4>
       <p>Kalender</p>
       <h4>Publikasjonstype</h4>
-      <div className='checkboxes'>
-        <input type='checkbox' value='nasjonal'></input>
+      <div className="checkboxes">
+        <input type="checkbox" value="nasjonal"></input>
         <label>Nasjonal</label>
         {/* <span className='checkmark'></span> */}
       </div>
-      <div className='checkboxes'>
-        <input type='checkbox' value='europeisk'></input>
+      <div className="checkboxes">
+        <input type="checkbox" value="europeisk"></input>
         <label>Europeisk</label>
         {/* <span className='checkmark'></span> */}
       </div>
-      <div className='checkboxes'>
+      <div className="checkboxes">
         {/* <span className='checkmark'></span> */}
-        <input type='checkbox' value='marketcunsulting'></input>
+        <input type="checkbox" value="marketcunsulting"></input>
         <label>Market Cunsulting</label>
       </div>
     </div>
-  )
+  );
 }
 
-export default Filter
+export default Filter;

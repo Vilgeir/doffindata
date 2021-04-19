@@ -133,6 +133,7 @@ function DetailedList() {
                     )
                 )
             )}
+        <h3>CPV:</h3>
         <select onChange={onChange}>
           <option disabled default value='cpv-sort'>
             Sorter etter
@@ -142,7 +143,6 @@ function DetailedList() {
           <option value='date'>Publisert</option>
         </select>
         <div>
-          <h3>CPV:</h3>
           {checkedCategories.map((i) => (
             <>
               <button
@@ -164,7 +164,6 @@ function DetailedList() {
             </>
           ))}
         </div>
-
         {checkedCategories.length > 0
           ? sortedArray.map((i) =>
               checkedCategories.map((checked) =>
@@ -177,6 +176,7 @@ function DetailedList() {
                     )
                   : i.cpvnumber
                       .substring(0, 3)
+
                       .includes(Object.keys(checked)[0].substring(0, 3)) && (
                       <Link
                         style={{ textDecoration: 'none', color: 'black' }}

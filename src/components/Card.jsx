@@ -12,6 +12,7 @@ function Card({ i }) {
 
   return (
     <div className="card">
+      <div className="black-line" />
       <h2>{i.tittel}</h2>
       <h3 className="publishedby">
         Publisert av: {capitalize(i.oppdragsgiver)}
