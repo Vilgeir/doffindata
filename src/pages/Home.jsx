@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import structure from '../data/withMainCategories'
 import '../index.css'
+import SavedSearch from '../components/SavedSearch'
 
 function Home() {
   return (
@@ -17,12 +18,15 @@ function Home() {
         </div>
       </div>
 
-      <div className='box-container'>
-        {structure.map((i, index) => (
-          <Link className='main-boxes' to={i.main} key={index}>
-            {i.main}
-          </Link>
-        ))}
+      <div class='content-container'>
+        <div className='box-container'>
+          {structure.map((i, index) => (
+            <Link className='main-boxes' to={i.main} key={index}>
+              {i.main}
+            </Link>
+          ))}
+        </div>
+        <SavedSearch />
       </div>
     </div>
   )
