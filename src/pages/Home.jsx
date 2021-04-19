@@ -1,8 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import structure from "../data/withMainCategories";
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import structure from '../data/withMainCategories'
+import '../index.css'
+import SavedSearch from '../components/SavedSearch'
 import Footer from "../components/Footer";
-import "../index.css";
+
 
 function Home() {
   console.log(structure.map((i) => i.children[0].code));
@@ -20,14 +22,15 @@ function Home() {
           <h3 className="headline">Alle kategorier</h3>
         </div>
 
-        <div className="box-container">
+      <div class='content-container'>
+        <div className='box-container'>
           {structure.map((i, index) => (
-            <Link className="main-boxes" to={i.main} key={index}>
-              <div>{i.main}</div>
-              <div className="main-boxes-cpv">CPV {i.children[0].code}</div>
+            <Link className='main-boxes' to={i.main} key={index}>
+              {i.main}
             </Link>
           ))}
         </div>
+        <SavedSearch />
       </div>
       {/* <Footer /> */}
     </div>

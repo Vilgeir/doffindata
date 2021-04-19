@@ -32,8 +32,10 @@ function Filter({
       setcheckedCategories((prevState) => [
         ...prevState,
         { [e.target.value]: [] },
-      ]);
-  };
+
+      ])
+    handleCheck(e)
+  }
 
   useEffect(() => {
     removeChecked.length === 8 &&
@@ -66,6 +68,17 @@ function Filter({
     );
   };
 
+  const storeData = () => {
+    window.localStorage.setItem(
+      window.localStorage.length,
+      JSON.stringify(checkedCategories)
+    )
+  }
+
+  console.log(window.localStorage.length.toString())
+  // console.log(JSON.parse(window.localStorage.map((i) => i)))
+  // console.log(window.localStorage.key(i))
+
   const handleChange = (e) => {
     e.target.checked === false &&
       setcheckedCategories((prevState) =>
@@ -96,8 +109,10 @@ function Filter({
               }
             : i
         )
-      );
-  };
+      )
+    handleCheck(e)
+  }
+
 
   const goBack = () => {
     window.history.back();
@@ -115,7 +130,10 @@ function Filter({
           placeholder="Søk i anbud"
         />
       </div>
-      <h3 className="">Filter</h3>
+
+      <button onClick={() => storeData()}>Lagre søk </button>
+      <h3 className=''>Filter</h3>
+
       {checkedCategories.length > 0 && (
         <button className="cpv-button" onClick={removeFilters}>
           Fjern alle filter
@@ -136,18 +154,17 @@ function Filter({
                   {subcategory && subcategory === item.code ? (
                     <div className="check-container">
                       <div>
-                        {Object.entries(checked).map((elem) => (
-                          <Checkboxes
-                            key={i}
-                            value={item.code}
-                            onChange={handleClick}
-                            className={"checkbox"}
-                            id={item.code}
-                            handleCheck={handleCheck}
-                            checked={checked.includes(item.code) ? true : false}
-                          />
-                        ))}
-                        <label className="check-label">
+                        <Checkboxes
+                          key={i}
+                          value={item.code}
+                          onChange={handleClick}
+                          className={'checkbox'}
+                          // handleCheck={handleCheck}
+                          checked={checked.includes(item.code) ? true : false}
+                        />
+                        )}
+                        <label className='check-label'>
+
                           {item.name} ({item.countWithChildren})
                         </label>
                       </div>
@@ -160,10 +177,9 @@ function Filter({
                               <Checkboxes
                                 key={index}
                                 value={it.code}
-                                onChange={handleClick}
-                                className={"checkbox"}
-                                id={it.code}
-                                handleCheck={handleCheck}
+                                onChange={handleChange}
+                                className={'checkbox'}
+                                // handleCheck={handleCheck}
                                 checked={
                                   checked.includes(it.code) ? true : false
                                 }
@@ -180,9 +196,8 @@ function Filter({
                       <Checkboxes
                         value={item.code}
                         onChange={handleClick}
-                        className={"checkbox"}
-                        id={item.code}
-                        handleCheck={handleCheck}
+                        className={'checkbox'}
+                        // handleCheck={handleCheck}
                         key={i}
                         checked={checked.includes(item.code) ? true : false}
                       />
@@ -199,9 +214,8 @@ function Filter({
                                 key={index}
                                 value={it.code}
                                 onChange={handleChange}
-                                className={"checkbox"}
-                                id={it.code}
-                                handleCheck={handleCheck}
+                                className={'checkbox'}
+                                // handleCheck={handleCheck}
                                 checked={
                                   checked.includes(it.code) ? true : false
                                 }

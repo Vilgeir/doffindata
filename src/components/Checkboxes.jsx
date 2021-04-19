@@ -12,13 +12,12 @@ const Checkboxes = ({
 }) => (
   <input
     key={key}
-    id={id}
     className={className}
     type={type}
     value={value}
     checked={checked}
     onChange={onChange}
-    onClick={handleCheck}
+    // onClick={handleCheck}
   />
 )
 

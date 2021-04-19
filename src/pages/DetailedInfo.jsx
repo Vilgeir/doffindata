@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router";
-import { getProcurement } from "../helpers/handleData";
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router'
+import { getProcurement } from '../helpers/handleData'
 
 function DetailedInfo({ i }) {
-  const [procurementData, setProcurement] = useState([]);
-  const { procurement } = useParams();
+  const [procurementData, setProcurement] = useState([])
+  const { procurement } = useParams()
 
   useEffect(() => {
-    getProcurement("F02_2014", procurement, setProcurement);
+    getProcurement('F02_2014', procurement, setProcurement)
     // setProcurement(data.filter((i) => i.tittel === procurement))
-  }, []);
+  }, [])
 
-  console.log(procurementData);
   return (
     <div className="info-container">
       <div className="info-left-bar">
@@ -57,7 +56,7 @@ function DetailedInfo({ i }) {
         <h3 className="headline">Nettsted</h3>
       </div>
     </div>
-  );
+  )
 }
 
-export default DetailedInfo;
+export default DetailedInfo
