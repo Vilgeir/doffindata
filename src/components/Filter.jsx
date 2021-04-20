@@ -34,9 +34,10 @@ function Filter({
       setcheckedCategories((prevState) => [
         ...prevState,
         { [e.target.value]: [] },
-      ])
-    handleCheck(e)
-  }
+
+      ]);
+    handleCheck(e);
+  };
 
   useEffect(() => {
     removeChecked.length === 8 &&
@@ -66,8 +67,20 @@ function Filter({
       prevState.includes(e.target.value)
         ? [...prevState.filter((i) => i !== e.target.value)]
         : [...prevState, e.target.value]
-    )
-  }
+
+    );
+  };
+
+  const storeData = () => {
+    window.localStorage.setItem(
+      window.localStorage.length,
+      JSON.stringify(checkedCategories)
+    );
+  };
+
+  console.log(window.localStorage.length.toString());
+  // console.log(JSON.parse(window.localStorage.map((i) => i)))
+  // console.log(window.localStorage.key(i))
 
   const handleChange = (e) => {
     e.target.checked === false &&
@@ -99,9 +112,9 @@ function Filter({
               }
             : i
         )
-      )
-    handleCheck(e)
-  }
+      );
+    handleCheck(e);
+  };
 
   const goBack = () => {
     window.history.back()
@@ -122,6 +135,9 @@ function Filter({
           placeholder='Søk i anbud'
         />
       </div>
+      <button onClick={() => storeData()}>Lagre søk </button>
+      <h3 className="">Filter</h3>
+
 
       {checkedCategories.length > 0 && (
         <button className='cpv-button' onClick={removeFilters}>
@@ -132,94 +148,95 @@ function Filter({
       <Link onClick={goBack}>
         <FontAwesomeIcon icon={faArrowLeft} /> {category}
       </Link>
-      {structure.map(
-        (it) =>
-          it.main === category &&
-          it.children.map(
-            (i) =>
-              i.code === details &&
-              i.children.map((item, i) => (
-                <div className='checkboxes'>
-                  {subcategory && subcategory === item.code ? (
-                    <div className='check-container'>
+      <div className="check-container">
+        {structure.map(
+          (it) =>
+            it.main === category &&
+            it.children.map(
+              (i) =>
+                i.code === details &&
+                i.children.map((item, i) => (
+                  <div className="checkboxes">
+                    {subcategory && subcategory === item.code ? (
                       <div>
+                        <div>
+                          <Checkboxes
+                            key={i}
+                            value={item.code}
+                            onChange={handleClick}
+                            className={"checkbox"}
+                            // handleCheck={handleCheck}
+                            checked={checked.includes(item.code) ? true : false}
+                          />
+                          )
+                          <label className="check-label">
+                            {item.name} ({item.countWithChildren})
+                          </label>
+                        </div>
+
+                        {checkedCategories.map(
+                          (check) =>
+                            Object.keys(check).includes(item.code) &&
+                            item.children.map((it, index) => (
+                              <div key={it} className="subcheckboxes">
+                                <Checkboxes
+                                  key={index}
+                                  value={it.code}
+                                  onChange={handleChange}
+                                  className={"checkbox"}
+                                  // handleCheck={handleCheck}
+                                  checked={
+                                    checked.includes(it.code) ? true : false
+                                  }
+                                />
+                                <label className="check-label">
+                                  {it.name} ({it.countWithChildren})
+                                </label>
+                              </div>
+                            ))
+                        )}
+                      </div>
+                    ) : (
+                      <>
                         <Checkboxes
-                          key={i}
                           value={item.code}
                           onChange={handleClick}
-                          className={'checkbox'}
+                          className={"checkbox"}
                           // handleCheck={handleCheck}
+                          key={i}
                           checked={checked.includes(item.code) ? true : false}
                         />
-                        )}
-                        <label className='check-label'>
+                        <label className="check-label">
                           {item.name} ({item.countWithChildren})
                         </label>
-                      </div>
-
-                      {checkedCategories.map(
-                        (check) =>
-                          Object.keys(check).includes(item.code) &&
-                          item.children.map((it, index) => (
-                            <div key={it} className='subcheckboxes'>
-                              <Checkboxes
-                                key={index}
-                                value={it.code}
-                                onChange={handleChange}
-                                className={'checkbox'}
-                                // handleCheck={handleCheck}
-                                checked={
-                                  checked.includes(it.code) ? true : false
-                                }
-                              />
-                              <label className='check-label'>
-                                {it.name} ({it.countWithChildren})
-                              </label>
-                            </div>
-                          ))
-                      )}
-                    </div>
-                  ) : (
-                    <>
-                      <Checkboxes
-                        value={item.code}
-                        onChange={handleClick}
-                        className={'checkbox'}
-                        // handleCheck={handleCheck}
-                        key={i}
-                        checked={checked.includes(item.code) ? true : false}
-                      />
-
-                      <label className='check-label'>
-                        {item.name} ({item.countWithChildren})
-                      </label>
-                      {checkedCategories.map(
-                        (check) =>
-                          Object.keys(check).includes(item.code) &&
-                          item.children.map((it, index) => (
-                            <div className='subcheckboxes'>
-                              <Checkboxes
-                                key={index}
-                                value={it.code}
-                                onChange={handleChange}
-                                className={'checkbox'}
-                                // handleCheck={handleCheck}
-                                checked={
-                                  checked.includes(it.code) ? true : false
-                                }
-                              />
-                              <label className='check-label'>
-                                {it.name} ({it.countWithChildren})
-                              </label>
-                            </div>
-                          ))
-                      )}
-                    </>
-                  )}
-                </div>
-              ))
-          )
-      )}
+                        {checkedCategories.map(
+                          (check) =>
+                            Object.keys(check).includes(item.code) &&
+                            item.children.map((it, index) => (
+                              <div className="subcheckboxes">
+                                <Checkboxes
+                                  key={index}
+                                  value={it.code}
+                                  onChange={handleChange}
+                                  className={"checkbox"}
+                                  // handleCheck={handleCheck}
+                                  checked={
+                                    checked.includes(it.code) ? true : false
+                                  }
+                                />
+                                <label className="check-label">
+                                  {it.name} ({it.countWithChildren})
+                                </label>
+                              </div>
+                            ))
+                        )}
+                      </>
+                    )}
+                  </div>
+                ))
+            )
+        )}
+      </div>
       <h4>Fylker</h4>
       {fylker.map((item, i) => (
         <div className='checkboxes'>
