@@ -5,7 +5,7 @@ const Checkboxes = ({
   value,
   id,
   key,
-  checked = false,
+  checked,
   onChange,
   className,
   handleCheck,
@@ -16,7 +16,7 @@ const Checkboxes = ({
     type={type}
     value={value}
     checked={checked}
-    onChange={onChange}
+    onClick={onChange}
     // onClick={handleCheck}
   />
 )

@@ -90,8 +90,6 @@ function DetailedList() {
     setRemoveChecked(e.target.value)
   }
 
-  console.log(documents)
-
   return (
     <div className='detail-container'>
       <div className='search'>
@@ -137,37 +135,15 @@ function DetailedList() {
                     )
                 )
             )}
-        <h3>CPV:</h3>
-        <select className="select-box" onChange={onChange}>
-          <option disabled default value='cpv-sort'>
-            Sorter etter
-          </option>
-          <option value='asc'>ASC</option>
-          <option value='desc'>DESC</option>
-          <option value='date'>Publisert</option>
-        </select>
-        <div>
-          {checkedCategories.map((i) => (
-            <>
-              <button
-                value={Object.keys(i)[0]}
-                onClick={handleChange}
-                className='cpv-button'
-              >
-                {Object.keys(i)[0]}
-              </button>
-              {Object.values(i)[0].map((item) => (
-                <button
-                  value={item}
-                  onClick={handleChange}
-                  className='cpv-button'
-                >
-                  {item}
-                </button>
-              ))}
-            </>
-          ))}
+        <div className='select-box-title'>
+          <h2>Sorter etter: </h2>
+          <select className='select-box' onChange={onChange}>
+            <option value='asc'>ASC</option>
+            <option value='desc'>DESC</option>
+            <option value='date'>Publisert</option>
+          </select>
         </div>
+
         {checkedCategories.length > 0
           ? sortedArray.map((i) =>
               checkedCategories.map((checked) =>
