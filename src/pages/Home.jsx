@@ -6,7 +6,6 @@ import SavedSearch from '../components/SavedSearch'
 import Footer from '../components/Footer'
 
 function Home() {
-  console.log(structure.map((i) => i.children[0].code))
   return (
     <div>
       <div className='home-container'>

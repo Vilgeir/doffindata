@@ -1,13 +1,25 @@
 import React, { useEffect, useState } from 'react'
 
-function SaveSearch({ setSaveSearch, checkedCategories }) {
+function SaveSearch({
+  setSaveSearch,
+  checkedCategories,
+  category,
+  categorycpv,
+}) {
   const [nameSearch, setNameSearch] = useState()
   const handleChange = (e) => {
     setNameSearch(e.target.value)
   }
 
+  let obj = {
+    checkedCategories,
+    category: category,
+    cpv: categorycpv,
+  }
+  console.log(obj)
+  console.log(category + categorycpv)
   const handleClick = () => {
-    window.localStorage.setItem(nameSearch, JSON.stringify(checkedCategories))
+    window.localStorage.setItem(nameSearch, JSON.stringify(obj))
     setSaveSearch(false)
   }
 

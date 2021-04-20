@@ -209,6 +209,8 @@ function DetailedList() {
         <SaveSearch
           setSaveSearch={setSaveSearch}
           checkedCategories={checkedCategories}
+          category={category}
+          categorycpv={categorycpv}
         />
       )}
     </div>
