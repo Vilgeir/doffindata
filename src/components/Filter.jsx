@@ -134,7 +134,6 @@ function Filter({
         />
       </div>
       <button onClick={() => storeData()}>Lagre søk </button>
-
       <h3 className="">Filter</h3>
       {checkedCategories.length > 0 && (
         <button className="cpv-button" onClick={removeFilters}>
