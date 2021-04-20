@@ -45,6 +45,7 @@ const homeIcons = (icon) => {
 };
 
 function Home() {
+
   // console.log(structure.map((i) => i.children[0].code));
 
   return (
