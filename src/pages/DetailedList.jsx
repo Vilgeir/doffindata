@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Filter from '../components/Filter'
+import SaveSearch from '../components/SaveSearch'
 import Card from '../components/Card'
 import { useParams } from 'react-router-dom'
 import structure from '../data/withMainCategories'
@@ -12,6 +13,7 @@ function DetailedList() {
   const [removeChecked, setRemoveChecked] = useState([])
   const [sort, setSort] = useState()
   const [checked, setChecked] = useState([])
+  const [saveSearch, setSaveSearch] = useState(false)
 
   const [documents, setDocuments] = useState([])
 
@@ -103,6 +105,8 @@ function DetailedList() {
           setRemoveChecked={setRemoveChecked}
           checked={checked}
           setChecked={setChecked}
+          saveSearch={saveSearch}
+          setSaveSearch={setSaveSearch}
         />
       </div>
       <div className='list-container'>
@@ -201,6 +205,12 @@ function DetailedList() {
                 )
             )}
       </div>
+      {saveSearch && (
+        <SaveSearch
+          setSaveSearch={setSaveSearch}
+          checkedCategories={checkedCategories}
+        />
+      )}
     </div>
   )
 }
