@@ -138,7 +138,7 @@ function DetailedList() {
                 )
             )}
         <h3>CPV:</h3>
-        <select onChange={onChange}>
+        <select className="select-box" onChange={onChange}>
           <option disabled default value='cpv-sort'>
             Sorter etter
           </option>
