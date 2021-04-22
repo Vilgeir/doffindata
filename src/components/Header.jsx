@@ -3,7 +3,11 @@ import React from 'react'
 const Header = () => {
   return (
     <div className='header'>
-      <h2>Daniel er kul</h2>
+      <nav className="navbar">
+          <div>
+            <img className="logo" src={ require("../iconer/logo.svg").default } alt="logo"/>
+          </div>
+      </nav>
     </div>
   )
 }
