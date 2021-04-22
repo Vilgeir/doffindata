@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import React, { useEffect, useState } from "react";
-=======
 import React, { useEffect, useState } from 'react'
 import structure from '../data/withMainCategories'
->>>>>>> 8b872d78a4b37195816c8b74357c912aa9f5d0e4
 
 function SaveSearch({
   setSaveSearch,
@@ -11,27 +7,27 @@ function SaveSearch({
   category,
   categorycpv,
 }) {
-  const [nameSearch, setNameSearch] = useState();
+  const [nameSearch, setNameSearch] = useState()
   const handleChange = (e) => {
-    setNameSearch(e.target.value);
-  };
+    setNameSearch(e.target.value)
+  }
 
   let obj = {
     checkedCategories,
     category: category,
     cpv: categorycpv,
-  };
+  }
   // console.log(obj)
   // console.log(category + categorycpv)
   const handleClick = () => {
-    window.localStorage.setItem(nameSearch, JSON.stringify(obj));
-    setSaveSearch(false);
-  };
+    window.localStorage.setItem(nameSearch, JSON.stringify(obj))
+    setSaveSearch(false)
+  }
 
   return (
-    <div className="modal">
-      <div className="modal-elements">
-        <h1 className="">Lagre søk</h1>
+    <div className='modal'>
+      <div className='modal-elements'>
+        <h1 className=''>Lagre søk</h1>
         <h2>Filter</h2>
         {structure.map((item) => {
           item.main === category &&
@@ -45,12 +41,12 @@ function SaveSearch({
 
         <h2>Navngi søk *</h2>
         <input
-          type="text"
-          placeholder="Navngi søk"
+          type='text'
+          placeholder='Navngi søk'
           onChange={handleChange}
         ></input>
         <div>
-          <input type="checkbox" defaultChecked></input>
+          <input type='checkbox' defaultChecked></input>
           <label>Ja, jeg ønsker å motta e-post med varsel om nye anbud</label>
         </div>
         <div>
@@ -59,7 +55,7 @@ function SaveSearch({
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default SaveSearch;
+export default SaveSearch
