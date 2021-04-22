@@ -14,7 +14,7 @@ function Categories() {
         <div>
           <input
             className="searchbar"
-            placeholder="Søk etter anbud eller CPV koder"
+            placeholder="Søk etter anbud eller CPV-koder"
             src="../../public/iconer/search.png"
           />
         </div>

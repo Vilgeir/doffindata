@@ -230,7 +230,7 @@ function Filter({
         )}
       </div>
 
-      <div className="black-line" />
+      {/*<div className="black-line" />*/}
       <div className="filter-header">
         <h4>Fylker</h4>
       </div>
@@ -240,7 +240,7 @@ function Filter({
           <label>{item.navn}</label>
         </div>
       ))}
-      <div className='black-line' />
+      {/*<div className='black-line' />*/}
     </div>
   )
 }
