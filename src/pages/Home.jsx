@@ -128,9 +128,14 @@ function Home(props) {
       <div class="content-container">
         <div className="box-container">
           {structure.map((i, index) => (
-            <Link className="main-boxes" to={i.main} key={index}>
+            <Link
+              className="main-boxes"
+              to={i.main}
+              key={index}
+              id={"main-boxes-" + index}
+            >
               <div className="homeicon-container">
-                <FontAwesomeIcon icon={homeIcons(i.main)} color="White" />
+                <FontAwesomeIcon id="homeicon-icon" icon={homeIcons(i.main)} />
               </div>
               <div className="main-box-text">
                 <p className="main-boxes-title">{i.main}</p>

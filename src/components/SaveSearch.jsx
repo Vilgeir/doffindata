@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
+=======
+import React, { useEffect, useState } from 'react'
+import structure from '../data/withMainCategories'
+>>>>>>> 8b872d78a4b37195816c8b74357c912aa9f5d0e4
 
 function SaveSearch({
   setSaveSearch,
@@ -28,7 +33,15 @@ function SaveSearch({
       <div className="modal-elements">
         <h1 className="">Lagre søk</h1>
         <h2>Filter</h2>
-        <p>filter navn</p>
+        {structure.map((item) => {
+          item.main === category &&
+            item.children.map(
+              (it) => (it.code === categorycpv ? <h3>{it.name}</h3> : '')
+              // (it) => it.code === categorycpv && <h3>{it.name}</h3>
+            )
+        })}
+
+        <p>{category}</p>
 
         <h2>Navngi søk *</h2>
         <input

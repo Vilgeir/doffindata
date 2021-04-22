@@ -7,15 +7,14 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 main {
-  font-family: "Roboto", sans-serif;
+  font-family: acumin-pro, sans-serif;
+  font-style: normal;
+  font-weight: 400;
   font-size: 16px;
   display: grid;
   grid-template-columns:
@@ -28,7 +27,7 @@ header {
   grid-column: full;
   background-color: #36498a;
   width: 100%;
-  height: 10rem;
+  height: 7vh;
 }
 
 footer {
@@ -39,8 +38,6 @@ main > * {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
 }
 
 .MuiDataGrid-root {
@@ -73,12 +70,13 @@ code {
 .button {
   color: white;
   background-color: #36498a;
-  border-radius: 0.3rem;
+  border-radius: 2px;
   border: 0;
-  width: 15rem;
-  height: 3rem;
   font-size: 1rem;
   padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
@@ -108,7 +106,7 @@ code {
 .searchbar {
   width: 39rem;
   padding: 1rem;
-  border: 0px;
+  border: 2px;
   margin-bottom: 2rem;
   background-color: var(--lightBlue);
 }
@@ -170,18 +168,18 @@ code {
 }
 
 .main-box-text {
-  margin-left: -1rem;
+  margin-left: -0.5rem;
 }
 
 .main-boxes-title {
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   font-weight: 600;
 }
 
 .main-boxes-cpv {
   font-weight: 100;
   opacity: 0.5;
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   margin-top: -0.8rem;
 }
 
@@ -190,18 +188,72 @@ code {
 }
 
 .homeicon-container {
-  background-color: blue;
-  opacity: 0.5;
-  padding: 1rem;
-  margin-right: 0rem;
-  border-radius: 10rem;
+  padding: 0.4rem;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 2rem;
+  border-radius: 50px;
 }
+
+#main-boxes-0 .homeicon-container{
+  background-color:#36498A;
+  color: #81B3EE;
+}
+
+#main-boxes-1 .homeicon-container{
+  background-color: #D1BCFF;
+  color: #4B00EB;
+}
+
+#main-boxes-2 .homeicon-container{
+  background-color: #C8FFDB; 
+  color: #00840D;
+}
+
+#main-boxes-3 .homeicon-container{
+  background-color: #FFF59C;
+  color: #EFBE0E;
+}
+
+#main-boxes-4 .homeicon-container{
+  background-color: #FFE6CF;
+  color: #FF8A00;
+}
+
+#main-boxes-5 .homeicon-container{
+  background-color: #C8D4FF;
+  color: #004393;
+}
+
+#main-boxes-6 .homeicon-container{
+  background-color: #FFCDCA;
+  color: #E20E00;
+}
+
+#main-boxes-7 .homeicon-container{
+  background-color: #C0EEE6;
+  color: #007965;
+}
+
+#main-boxes-8 .homeicon-container{
+  background-color: #F2CEFF;
+  color: #9A00CC;
+}
+
+#main-boxes-9 .homeicon-container{
+  background-color: #FFD3F8;
+  color: #D8009B;
+}
+
 
 /* Card */
 
 .card {
   /* border: 1px solid grey; */
-  font-weight: 900;
+  font-weight: 600;
   margin-top: 1.4rem;
   margin-bottom: 2rem;
   display: flex;
@@ -291,6 +343,19 @@ p {
   font-weight: 400;
 }
 
+.filter-header h4{
+  font-weight: 400;
+  border-top: 1px solid black;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+}
+
+.filter-header :hover{
+  background-color: #4DBFAC;
+  cursor: pointer;
+}
+
 .subcheckboxes {
   margin-left: 1rem;
 }
@@ -302,6 +367,25 @@ p {
 
 .list-container {
 }
+
+.select-box{
+  color: #535353;
+  background-color: #F5F7FF;
+  border-radius: 2px;
+  border: 0;
+
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  margin-left: 1rem; 
+}
+
+.select-box-title {
+  display: flex;
+  align-items: center;
+  }
 
 .cpv-button {
   background-color: #36498a;
@@ -358,6 +442,7 @@ a {
   width: 15rem;
 }
 
+/*
 .black-line {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
@@ -365,6 +450,7 @@ a {
   height: 0.05rem;
   background-color: black;
 }
+*/
 
 .info-card {
   /* border: 1px solid grey; */
