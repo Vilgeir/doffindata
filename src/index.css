@@ -14,7 +14,7 @@ body {
 main {
   font-family: acumin-pro, sans-serif;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 16px;
   display: grid;
   grid-template-columns:
@@ -343,6 +343,18 @@ p {
   font-weight: 400;
 }
 
+.filter-header h4{
+  font-weight: 400;
+  border-top: 1px solid black;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+}
+
+.filter-header :hover{
+  background-color: #4DBFAC;
+  cursor: pointer;
+}
 
 .subcheckboxes {
   margin-left: 1rem;
@@ -366,7 +378,14 @@ p {
   padding-right: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+
+  margin-left: 1rem; 
 }
+
+.select-box-title {
+  display: flex;
+  align-items: center;
+  }
 
 .cpv-button {
   background-color: #36498a;

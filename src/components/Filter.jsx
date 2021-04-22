@@ -140,8 +140,9 @@ function Filter({
           Fjern alle filter
         </button>
       )}
-      <div className="black-line" />
-      <h4>Kategorier</h4>
+      <div className="filter-header">
+        <h4>Kategorier</h4>
+      </div>
       <Link onClick={goBack}>
         <FontAwesomeIcon icon={faArrowLeft} /> {category}
       </Link>
@@ -235,7 +236,9 @@ function Filter({
         )}
       </div>
       <div className="black-line" />
-      <h4>Fylker</h4>
+      <div className="filter-header">
+        <h4>Fylker</h4>
+      </div>
       {fylker.map((item, i) => (
         <div className="checkboxes">
           <input key={i} type="checkbox" value={item.navn}></input>
