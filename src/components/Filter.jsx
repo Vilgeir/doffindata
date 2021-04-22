@@ -236,28 +236,6 @@ function Filter({
         </div>
       ))}
       <div className='black-line' />
-      {/* <h4>Kunngjøringsdato</h4> */}
-      {/* <p>Kalender</p> */}
-      {/* <div className='black-line' /> */}
-      {/* <h4>Tilbudsfrist</h4> */}
-      {/* <p>Kalender</p> */}
-      {/* <div className='black-line' /> */}
-      {/* <h4>Publikasjonstype</h4> */}
-      {/* <div className='checkboxes'>
-        <input type='checkbox' value='nasjonal'></input>
-        <label>Nasjonal</label>
-        {/* <span className='checkmark'></span> */}
-      {/* </div> */}
-      {/* <div className='checkboxes'>
-        <input type='checkbox' value='europeisk'></input>
-        <label>Europeisk</label>
-        {/* <span className='checkmark'></span> */}
-      {/* </div> */}
-      {/* <div className='checkboxes'>
-        {/* <span className='checkmark'></span> */}
-      {/* <input type='checkbox' value='marketcunsulting'></input>
-      <label>Market Cunsulting</label> */}
-      {/* </div> */}
     </div>
   )
 }
