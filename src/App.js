@@ -14,9 +14,9 @@ require('firebase/firestore')
 function App() {
   return (
     <>
-      <Header />
-      <main>
-        <BrowserRouter basename='/doffindata'>
+      <BrowserRouter basename='/doffindata'>
+        <Header />
+        <main>
           <Switch>
             <Route exact path={'/'} component={Home} />
             <Route exact path={'/:category'} component={Categories} />
@@ -37,9 +37,9 @@ function App() {
               component={DetailedInfo}
             ></Route>
           </Switch>
-        </BrowserRouter>
-      </main>
-      <Footer />
+        </main>
+        <Footer />
+      </BrowserRouter>
     </>
   )
 }
