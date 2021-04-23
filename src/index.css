@@ -35,7 +35,7 @@ main {
   padding-left: 7vw;
 }
 
-.logo{
+.logo {
   height: 5vh;
   fill: white;
 }
@@ -68,7 +68,7 @@ code {
   margin-top: 5rem;
 }
 
-.footer h2{
+.footer h2 {
   font-size: 1.6rem;
   font-weight: 400;
 }
@@ -211,56 +211,55 @@ code {
   border-radius: 50px;
 }
 
-#main-boxes-0 .homeicon-container{
-  background-color:#36498A;
-  color: #81B3EE;
+#main-boxes-0 .homeicon-container {
+  background-color: #36498a;
+  color: #81b3ee;
 }
 
-#main-boxes-1 .homeicon-container{
-  background-color: #D1BCFF;
-  color: #4B00EB;
+#main-boxes-1 .homeicon-container {
+  background-color: #d1bcff;
+  color: #4b00eb;
 }
 
-#main-boxes-2 .homeicon-container{
-  background-color: #C8FFDB; 
-  color: #00840D;
+#main-boxes-2 .homeicon-container {
+  background-color: #c8ffdb;
+  color: #00840d;
 }
 
-#main-boxes-3 .homeicon-container{
-  background-color: #FFF59C;
-  color: #EFBE0E;
+#main-boxes-3 .homeicon-container {
+  background-color: #fff59c;
+  color: #efbe0e;
 }
 
-#main-boxes-4 .homeicon-container{
-  background-color: #FFE6CF;
-  color: #FF8A00;
+#main-boxes-4 .homeicon-container {
+  background-color: #ffe6cf;
+  color: #ff8a00;
 }
 
-#main-boxes-5 .homeicon-container{
-  background-color: #C8D4FF;
+#main-boxes-5 .homeicon-container {
+  background-color: #c8d4ff;
   color: #004393;
 }
 
-#main-boxes-6 .homeicon-container{
-  background-color: #FFCDCA;
-  color: #E20E00;
+#main-boxes-6 .homeicon-container {
+  background-color: #ffcdca;
+  color: #e20e00;
 }
 
-#main-boxes-7 .homeicon-container{
-  background-color: #C0EEE6;
+#main-boxes-7 .homeicon-container {
+  background-color: #c0eee6;
   color: #007965;
 }
 
-#main-boxes-8 .homeicon-container{
-  background-color: #F2CEFF;
-  color: #9A00CC;
+#main-boxes-8 .homeicon-container {
+  background-color: #f2ceff;
+  color: #9a00cc;
 }
 
-#main-boxes-9 .homeicon-container{
-  background-color: #FFD3F8;
-  color: #D8009B;
+#main-boxes-9 .homeicon-container {
+  background-color: #ffd3f8;
+  color: #d8009b;
 }
-
 
 /* Card */
 
@@ -279,30 +278,29 @@ code {
   background: #f5f7ff;
 } */
 
-.card h2{
+.card h2 {
   font-size: 1.7rem;
   font-weight: 400;
 }
 
-.card h3{
+.card h3 {
   font-weight: 400;
   font-size: 1rem;
   color: #535353;
 }
 
-.card h4{
+.card h4 {
   font-weight: 540;
 }
-
 
 .dates {
   display: grid;
   grid-template-columns:
-    [start] minmax(14rem, 14rem) [middle] minmax(1rem, 1fr)
+    [start] minmax(1rem, 14rem) [middle] minmax(1rem, 1fr)
     [second] minmax(1rem, 1fr) [last] minmax(1rem, 1fr);
 }
 
-.list-container h1{
+.list-container h1 {
   font-size: 2rem;
   font-weight: 400;
 }
@@ -378,7 +376,7 @@ p {
   font-weight: 400;
 }
 
-.filter-header h4{
+.filter-header h4 {
   font-weight: 400;
   border-top: 1px solid black;
   padding-top: 1rem;
@@ -386,31 +384,31 @@ p {
   padding-left: 1rem;
 }
 
-.filter-header :hover{
-  background-color: #4DBFAC;
+.filter-header :hover {
+  background-color: #4dbfac;
   cursor: pointer;
 }
 
-input[type=checkbox] {
+input[type='checkbox'] {
   position: relative;
   cursor: pointer;
 }
 
-input[type=checkbox]:before {
-  content: "";
+input[type='checkbox']:before {
+  content: '';
   display: block;
   position: absolute;
   width: 16px;
   height: 16px;
   top: 0;
   left: 0;
-  border: 1px solid #4DBFAC;
+  border: 1px solid #4dbfac;
   border-radius: 1px;
   background-color: white;
 }
 
-input[type=checkbox]:checked:after {
-  content: "";
+input[type='checkbox']:checked:after {
+  content: '';
   display: block;
   width: 5px;
   height: 10px;
@@ -424,7 +422,7 @@ input[type=checkbox]:checked:after {
   left: 6px;
 }
 
-.checkboxes{
+.checkboxes {
   margin-top: 0.4rem;
 }
 
@@ -440,9 +438,9 @@ input[type=checkbox]:checked:after {
 .list-container {
 }
 
-.select-box{
+.select-box {
   color: #535353;
-  background-color: #F5F7FF;
+  background-color: #f5f7ff;
   border-radius: 2px;
   border: 0;
 
@@ -451,13 +449,13 @@ input[type=checkbox]:checked:after {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 
-  margin-left: 1rem; 
+  margin-left: 1rem;
 }
 
 .select-box-title {
   display: flex;
   align-items: center;
-  }
+}
 
 .cpv-button {
   background-color: #36498a;
