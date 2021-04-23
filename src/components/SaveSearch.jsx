@@ -17,8 +17,8 @@ function SaveSearch({
     category: category,
     cpv: categorycpv,
   }
-  console.log(obj)
-  console.log(category + categorycpv)
+  // console.log(obj)
+  // console.log(category + categorycpv)
   const handleClick = () => {
     window.localStorage.setItem(nameSearch, JSON.stringify(obj))
     setSaveSearch(false)

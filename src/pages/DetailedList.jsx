@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Filter from '../components/Filter'
 import SaveSearch from '../components/SaveSearch'
 import Card from '../components/Card'
@@ -7,9 +7,10 @@ import structure from '../data/withMainCategories'
 import data from '../data/doffin-form2.json'
 import { Link } from 'react-router-dom'
 import { getData } from '../helpers/handleData'
+import { StateContext } from '../context/StateProvider'
 
 function DetailedList() {
-  const [checkedCategories, setcheckedCategories] = useState([])
+  const { checkedCategories, setcheckedCategories } = useContext(StateContext)
   const [removeChecked, setRemoveChecked] = useState([])
   const [sort, setSort] = useState()
   const [checked, setChecked] = useState([])
@@ -19,7 +20,28 @@ function DetailedList() {
 
   const { category, details } = useParams()
 
-  // const { category, details } = useParams()
+  useEffect(() => {
+    let arr = []
+    Object.values(checkedCategories)
+      .map((i) => arr.push(Object.keys(i)))
+      .flat()
+    Object.values(checkedCategories)
+      .map((i) => Object.values(i).map((item) => arr.push(item)))
+      .flat()
+    checkedCategories && setChecked(arr.flat())
+  }, [])
+
+  useEffect(() => {
+    let obj = {
+      checkedCategories,
+      category: category,
+      cpv: categorycpv,
+    }
+
+    window.localStorage.setItem('lastSearch', JSON.stringify(obj))
+  }, [checkedCategories])
+
+  console.log(checkedCategories)
   let newdetails = details.split('+')
   let categorycpv = newdetails[0]
   let subcategory = newdetails[1]
