@@ -18,8 +18,6 @@ function SavedSearch() {
     (elem) => elem !== 'ally-supports-cache' && elem !== 'lastSearch'
   )
 
-  console.log(checkedCategories)
-
   useEffect(() => {
     arr.map((elem) =>
       setSaved((prevstate) => [
@@ -31,20 +29,15 @@ function SavedSearch() {
 
   useEffect(() => {
     let data = JSON.parse(localStorage.getItem('lastSearch'))
-
-    let arr = [
-      data.category,
-      data.cpv,
-      Object.values(data.checkedCategories).map((i) =>
-        Object.entries(i).flat().join(' - ')
-      ),
-    ]
-    console.log(data)
-    console.log(
-      Object.values(data.checkedCategories).map((i) =>
-        Object.entries(i).flat().join(' - ')
-      )
-    )
+    let arr = []
+    data &&
+      (arr = [
+        data.category,
+        data.cpv,
+        Object.values(data.checkedCategories).map((i) =>
+          Object.entries(i).flat().join(' - ')
+        ),
+      ])
 
     setLast(arr)
   }, [])
@@ -56,9 +49,6 @@ function SavedSearch() {
     )
   }
 
-  // console.log(Object.values(last).map())
-  // .flat())
-
   return (
     <div className='home-buttons'>
       <button
@@ -68,7 +58,15 @@ function SavedSearch() {
         Siste søk <FontAwesomeIcon icon={faChevronDown} />
       </button>
 
-      {openLast && Object.values(last).flat().join(' - ')}
+      {openLast && (
+        <Link
+          to={'/' + Object.values(last)[0] + '/' + Object.values(last)[1]}
+          onClick={() => handleClick(last)}
+        >
+          {Object.values(last).flat().join(' - ')}
+          {console.log(last)}
+        </Link>
+      )}
       <button
         className='home-button'
         onClick={() => setOpenSaved((prev) => !prev)}
@@ -86,6 +84,7 @@ function SavedSearch() {
             onClick={() => handleClick(i)}
           >
             {Object.keys(i)[0]}
+            {console.log(i)}
           </Link>
         ))}
     </div>
