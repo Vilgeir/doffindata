@@ -14,18 +14,26 @@ function Card({ i }) {
     <div className="card">
       <div className="black-line" />
       <h2>{i.tittel}</h2>
-      <h3 className="publishedby">
-        Publisert av: {capitalize(i.oppdragsgiver)}
-      </h3>
+      <h3 className="publishedby">{capitalize(i.oppdragsgiver)}</h3>
       <div className="dates">
+
+        {/*
         <div>
-          <h3>Kunngjøringsdato:</h3>
+          <h4>Kunngjøringsdato:</h4>
           <p>{reverse(i.kunngjoringsdato)}</p>
         </div>
+        */}
+
         <div>
-          <h3>Tilbudsfrist:</h3>
+          <h4>Søknadsfrist</h4>
           <p>{i.tilbudsfrist ? reverse(i.tilbudsfrist) : "Ikke annonsert"}</p>
         </div>
+
+        <div>
+          <h4>Tildelingskriterier</h4>
+          <p></p>
+        </div>
+
         <div className="town">
           <p>{capitalize(i.sted)}</p>
         </div>
