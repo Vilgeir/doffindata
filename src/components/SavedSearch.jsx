@@ -31,20 +31,15 @@ function SavedSearch() {
 
   useEffect(() => {
     let data = JSON.parse(localStorage.getItem('lastSearch'))
-
-    let arr = [
-      data.category,
-      data.cpv,
-      Object.values(data.checkedCategories).map((i) =>
-        Object.entries(i).flat().join(' - ')
-      ),
-    ]
-    console.log(data)
-    console.log(
-      Object.values(data.checkedCategories).map((i) =>
-        Object.entries(i).flat().join(' - ')
-      )
-    )
+    let arr = []
+    data &&
+      (arr = [
+        data.category,
+        data.cpv,
+        Object.values(data.checkedCategories).map((i) =>
+          Object.entries(i).flat().join(' - ')
+        ),
+      ])
 
     setLast(arr)
   }, [])
