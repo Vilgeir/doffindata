@@ -17,14 +17,10 @@ function DetailedInfo({ i }) {
         <p>{procurementData.oppdragsgiver}</p>
         <h1 className="headline">{procurementData.tittel}</h1>
         <div className="info-card">
-          <p>Kunngjøringsdato: {procurementData.kunngjoringsdato}</p>
-          <p>
-            Adresse: {procurementData.adresse}
-            {", "} {procurementData.sted}
-          </p>
+          <p><b>Publiseringsdato:</b> {procurementData.kunngjoringsdato}</p>
+          <p><b>Tilbudsfrist:</b></p>
+          <p><b>Tildelingskriterie:</b></p>
 
-          <p>Nettside: {procurementData.nettside}</p>
-          <h3>Beskrivelse av anbud</h3>
           <p>{procurementData.beskrivelse}</p>
         </div>
         <div className="info-card">
@@ -44,16 +40,26 @@ function DetailedInfo({ i }) {
       </div>
       <div className="info-right-bar">
         <button className="button">Meld interesse</button>
-        <div className="black-line" />
-        <h3 className="headline">Kontakt</h3>
-        <p>Kontaktperson:</p>
-        <p>Telefon:</p>
-        <p>E-post: {procurementData.epost}</p>
-        <div className="black-line" />
-        <h3 className="headline">Innkjøper</h3>
-        <p>Oppdragsgiver: {procurementData.oppdragsgiver}</p>
-        <div className="black-line" />
-        <h3 className="headline">Nettsted</h3>
+        <div className="headline-div">
+          <h3 className="headline">Kontakt</h3>
+          </div>
+        <p><b>Spørsmålsfrist:</b></p>
+        <p><b>Kontaktperson:</b></p>
+        <p><b>Telefon:</b></p>
+        <p><b>E-post:</b> {procurementData.epost}</p>
+        <div className="headline-div">
+          <h3 className="headline">Innkjøper</h3>
+          </div>
+        <p><b>Oppdragsgiver:</b> {procurementData.oppdragsgiver}</p>
+        <p><b>Org nr.:</b></p>
+        <p>
+            <b>Adresse:</b> {procurementData.adresse}
+            {", "} {procurementData.sted}
+          </p>
+        <div className="headline-div">
+          <h3 className="headline">Nettsted</h3>
+        </div>
+        <p>{procurementData.nettside}</p>
       </div>
     </div>
   )

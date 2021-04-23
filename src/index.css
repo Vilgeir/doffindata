@@ -102,6 +102,12 @@ code {
   padding-top: 2rem;
 }
 
+.headline-div{
+  border-top: 1px solid black;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
 .headline {
   margin-bottom: 1rem;
   font-weight: 100;
@@ -264,8 +270,7 @@ code {
 /* Card */
 
 .card {
-  /* border: 1px solid grey; */
-  border-top: 1px solid black;
+  /* border: 1px solid black; */
   font-weight: 600;
   margin-top: 1.4rem;
   margin-bottom: 2rem;
@@ -296,8 +301,9 @@ code {
 .dates {
   display: grid;
   grid-template-columns:
-    [start] minmax(1rem, 14rem) [middle] minmax(1rem, 1fr)
+    [start] minmax(1rem, 7rem) [middle] minmax(1rem, 1fr)
     [second] minmax(1rem, 1fr) [last] minmax(1rem, 1fr);
+  line-height: 0;
 }
 
 .list-container h1 {
@@ -385,7 +391,7 @@ p {
 }
 
 .filter-header :hover {
-  background-color: #4dbfac;
+  background-color: #E3F5F2;
   cursor: pointer;
 }
 
@@ -423,11 +429,13 @@ input[type='checkbox']:checked:after {
 }
 
 .checkboxes {
-  margin-top: 0.4rem;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
 }
 
 .subcheckboxes {
   margin-left: 1rem;
+  margin-top: 0.5rem;
 }
 
 /* --- detailed list --- */
@@ -504,12 +512,13 @@ a {
 }
 
 .info-left-bar {
+  
 }
 
 .info-right-bar {
   padding-top: 8rem;
   margin-left: 6rem;
-  width: 15rem;
+  width: 40rem;
 }
 
 .black-line {
@@ -539,6 +548,7 @@ a {
   margin-top: 3rem;
   background-color: #a5b5e5;
   padding: 1rem;
+  border-radius: 2px;
 }
 
 .home-buttons {
