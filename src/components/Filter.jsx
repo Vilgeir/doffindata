@@ -13,11 +13,9 @@ function Filter({
   checkedCategories,
   setcheckedCategories,
   removeChecked,
-  setRemoveChecked,
   checked,
   setChecked,
   setSaveSearch,
-  saveSearch,
 }) {
   const handleClick = (e) => {
     checkedCategories.map(
@@ -134,7 +132,7 @@ function Filter({
         </button>
       )}
 
-      <div className="filter-header">
+      <div className='filter-header'>
         <h4>Kategorier</h4>
       </div>
       <Link onClick={goBack}>
@@ -230,8 +228,8 @@ function Filter({
         )}
       </div>
 
-      <div className="black-line" />
-      <div className="filter-header">
+      <div className='black-line' />
+      <div className='filter-header'>
         <h4>Fylker</h4>
       </div>
       {fylker.map((item, i) => (
