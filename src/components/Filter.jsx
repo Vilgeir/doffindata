@@ -228,13 +228,8 @@ function Filter({
         )}
       </div>
 
-<<<<<<< ParisHilton
-      {/*<div className="black-line" />*/}
-      <div className="filter-header">
-=======
-      <div className='black-line' />
+      {/*<div className='black-line' />*/}
       <div className='filter-header'>
->>>>>>> master
         <h4>Fylker</h4>
       </div>
       {fylker.map((item, i) => (
