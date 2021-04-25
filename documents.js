@@ -5,6 +5,7 @@ const firebase = require('firebase')
 const firestore = require('firebase/firestore')
 // const firebaseConfig = require('./firebaseConfig')
 
+
 const fb =
   firebase.apps.length > 0
     ? firebase.app()
@@ -15,7 +16,6 @@ const db = fb.firestore()
 const getData = async (nameCollection) => {
   await db
     .collection(nameCollection)
-    // .limit(4)
     .get()
     .then((querySnapshot) =>
       querySnapshot.forEach((doc) => {
@@ -26,48 +26,116 @@ const getData = async (nameCollection) => {
 }
 
 const writeData = (data) => {
-  // console.log(data)
-  // data.url_dokumentasjon.substring(8, 17) === 'permalink' &&
-  //   axios.get(data.url_dokumentasjon).then((res) => {
-  //     const dom = parse(res.data)
-  //     let files = dom.querySelector('#fileslist').querySelectorAll('a')
+  data.url_dokumentasjon.substring(8, 17) === 'permalink'
+    ? axios.get(data.url_dokumentasjon).then((res) => {
+        const dom = parse(res.data)
+        let files = dom.querySelector('#fileslist').querySelectorAll('a')
 
-  let docs = {
-    form: data.form,
-    kunngjoringsdato: data.kunngjoringsdato,
-    tilleggsCPV: data.tilleggsCPV,
-    sted: data.sted,
-    epost: data.epost,
-    nettside: data.nettside,
-    url_deltakelse: data.url_deltakelse,
-    cpvnumber: data.cpvnumber,
-    cpvnumbermain: data.cpvnumber.substring(0, 2) + '000000',
-    cpvnumbersub: data.cpvnumber.substring(0, 3) + '00000',
-    url_dokumentasjon: data.url_dokumentasjon,
-    oppdragsgiver: data.oppdragsgiver,
-    cpv: data.cpv,
-    cpvmain: data.cpvmain,
-    tilbudsfrist: data.tilbudsfrist,
-    tittel: data.tittel,
-    orgnr: data.orgnr,
-    beskrivelse: data.beskrivelse,
-    adresse: data.adresse,
-    id: data.id,
-    documents: data.documents ? data.documents : null,
-    // documents: files.map((node) => ({
-    //   name: node.text,
-    //   url: node.getAttribute('href'),
-    // })),
-  }
+        // let docs = {
+        //   form: data.form,
+        //   kunngjoringsdato: data.kunngjoringsdato,
+        //   tilleggsCPV: data.tilleggsCPV,
+        //   sted: data.sted,
+        //   epost: data.epost,
+        //   nettside: data.nettside,
+        //   url_deltakelse: data.url_deltakelse,
+        //   cpvnumber: data.cpvnumber,
+        //   cpvnumbermain: data.cpvnumber.substring(0, 2) + '000000',
+        //   cpvnumbersub: data.cpvnumber.substring(0, 3) + '00000',
+        //   url_dokumentasjon: data.url_dokumentasjon,
+        //   oppdragsgiver: data.oppdragsgiver,
+        //   cpv: data.cpv,
+        //   cpvmain: data.cpvmain,
+        //   tilbudsfrist: data.tilbudsfrist,
+        //   tittel: data.tittel,
+        //   orgnr: data.orgnr,
+        //   beskrivelse: data.beskrivelse,
+        //   adresse: data.adresse,
+        //   id: data.id,
+        //   documents: data.documents ? data.documents : null,
+        //   documents: files.map((node) => ({
+        //     name: node.text,
+        //     url: node.getAttribute('href'),
+        //   })),
+        // }
 
+        let docs = {
+          form: data.form,
+          kunngjoringsdato: data.kunngjoringsdato,
+          tilleggsCPV: data.tilleggsCPV,
+          postkode: data.postkode,
+          sporsmalsfrist: data.sporsmalsfrist,
+          sted: data.sted,
+          epost: data.epost,
+          url_deltakelse: data.url_deltakelse,
+          cpvnumber: data.cpvnumber,
+          cpvnumbermain: data.cpvnumber.substring(0, 2) + '000000',
+          cpvnumbersub: data.cpvnumber.substring(0, 3) + '00000',
+          cpvnumbersubsub: data.cpvnumber.substring(0, 4) + '0000',
+          url_dokumentasjon: data.url_dokumentasjon,
+          oppdragsgiver: data.oppdragsgiver,
+          cpv: data.cpv,
+          cpvmain: data.cpvmain,
+          tilbudsfrist: data.tilbudsfrist,
+          tittel: data.tittel,
+          orgnr: data.orgnr,
+          beskrivelse: data.beskrivelse,
+          adresse: data.adresse,
+          id: data.id,
+          // documents: data.documents ? data.documents : null,
+          telefon: data.telefon,
+          tildelingskriterier: data.tildelingskriterier,
+          kontaktperson: data.kontaktperson,
+          land: data.land,
+          url_kjoperprofil: data.url_kjoperprofil,
+          url_oppdragsgiver: data.url_oppdragsgiver,
+          documents: files.map((node) => ({
+            name: node.text,
+            url: node.getAttribute('href'),
+          })),
+        }
+        console.log(docs)
+        writeToFirestore(data, docs)
+      })
+    : (docs = {
+        form: data.form,
+        kunngjoringsdato: data.kunngjoringsdato,
+        tilleggsCPV: data.tilleggsCPV,
+        postkode: data.postkode,
+        sporsmalsfrist: data.sporsmalsfrist,
+        sted: data.sted,
+        epost: data.epost,
+        url_deltakelse: data.url_deltakelse,
+        cpvnumber: data.cpvnumber,
+        cpvnumbermain: data.cpvnumber.substring(0, 2) + '000000',
+        cpvnumbersub: data.cpvnumber.substring(0, 3) + '00000',
+        cpvnumbersubsub: data.cpvnumber.substring(0, 4) + '0000',
+        url_dokumentasjon: data.url_dokumentasjon,
+        oppdragsgiver: data.oppdragsgiver,
+        cpv: data.cpv,
+        cpvmain: data.cpvmain,
+        tilbudsfrist: data.tilbudsfrist,
+        tittel: data.tittel,
+        orgnr: data.orgnr,
+        beskrivelse: data.beskrivelse,
+        adresse: data.adresse,
+        id: data.id,
+        // documents: data.documents ? data.documents : null,
+        telefon: data.telefon,
+        tildelingskriterier: data.tildelingskriterier,
+        kontaktperson: data.kontaktperson,
+        land: data.land,
+        url_kjoperprofil: data.url_kjoperprofil,
+        url_oppdragsgiver: data.url_oppdragsgiver,
+        documents: null,
+      })
   writeToFirestore(data, docs)
-  // })
 }
 
-const writeToFirestore = async (data, docs) => {
-  console.log(docs)
+// const writeToFirestore = async (data, docs) => {
+  // console.log(docs)
 
-  let documents = db.collection('F02_2014').doc(docs.id)
+  let documents = db.collection('anbud').doc(docs.id)
   try {
     await documents.update(docs)
     console.log('Document successfully written!')
@@ -76,4 +144,4 @@ const writeToFirestore = async (data, docs) => {
   }
 }
 let data
-getData('F02_2014', data)
+getData('anbud', data)
