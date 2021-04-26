@@ -61,7 +61,6 @@ function Filter({
     setcheckedCategories([])
     setChecked([])
   }
-  console.log(checked)
 
   const handleCheck = (e) => {
     setChecked((prevState) =>
@@ -71,7 +70,6 @@ function Filter({
     )
   }
 
-  console.log(openModal)
   // console.log(JSON.parse(window.localStorage.map((i) => i)))
   // console.log(window.localStorage.key(i))
 
@@ -109,13 +107,10 @@ function Filter({
     handleCheck(e)
   }
 
-  console.log(checkedCategories)
-
   const goBack = () => {
     window.history.back()
   }
 
-  console.log(localStorage.length - 1)
   // localStorage.clear()
   return (
     <div>

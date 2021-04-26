@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 import structure from '../data/withMainCategories'
 import data from '../data/doffin-form2.json'
 import { Link } from 'react-router-dom'
-import { getData } from '../helpers/handleData'
+import { getData, getProcurements } from '../helpers/handleData'
 import { StateContext } from '../context/StateProvider'
 
 function DetailedList() {
@@ -42,7 +42,6 @@ function DetailedList() {
     window.localStorage.setItem('lastSearch', JSON.stringify(obj))
   }, [checkedCategories])
 
-  console.log(checkedCategories)
   let newdetails = details.split('+')
   let categorycpv = newdetails[0]
   let subcategory = newdetails[1]
@@ -53,8 +52,51 @@ function DetailedList() {
   }, [])
 
   useEffect(() => {
-    getData('anbud', 'cpvnumbermain', categorycpv, setDocuments)
-  }, [])
+    // getData('anbud', 'cpvnumbermain', categorycpv, setDocuments)
+    setDocuments([])
+    let category = []
+    let subcat = []
+    checked.filter((i) =>
+      i.substring(3, 8) === '00000'
+        ? category.push(i)
+        : i.substring(4, 8) === '0000' && subcat.push(i)
+    )
+    // console.log(category)
+    // console.log(subcat)
+
+    subcat.map((i) =>
+      category.map(
+        (item, index) =>
+          item.substring(0, 3).includes(i.substring(0, 3)) &&
+          category.splice(index, 1)
+      )
+    )
+    if (category.length > 0 || subcat.length > 0) {
+      category.map((i) =>
+        getProcurements('anbud', 'cpvnumbersub', i, setDocuments, documents)
+      )
+
+      subcat.map((i) =>
+        getProcurements('anbud', 'cpvnumbersubsub', i, setDocuments, documents)
+      )
+      // } else if (subcat.length > 0) {
+      //   category.map((i) =>
+      //     getProcurements('anbud', 'cpvnumbersub', i, setDocuments)
+      //   )
+
+      //   subcat.map((i) =>
+      //     getProcurements('anbud', 'cpvnumbersubsub', i, setDocuments)
+      //   )
+    } else {
+      getProcurements(
+        'anbud',
+        'cpvnumbermain',
+        categorycpv,
+        setDocuments,
+        documents
+      )
+    }
+  }, [checked])
 
   let newArray = []
 
@@ -181,7 +223,6 @@ function DetailedList() {
                     )
                   : i.cpvnumber
                       .substring(0, 3)
-
                       .includes(Object.keys(checked)[0].substring(0, 3)) && (
                       <Link
                         style={{ textDecoration: 'none', color: 'black' }}

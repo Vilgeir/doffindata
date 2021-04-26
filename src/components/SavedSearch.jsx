@@ -64,7 +64,6 @@ function SavedSearch() {
           onClick={() => handleClick(last)}
         >
           {Object.values(last).flat().join(' - ')}
-          {console.log(last)}
         </Link>
       )}
       <button
@@ -84,7 +83,6 @@ function SavedSearch() {
             onClick={() => handleClick(i)}
           >
             {Object.keys(i)[0]}
-            {console.log(i)}
           </Link>
         ))}
     </div>
