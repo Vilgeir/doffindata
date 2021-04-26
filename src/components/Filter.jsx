@@ -5,6 +5,7 @@ import { faArrowLeft, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Checkboxes from './Checkboxes'
 import { Link } from 'react-router-dom'
+import SavedModal from '../components/SavedModal'
 
 function Filter({
   category,
@@ -16,6 +17,8 @@ function Filter({
   checked,
   setChecked,
   setSaveSearch,
+  setOpenModal,
+  openModal,
 }) {
   const handleClick = (e) => {
     checkedCategories.map(
@@ -58,6 +61,7 @@ function Filter({
     setcheckedCategories([])
     setChecked([])
   }
+  console.log(checked)
 
   const handleCheck = (e) => {
     setChecked((prevState) =>
@@ -67,7 +71,7 @@ function Filter({
     )
   }
 
-  console.log(checked)
+  console.log(openModal)
   // console.log(JSON.parse(window.localStorage.map((i) => i)))
   // console.log(window.localStorage.key(i))
 
@@ -111,14 +115,28 @@ function Filter({
     window.history.back()
   }
 
+  console.log(localStorage.length - 1)
+  // localStorage.clear()
   return (
     <div>
-      <div className="save-search">
+      <div className='save-search'>
         <button className='button' onClick={() => setSaveSearch(true)}>
           Lagre søk
         </button>
-        <p>Du har <b>1 lagret søk</b> <FontAwesomeIcon icon={faChevronDown} /></p> {/* Placeholder mens jeg styler <3Daniel */}
+        <div onClick={() => setOpenModal((prev) => !prev)}>
+          <p>
+            Du har{' '}
+            <b>
+              {localStorage.length === 0
+                ? localStorage.length
+                : localStorage.length - 1}{' '}
+              {localStorage.length === 2 ? 'lagret' : 'lagrede'} søk
+            </b>{' '}
+            <FontAwesomeIcon icon={faChevronDown} />
+          </p>{' '}
+        </div>
       </div>
+      {openModal && <SavedModal />}
       <div>
         <input
           type='text'
@@ -136,7 +154,7 @@ function Filter({
       <div className='filter-header'>
         <h4>Kategorier</h4>
       </div>
-      <Link className="go-back" onClick={goBack}>
+      <Link className='go-back' onClick={goBack}>
         <FontAwesomeIcon icon={faArrowLeft} /> {category}
       </Link>
       <div className='check-container'>
@@ -228,7 +246,6 @@ function Filter({
             )
         )}
       </div>
-
 
       {/*<div className='black-line' />*/}
 
