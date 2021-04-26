@@ -15,7 +15,7 @@ function DetailedInfo({ i }) {
     <div className="info-container">
       <div className="info-left-bar">
         <p>{procurementData.oppdragsgiver}</p>
-        <h1 className="headline">{procurementData.tittel}</h1>
+        <h1>{procurementData.tittel}</h1>
         <div className="info-card">
           <p><b>Publiseringsdato:</b> {procurementData.kunngjoringsdato}</p>
           <p><b>Tilbudsfrist:</b></p>
@@ -24,7 +24,7 @@ function DetailedInfo({ i }) {
           <p>{procurementData.beskrivelse}</p>
         </div>
         <div className="info-card">
-          <h3>Dokumenter</h3>
+          <h5>Dokumenter</h5>
           {procurementData.documents
             ? procurementData.documents.map((i, index) => (
                 <a key={index} href={"https://www.mercell.com" + i.url}>
@@ -34,21 +34,21 @@ function DetailedInfo({ i }) {
             : procurementData.url_dokumentasjon}
         </div>
         <div className="info-card">
-          <h3>Behov for sortiment</h3>
+          <h5>Behov for sortiment</h5>
           <p>text</p>
         </div>
       </div>
       <div className="info-right-bar">
         <button className="button">Meld interesse</button>
         <div className="headline-div">
-          <h3 className="headline">Kontakt</h3>
+          <h4 className="headline">Kontakt</h4>
           </div>
         <p><b>Spørsmålsfrist:</b></p>
         <p><b>Kontaktperson:</b></p>
         <p><b>Telefon:</b></p>
         <p><b>E-post:</b> {procurementData.epost}</p>
         <div className="headline-div">
-          <h3 className="headline">Innkjøper</h3>
+          <h4 className="headline">Innkjøper</h4>
           </div>
         <p><b>Oppdragsgiver:</b> {procurementData.oppdragsgiver}</p>
         <p><b>Org nr.:</b></p>
@@ -57,7 +57,7 @@ function DetailedInfo({ i }) {
             {", "} {procurementData.sted}
           </p>
         <div className="headline-div">
-          <h3 className="headline">Nettsted</h3>
+          <h4 className="headline">Nettsted</h4>
         </div>
         <p>{procurementData.nettside}</p>
       </div>

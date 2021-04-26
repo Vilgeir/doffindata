@@ -114,7 +114,7 @@ function Home(props) {
         <div className="head">
           <Search input={input} onChange={updateInput} />
           <SearchData searchData={searchData} />
-          <h3 className="headline">Alle kategorier</h3>
+          <h2>Alle kategorier</h2>
         </div>
       </div>
       <div>

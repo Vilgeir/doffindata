@@ -158,7 +158,7 @@ function DetailedList() {
                 )
             )}
         <div className='select-box-title'>
-          <h2>Sorter etter: </h2>
+          <p className="sorting">Sorter etter: </p>
           <select className='select-box' onChange={onChange}>
             <option value='asc'>ASC</option>
             <option value='desc'>DESC</option>
