@@ -136,7 +136,7 @@ function Filter({
       <div className='filter-header'>
         <h4>Kategorier</h4>
       </div>
-      <Link onClick={goBack}>
+      <Link className="go-back" onClick={goBack}>
         <FontAwesomeIcon icon={faArrowLeft} /> {category}
       </Link>
       <div className='check-container'>

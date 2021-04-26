@@ -25,7 +25,7 @@ function DetailedInfo({ i }) {
           <p>{procurementData.beskrivelse}</p>
         </div>
         <div className="info-card">
-          <h5>Dokumenter</h5>
+          <h6>Dokumenter</h6>
 
           {procurementData.documents
             ? procurementData.documents.map((i, index) => (
@@ -36,7 +36,7 @@ function DetailedInfo({ i }) {
             : procurementData.url_dokumentasjon}
         </div>
         <div className="info-card">
-          <h5>Behov for sortiment</h5>
+          <h6>Behov for sortiment</h6>
           {procurementData.tilleggsCPV &&
             procurementData.tilleggsCPV.map((i) => (
               <p>
@@ -47,28 +47,33 @@ function DetailedInfo({ i }) {
       </div>
       <div className="info-right-bar">
         <button className="button">Meld interesse</button>
-        <div className="headline-div">
-          <h4 className="headline">Kontakt</h4>
-          </div>
-        <p><b>Spørsmålsfrist:</b>{procurementData.sporsmalsfrist}</p>
-        <p><b>Kontaktperson:</b>{procurementData.kontaktperson}</p>
-        <p><b>Telefon:</b>{procurementData.telefon}</p>
-        <p><b>E-post:</b> {procurementData.epost}</p>
-        <div className="headline-div">
-          <h4 className="headline">Innkjøper</h4>
-          </div>
-        <p><b>Oppdragsgiver:</b> {procurementData.oppdragsgiver}</p>
-        <p><b>Org nr.:</b>{procurementData.orgnr}</p>
-        <p>
-            <b>Adresse:</b> {procurementData.adresse} {procurementData.postkode}
-          {', '} {procurementData.sted} {procurementData.land}
-          </p>
-        <div className="headline-div">
-          <h4 className="headline">Nettsted</h4>
-
+        <div className="info-right-bar-article">
+          <div className="headline-div">
+            <h4 className="headline">Kontakt</h4>
+            </div>
+          <p><b>Spørsmålsfrist:</b>{procurementData.sporsmalsfrist}</p>
+          <p><b>Kontaktperson:</b>{procurementData.kontaktperson}</p>
+          <p><b>Telefon:</b>{procurementData.telefon}</p>
+          <p><b>E-post:</b> {procurementData.epost}</p>
         </div>
-        <Link to={procurementData.url_oppdragsgiver}>Oppdragsgiver</Link>
-        <Link to={procurementData.url_kjoperprofil}>Kjøperprofil</Link>
+        <div className="info-right-bar-article">
+          <div className="headline-div">
+            <h4 className="headline">Innkjøper</h4>
+          </div>
+          <p><b>Oppdragsgiver:</b> {procurementData.oppdragsgiver}</p>
+          <p><b>Org nr.:</b>{procurementData.orgnr}</p>
+          <p>
+              <b>Adresse:</b> {procurementData.adresse} {procurementData.postkode}
+            {', '} {procurementData.sted} {procurementData.land}
+          </p>
+        </div>
+        <div className="info-right-bar-article">
+          <div className="headline-div">
+            <h4 className="headline">Nettsted</h4>
+          </div>
+          <Link to={procurementData.url_oppdragsgiver}>Oppdragsgiver</Link> <br/>
+          <Link to={procurementData.url_kjoperprofil}>Kjøperprofil</Link>
+        </div>
       </div>
     </div>
   )
