@@ -11,11 +11,11 @@ function Card({ i }) {
   }
 
   return (
-    <div className="card">
-      <h3 className="publishedby">{capitalize(i.oppdragsgiver)}</h3>
+    <div className='card'>
+      <h4 className='publishedby'>{capitalize(i.oppdragsgiver)}</h4>
       <h5>{i.tittel}</h5>
-      <div className="dates">
-
+      <p>{i.beskrivelse}</p>
+      <div className='dates'>
         {/*
         <div>
           <h4>Kunngjøringsdato:</h4>
