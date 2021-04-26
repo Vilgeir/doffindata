@@ -6,6 +6,7 @@ import SavedSearch from "../components/SavedSearch";
 import Footer from "../components/Footer";
 import Search from "../components/Search";
 import SearchData from "../components/SearchData";
+import AlgoliaSearch from "../components/AlgoliaSearch";
 import { faArrowRight, faPlug } from "@fortawesome/free-solid-svg-icons";
 import { faTools } from "@fortawesome/free-solid-svg-icons";
 import { faUserMd } from "@fortawesome/free-solid-svg-icons";
@@ -17,6 +18,7 @@ import { faClipboardList } from "@fortawesome/free-solid-svg-icons";
 import { faShippingFast } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getData } from "../helpers/handleData";
 
 function Home(props) {
   const [input, setInput] = useState("");
@@ -25,48 +27,22 @@ function Home(props) {
     structure.map((i) => i.main)
   );
 
+  const [serverData, setServerData] = useState([]);
+
   //children.map((it, index) => it.code)  .flat()
 
-  console.log(searchDataDefault);
+  // console.log(searchDataDefault);
 
-  // structure.map((it) => it.children[0])
-  // const dataExample = [
-  //     {
-  //       type: "human",
-  //       details: [
-  //         { id: 1, name: "Peter", description: "friendly, black-hair" },
-  //         { id: 5, name: "Susan", description: "blond" },
-  //       ],
-  //     },
-  //     {
-  //       type: "animal",
-  //       details: [
-  //         { id: 2, name: "Will", description: "lazy, cute" },
-  //         { id: 3, name: "Bonny", description: "beautiful" },
-  //       ],
-  //     },
-  //   ],
-  //   term = "Peter",
-  //   result = dataExample.reduce((r, { type, details }) => {
-  //     let o = details.filter(
-  //       ({ name, description }) =>
-  //         name.includes(term) || description.includes(term)
-  //     );
-  //     if (o && o.length) r.push({ type, details: [...o] });
-  //     return r;
-  //   }, []);
-  // console.log(result);
+  let arrrray = [];
+  let mainCpv = "";
 
-  // const term = "48100000";
+  useEffect(() => {
+    getData("F02_2014", "cpv", mainCpv, setServerData);
+  }, []);
 
-  // const searResult = searchDataDefault.reduce((r, { main, children }) => {
-  //   let o = children.filter(
-  //     ({ code, name }) => code.includes(term) || name.includes(term)
-  //   );
-  //   if (o && o.length) r.push({ main, children: [...o] });
-  //   return r;
-  // }, []);
-  // console.log(searResult);
+  Object.entries(serverData).map((i) => arrrray.push(i));
+
+  console.log(serverData);
 
   const updateInput = (input) => {
     const filtered = searchDataDefault.filter((main) => {
@@ -109,11 +85,15 @@ function Home(props) {
   };
 
   return (
-    <div>
+    <div className="errthing">
       <div className="home-container">
         <div className="head">
-          <Search input={input} onChange={updateInput} />
-          <SearchData searchData={searchData} />
+          <div className="aSearch">
+            <AlgoliaSearch />
+          </div>
+
+          {/* <Search input={input} onChange={updateInput} />
+          <SearchData searchData={searchData} /> */}
           <h3 className="headline">Alle kategorier</h3>
         </div>
       </div>

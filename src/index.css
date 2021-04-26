@@ -118,8 +118,26 @@ code {
 
 /* ---- homePage ----*/
 
+.a-search {
+  position: absolute;
+  z-index: 99;
+  background-color: white;
+  border: black 1px solid;
+  width: 37rem;
+  padding: 2rem;
+  margin-top: -2rem;
+  border-radius: 0.5rem;
+}
+
+.a-search:empty {
+  display: none;
+}
+
 .home-container {
   padding-top: 2rem;
+}
+
+.errthing {
 }
 
 .content-container {
@@ -198,56 +216,55 @@ code {
   border-radius: 50px;
 }
 
-#main-boxes-0 .homeicon-container{
-  background-color:#36498A;
-  color: #81B3EE;
+#main-boxes-0 .homeicon-container {
+  background-color: #36498a;
+  color: #81b3ee;
 }
 
-#main-boxes-1 .homeicon-container{
-  background-color: #D1BCFF;
-  color: #4B00EB;
+#main-boxes-1 .homeicon-container {
+  background-color: #d1bcff;
+  color: #4b00eb;
 }
 
-#main-boxes-2 .homeicon-container{
-  background-color: #C8FFDB; 
-  color: #00840D;
+#main-boxes-2 .homeicon-container {
+  background-color: #c8ffdb;
+  color: #00840d;
 }
 
-#main-boxes-3 .homeicon-container{
-  background-color: #FFF59C;
-  color: #EFBE0E;
+#main-boxes-3 .homeicon-container {
+  background-color: #fff59c;
+  color: #efbe0e;
 }
 
-#main-boxes-4 .homeicon-container{
-  background-color: #FFE6CF;
-  color: #FF8A00;
+#main-boxes-4 .homeicon-container {
+  background-color: #ffe6cf;
+  color: #ff8a00;
 }
 
-#main-boxes-5 .homeicon-container{
-  background-color: #C8D4FF;
+#main-boxes-5 .homeicon-container {
+  background-color: #c8d4ff;
   color: #004393;
 }
 
-#main-boxes-6 .homeicon-container{
-  background-color: #FFCDCA;
-  color: #E20E00;
+#main-boxes-6 .homeicon-container {
+  background-color: #ffcdca;
+  color: #e20e00;
 }
 
-#main-boxes-7 .homeicon-container{
-  background-color: #C0EEE6;
+#main-boxes-7 .homeicon-container {
+  background-color: #c0eee6;
   color: #007965;
 }
 
-#main-boxes-8 .homeicon-container{
-  background-color: #F2CEFF;
-  color: #9A00CC;
+#main-boxes-8 .homeicon-container {
+  background-color: #f2ceff;
+  color: #9a00cc;
 }
 
-#main-boxes-9 .homeicon-container{
-  background-color: #FFD3F8;
-  color: #D8009B;
+#main-boxes-9 .homeicon-container {
+  background-color: #ffd3f8;
+  color: #d8009b;
 }
-
 
 /* Card */
 
@@ -343,7 +360,7 @@ p {
   font-weight: 400;
 }
 
-.filter-header h4{
+.filter-header h4 {
   font-weight: 400;
   border-top: 1px solid black;
   padding-top: 1rem;
@@ -351,8 +368,8 @@ p {
   padding-left: 1rem;
 }
 
-.filter-header :hover{
-  background-color: #4DBFAC;
+.filter-header :hover {
+  background-color: #4dbfac;
   cursor: pointer;
 }
 
@@ -368,9 +385,9 @@ p {
 .list-container {
 }
 
-.select-box{
+.select-box {
   color: #535353;
-  background-color: #F5F7FF;
+  background-color: #f5f7ff;
   border-radius: 2px;
   border: 0;
 
@@ -379,13 +396,13 @@ p {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 
-  margin-left: 1rem; 
+  margin-left: 1rem;
 }
 
 .select-box-title {
   display: flex;
   align-items: center;
-  }
+}
 
 .cpv-button {
   background-color: #36498a;
@@ -546,4 +563,8 @@ h2 {
   border: 2px solid #4dbfac;
   margin-right: 0.5rem;
   color: white;
+}
+
+.aSearch {
+  width: 100%;
 }

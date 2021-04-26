@@ -1,7 +1,7 @@
 import React from "react";
 
 const SearchData = ({ searchData = [] }) => {
-  console.log(searchData);
+  // console.log(searchData);
   return (
     <>
       {searchData.map((data, index) => {
