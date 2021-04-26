@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-
 :root {
   --darkBlue: #36498a;
   --mediumBlue: #a5b5e5;
@@ -62,8 +61,7 @@ h2,
 h3,
 h4,
 h5,
-h6
- {
+h6 {
   margin: 0 0 0 0;
 }
 
@@ -79,13 +77,13 @@ a {
 }
 
 .go-back {
-  color: #4DBFAC;
+  color: #4dbfac;
 }
 
 .sub-category {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #36498A;
+  color: #36498a;
 }
 
 .publishedby {
@@ -132,7 +130,7 @@ code {
 
   background-color: #f2f2f2;
   padding: 5rem;
-  
+
   margin-top: 5rem;
 }
 
@@ -172,8 +170,7 @@ button {
   padding-top: 2rem;
 }
 
-.headline-div{
-
+.headline-div {
 }
 
 .headline {
@@ -428,7 +425,7 @@ p {
 }
 
 .filter-header :hover {
-  background-color: #E3F5F2;
+  background-color: #e3f5f2;
   cursor: pointer;
 }
 
@@ -515,13 +512,13 @@ input[type='checkbox']:checked:after {
 }
 
 .cpv-button {
-	background: none;
-  color: #81B3EE;
+  background: none;
+  color: #81b3ee;
   text-decoration: underline;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
   padding-bottom: 2rem;
 }
 
@@ -560,7 +557,6 @@ input[type='checkbox']:checked:after {
 }
 
 .info-left-bar {
-  
 }
 
 .info-right-bar {
@@ -689,5 +685,35 @@ input[type='checkbox']:checked:after {
   background-color: #4dbfac;
   border: 2px solid #4dbfac;
   margin-right: 0.5rem;
+  color: white;
+}
+
+.saved-modal {
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid #f2f2f2;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 9999;
+  min-width: 300px;
+}
+
+.saved-modal-item {
+  padding: 1rem 0;
+  color: black;
+}
+
+.saved-modal h4 {
+  margin: 1rem 0;
+  font-weight: 700;
+}
+
+.saved-modal-item:hover {
+  background-color: #4dbfac;
+  border-radius: 10px;
+  padding: 1rem;
+  font-weight: 500;
   color: white;
 }

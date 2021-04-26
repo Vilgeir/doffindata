@@ -15,6 +15,7 @@ function DetailedList() {
   const [sort, setSort] = useState()
   const [checked, setChecked] = useState([])
   const [saveSearch, setSaveSearch] = useState(false)
+  const [openModal, setOpenModal] = useState(false)
 
   const [documents, setDocuments] = useState([])
 
@@ -29,7 +30,7 @@ function DetailedList() {
       .map((i) => Object.values(i).map((item) => arr.push(item)))
       .flat()
     checkedCategories && setChecked(arr.flat())
-  }, [])
+  }, [checkedCategories])
 
   useEffect(() => {
     let obj = {
@@ -116,6 +117,8 @@ function DetailedList() {
     <div className='detail-container'>
       <div className='search'>
         <Filter
+          openModal={openModal}
+          setOpenModal={setOpenModal}
           details={categorycpv}
           subcategory={subcategory}
           category={category}
@@ -158,7 +161,7 @@ function DetailedList() {
                 )
             )}
         <div className='select-box-title'>
-          <p className="sorting">Sorter etter: </p>
+          <p className='sorting'>Sorter etter: </p>
           <select className='select-box' onChange={onChange}>
             <option value='asc'>ASC</option>
             <option value='desc'>DESC</option>
