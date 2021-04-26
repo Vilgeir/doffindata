@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import structure from '../data/withMainCategories'
 import fylker from '../data/fylker'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Checkboxes from './Checkboxes'
 import { Link } from 'react-router-dom'
@@ -113,10 +113,12 @@ function Filter({
 
   return (
     <div>
-      <h3 className=''>Søk</h3>
-      <button className='button' onClick={() => setSaveSearch(true)}>
-        Lagre søk
-      </button>
+      <div className="save-search">
+        <button className='button' onClick={() => setSaveSearch(true)}>
+          Lagre søk
+        </button>
+        <p>Du har <b>1 lagret søk</b> <FontAwesomeIcon icon={faChevronDown} /></p> {/* Placeholder mens jeg styler <3Daniel */}
+      </div>
       <div>
         <input
           type='text'
@@ -125,10 +127,9 @@ function Filter({
           placeholder='Søk i anbud'
         />
       </div>
-      <h3 className=''>Filter</h3>
       {checkedCategories.length > 0 && (
         <button className='cpv-button' onClick={removeFilters}>
-          Fjern alle filter
+          Nullstill filter
         </button>
       )}
 

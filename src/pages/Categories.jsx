@@ -23,7 +23,6 @@ function Categories() {
             src="../../public/iconer/search.png"
           />
         </div>
-        <h3 className='headline'>Søk i anbud</h3>
         <h3>{category}</h3>
       </div>
       <div className='categories'>
@@ -33,9 +32,9 @@ function Categories() {
             i.children.map((item, idx) => (
               <div className='category-card'>
                 <Link to={'/' + category + '/' + item.code} key={idx}>
-                  <h3>
-                    {item.name} {item.countWithChildren}
-                  </h3>
+                  <p className="sub-category">
+                    {item.name} ({item.countWithChildren})
+                  </p>
                 </Link>
                 {item.children.map((items, index) => (
                   <Link
@@ -43,7 +42,7 @@ function Categories() {
                     key={index}
                   >
                     <p>
-                      {items.name} {items.countWithChildren}
+                      {items.name} ({items.countWithChildren})
                     </p>
                   </Link>
                 ))}
