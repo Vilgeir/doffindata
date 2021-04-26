@@ -94,7 +94,6 @@ const writeData = (data) => {
             url: node.getAttribute('href'),
           })),
         }
-        console.log(docs)
         writeToFirestore(data, docs)
       })
     : (docs = {

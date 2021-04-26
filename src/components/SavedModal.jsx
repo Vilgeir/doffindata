@@ -37,7 +37,6 @@ function SavedModal() {
           onClick={() => handleClick(i)}
         >
           {Object.keys(i)[0]}
-          {console.log(i)}
         </Link>
       ))}
     </div>

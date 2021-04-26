@@ -16,6 +16,28 @@ export const getData = async (collection, where, value, state) => {
     })
 }
 
+export const getProcurements = async (
+  collection,
+  where,
+  value,
+  setState,
+  state
+) => {
+  await db
+    .collection(collection)
+    .where(where, '==', value)
+    .limit(10)
+    .get()
+    .then((querySnapshot) => {
+      const arr = []
+      querySnapshot.forEach((doc) => {
+        state.push({ ...doc.data() })
+      })
+
+      setState(state)
+    })
+}
+
 export const getProcurement = async (collection, document, state) => {
   try {
     const doc = await db.collection(collection).doc(document).get()
