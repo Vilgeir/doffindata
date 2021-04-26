@@ -52,7 +52,7 @@ function DetailedList() {
   }, [])
 
   useEffect(() => {
-    getData('F02_2014', 'cpvnumbermain', categorycpv, setDocuments)
+    getData('anbud', 'cpvnumbermain', categorycpv, setDocuments)
   }, [])
 
   let newArray = []
