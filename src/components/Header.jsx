@@ -7,11 +7,13 @@ const Header = () => {
       <nav className='navbar'>
         <div>
           <Link to={'/'}>
-            <img
-              className='logo'
-              src={require('../iconer/logo.svg').default}
-              alt='logo'
-            />
+            <div>
+              <img
+                className='logo'
+                src={require('../iconer/logo.svg').default}
+                alt='logo'
+              />
+            </div>
           </Link>
         </div>
       </nav>

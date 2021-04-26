@@ -5,8 +5,12 @@ const Footer = () => {
   return (
     <div className="footer">
       <article>
-        <h2>Tendre</h2>
-        <p>Et anbudsverktøy levert av Comono AS</p>
+        <img
+          className='logo'
+          src={require('../iconer/logo-footer.svg').default}
+          alt='logo'
+        />
+        <p>Et anbudsverktøy levert av Comono AS.</p>
         <p>© 2021</p>
       </article>
     </div>

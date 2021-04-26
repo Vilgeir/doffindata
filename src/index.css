@@ -48,18 +48,25 @@ h4 {
 }
 
 h5 {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 400;
   color: #535353;
+}
+
+h6 {
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 h2,
 h3,
 h4,
-h5
+h5,
+h6
  {
   margin: 0 0 0 0;
 }
+
 p {
   margin-top: 0rem;
   font-size: 1rem;
@@ -67,6 +74,12 @@ p {
 
 a {
   font-size: 1rem;
+  color: var(--darkBlue);
+  text-decoration: none;
+}
+
+.go-back {
+  color: #4DBFAC;
 }
 
 .sub-category {
@@ -84,14 +97,14 @@ a {
   color: white;
   font-family: 'Inter', sans-serif;
   background-color: #36498a;
-  width: 100%;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
+
+  padding-top: 1vh;
+  padding-bottom: 1vh;
   padding-left: 7vw;
 }
 
 .logo {
-  height: 5vh;
+  height: 7vh;
   fill: white;
 }
 
@@ -118,10 +131,13 @@ code {
   color: #535353;
 
   background-color: #f2f2f2;
-  width: 100%;
   padding: 5rem;
   
   margin-top: 5rem;
+}
+
+button {
+  border-radius: 2px;
 }
 
 .buttons {
@@ -133,15 +149,17 @@ code {
 .button {
   color: white;
   background-color: #36498a;
-  border-radius: 2px;
   border: 0;
+
   font-size: 1rem;
+
   padding-left: 2rem;
   padding-right: 2rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
+
   width: 100%;
 }
 
@@ -159,7 +177,7 @@ code {
 }
 
 .headline {
-  margin-bottom: 1rem;
+  margin-bottom: 0.3rem;
   border-top: 1px solid black;
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -328,6 +346,14 @@ code {
   flex-direction: column;
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.card h4 {
+  font-size: 0.8rem;
+}
+
+.card p {
+  font-size: 0.8rem;
 }
 
 /* .card:nth-child(odd) {
@@ -526,10 +552,6 @@ input[type='checkbox']:checked:after {
   display: inline-block; */
 }
 
-a {
-  color: var(--darkBlue);
-}
-
 /* ---- DetailedInfo ---- */
 
 .info-container {
@@ -547,6 +569,10 @@ a {
   width: 15rem;
 }
 
+.info-right-bar-article {
+  margin-top: 4rem;
+}
+
 .black-line {
   display: none;
   margin-top: 1.5rem;
@@ -559,15 +585,27 @@ a {
 .info-card {
   /* border: 1px solid grey; */
   margin-top: 1.4rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.4rem;
   margin-left: -1rem;
+
   display: flex;
   flex-direction: column;
   padding: 1rem;
+
+  line-height: 1.5;
+}
+
+.info-6 {
+  margin-bottom: 0.5rem;
+}
+
+.info-card h5 {
+  color: black;
 }
 
 .info-card:nth-child(even) {
   background: #f5f7ff;
+  border-radius: 2px;
 }
 
 .info-headline {
@@ -627,7 +665,7 @@ a {
 
 .modal-elements > label,
 .sorting {
-  font-size: 14px;
+  font-size: 0.8rem;
   color: #535353;
 }
 
