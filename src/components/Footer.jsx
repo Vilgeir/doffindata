@@ -3,8 +3,16 @@ import "../index.css";
 
 const Footer = () => {
   return (
-    <div className="footer-container">
-      <h2>hei dette er en footer</h2>
+    <div className="footer">
+      <article>
+        <img
+          className='logo'
+          src={require('../iconer/logo-footer.svg').default}
+          alt='logo'
+        />
+        <p>Et anbudsverktøy levert av Comono AS.</p>
+        <p>© 2021</p>
+      </article>
     </div>
   );
 };

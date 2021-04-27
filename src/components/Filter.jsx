@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import structure from '../data/withMainCategories'
 import fylker from '../data/fylker'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Checkboxes from './Checkboxes'
 import { Link } from 'react-router-dom'
+import SavedModal from '../components/SavedModal'
 
 function Filter({
   category,
@@ -13,11 +14,11 @@ function Filter({
   checkedCategories,
   setcheckedCategories,
   removeChecked,
-  setRemoveChecked,
   checked,
   setChecked,
   setSaveSearch,
-  saveSearch,
+  setOpenModal,
+  openModal,
 }) {
   const handleClick = (e) => {
     checkedCategories.map(
@@ -69,7 +70,6 @@ function Filter({
     )
   }
 
-  console.log(checked)
   // console.log(JSON.parse(window.localStorage.map((i) => i)))
   // console.log(window.localStorage.key(i))
 
@@ -107,18 +107,31 @@ function Filter({
     handleCheck(e)
   }
 
-  console.log(checkedCategories)
-
   const goBack = () => {
     window.history.back()
   }
 
+  // localStorage.clear()
   return (
     <div>
-      <h3 className=''>Søk</h3>
-      <button className='button' onClick={() => setSaveSearch(true)}>
-        Lagre søk
-      </button>
+      <div className='save-search'>
+        <button className='button' onClick={() => setSaveSearch(true)}>
+          Lagre søk
+        </button>
+        <div onClick={() => setOpenModal((prev) => !prev)}>
+          <p>
+            Du har{' '}
+            <b>
+              {localStorage.length === 0
+                ? localStorage.length
+                : localStorage.length - 1}{' '}
+              {localStorage.length === 2 ? 'lagret' : 'lagrede'} søk
+            </b>{' '}
+            <FontAwesomeIcon icon={faChevronDown} />
+          </p>{' '}
+        </div>
+      </div>
+      {openModal && <SavedModal />}
       <div>
         <input
           type='text'
@@ -127,17 +140,16 @@ function Filter({
           placeholder='Søk i anbud'
         />
       </div>
-      <h3 className=''>Filter</h3>
       {checkedCategories.length > 0 && (
         <button className='cpv-button' onClick={removeFilters}>
-          Fjern alle filter
+          Nullstill filter
         </button>
       )}
 
-      <div className="filter-header">
+      <div className='filter-header'>
         <h4>Kategorier</h4>
       </div>
-      <Link onClick={goBack}>
+      <Link className='go-back' onClick={goBack}>
         <FontAwesomeIcon icon={faArrowLeft} /> {category}
       </Link>
       <div className='check-container'>
@@ -230,8 +242,9 @@ function Filter({
         )}
       </div>
 
-      <div className="black-line" />
-      <div className="filter-header">
+      {/*<div className='black-line' />*/}
+
+      <div className='filter-header'>
         <h4>Fylker</h4>
       </div>
       {fylker.map((item, i) => (
@@ -240,7 +253,7 @@ function Filter({
           <label>{item.navn}</label>
         </div>
       ))}
-      <div className='black-line' />
+      {/*<div className='black-line' />*/}
     </div>
   )
 }

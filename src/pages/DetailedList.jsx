@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Filter from "../components/Filter";
 import SaveSearch from "../components/SaveSearch";
 import Card from "../components/Card";
@@ -6,20 +6,42 @@ import { useParams } from "react-router-dom";
 import structure from "../data/withMainCategories";
 import data from "../data/doffin-form2.json";
 import { Link } from "react-router-dom";
-import { getData } from "../helpers/handleData";
+import { getData, getProcurements } from "../helpers/handleData";
+import { StateContext } from "../context/StateProvider";
 
 function DetailedList() {
-  const [checkedCategories, setcheckedCategories] = useState([]);
+  const { checkedCategories, setcheckedCategories } = useContext(StateContext);
   const [removeChecked, setRemoveChecked] = useState([]);
   const [sort, setSort] = useState();
   const [checked, setChecked] = useState([]);
   const [saveSearch, setSaveSearch] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   const [documents, setDocuments] = useState([]);
 
   const { category, details } = useParams();
 
-  // const { category, details } = useParams()
+  useEffect(() => {
+    let arr = [];
+    Object.values(checkedCategories)
+      .map((i) => arr.push(Object.keys(i)))
+      .flat();
+    Object.values(checkedCategories)
+      .map((i) => Object.values(i).map((item) => arr.push(item)))
+      .flat();
+    checkedCategories && setChecked(arr.flat());
+  }, [checkedCategories]);
+
+  useEffect(() => {
+    let obj = {
+      checkedCategories,
+      category: category,
+      cpv: categorycpv,
+    };
+
+    window.localStorage.setItem("lastSearch", JSON.stringify(obj));
+  }, [checkedCategories]);
+
   let newdetails = details.split("+");
   let categorycpv = newdetails[0];
   let subcategory = newdetails[1];
@@ -30,8 +52,51 @@ function DetailedList() {
   }, []);
 
   useEffect(() => {
-    getData("F02_2014", "cpvnumbermain", categorycpv, setDocuments);
-  }, []);
+    // getData('anbud', 'cpvnumbermain', categorycpv, setDocuments)
+    setDocuments([]);
+    let category = [];
+    let subcat = [];
+    checked.filter((i) =>
+      i.substring(3, 8) === "00000"
+        ? category.push(i)
+        : i.substring(4, 8) === "0000" && subcat.push(i)
+    );
+    // console.log(category)
+    // console.log(subcat)
+
+    subcat.map((i) =>
+      category.map(
+        (item, index) =>
+          item.substring(0, 3).includes(i.substring(0, 3)) &&
+          category.splice(index, 1)
+      )
+    );
+    if (category.length > 0 || subcat.length > 0) {
+      category.map((i) =>
+        getProcurements("anbud", "cpvnumbersub", i, setDocuments, documents)
+      );
+
+      subcat.map((i) =>
+        getProcurements("anbud", "cpvnumbersubsub", i, setDocuments, documents)
+      );
+      // } else if (subcat.length > 0) {
+      //   category.map((i) =>
+      //     getProcurements('anbud', 'cpvnumbersub', i, setDocuments)
+      //   )
+
+      //   subcat.map((i) =>
+      //     getProcurements('anbud', 'cpvnumbersubsub', i, setDocuments)
+      //   )
+    } else {
+      getProcurements(
+        "anbud",
+        "cpvnumbermain",
+        categorycpv,
+        setDocuments,
+        documents
+      );
+    }
+  }, [checked]);
 
   let newArray = [];
 
@@ -97,6 +162,8 @@ function DetailedList() {
     <div className="detail-container">
       <div className="search">
         <Filter
+          openModal={openModal}
+          setOpenModal={setOpenModal}
           details={categorycpv}
           subcategory={subcategory}
           category={category}
@@ -139,7 +206,7 @@ function DetailedList() {
                 )
             )}
         <div className="select-box-title">
-          <h2>Sorter etter: </h2>
+          <p className="sorting">Sorter etter: </p>
           <select className="select-box" onChange={onChange}>
             <option value="asc">ASC</option>
             <option value="desc">DESC</option>
@@ -159,7 +226,6 @@ function DetailedList() {
                     )
                   : i.cpvnumber
                       .substring(0, 3)
-
                       .includes(Object.keys(checked)[0].substring(0, 3)) && (
                       <Link
                         style={{ textDecoration: "none", color: "black" }}

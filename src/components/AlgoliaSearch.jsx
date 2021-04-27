@@ -8,8 +8,6 @@ import {
   connectAutoComplete,
 } from "react-instantsearch-dom";
 
-import "../algoliaCss.css";
-
 function AlgoliaSearch() {
   const [query, setQuery] = useState("");
   const [hits, setHits] = useState([]);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
+import { Link } from 'react-router-dom'
 import { getProcurement } from '../helpers/handleData'
 
 function DetailedInfo({ i }) {
@@ -7,53 +8,72 @@ function DetailedInfo({ i }) {
   const { procurement } = useParams()
 
   useEffect(() => {
-    getProcurement('F02_2014', procurement, setProcurement)
+    getProcurement('anbud', procurement, setProcurement)
     // setProcurement(data.filter((i) => i.tittel === procurement))
   }, [])
 
   return (
-    <div className="info-container">
-      <div className="info-left-bar">
+    <div className='info-container'>
+      <div className='info-left-bar'>
         <p>{procurementData.oppdragsgiver}</p>
-        <h1 className="headline">{procurementData.tittel}</h1>
+        <h1>{procurementData.tittel}</h1>
         <div className="info-card">
-          <p>Kunngjøringsdato: {procurementData.kunngjoringsdato}</p>
-          <p>
-            Adresse: {procurementData.adresse}
-            {", "} {procurementData.sted}
-          </p>
+          <p><b>Publiseringsdato:</b> {procurementData.kunngjoringsdato}</p>
+          <p><b>Tilbudsfrist:</b> {procurementData.tilbudsfrist}</p>
+          <p><b>Tildelingskriterie:</b> {procurementData.tildelingskriterier}</p>
 
-          <p>Nettside: {procurementData.nettside}</p>
-          <h3>Beskrivelse av anbud</h3>
           <p>{procurementData.beskrivelse}</p>
         </div>
         <div className="info-card">
-          <h3>Dokumenter</h3>
+          <h6>Dokumenter</h6>
+
           {procurementData.documents
             ? procurementData.documents.map((i, index) => (
-                <a key={index} href={"https://www.mercell.com" + i.url}>
+                <a key={index} href={'https://www.mercell.com' + i.url}>
                   {i.name}
                 </a>
               ))
             : procurementData.url_dokumentasjon}
         </div>
         <div className="info-card">
-          <h3>Behov for sortiment</h3>
-          <p>text</p>
+          <h6>Behov for sortiment</h6>
+          {procurementData.tilleggsCPV &&
+            procurementData.tilleggsCPV.map((i) => (
+              <p>
+                {Object.keys(i)} {Object.values(i)}{' '}
+              </p>
+            ))}
         </div>
       </div>
       <div className="info-right-bar">
         <button className="button">Meld interesse</button>
-        <div className="black-line" />
-        <h3 className="headline">Kontakt</h3>
-        <p>Kontaktperson:</p>
-        <p>Telefon:</p>
-        <p>E-post: {procurementData.epost}</p>
-        <div className="black-line" />
-        <h3 className="headline">Innkjøper</h3>
-        <p>Oppdragsgiver: {procurementData.oppdragsgiver}</p>
-        <div className="black-line" />
-        <h3 className="headline">Nettsted</h3>
+        <div className="info-right-bar-article">
+          <div className="headline-div">
+            <h4 className="headline">Kontakt</h4>
+            </div>
+          <p><b>Spørsmålsfrist:</b>{procurementData.sporsmalsfrist}</p>
+          <p><b>Kontaktperson:</b>{procurementData.kontaktperson}</p>
+          <p><b>Telefon:</b>{procurementData.telefon}</p>
+          <p><b>E-post:</b> {procurementData.epost}</p>
+        </div>
+        <div className="info-right-bar-article">
+          <div className="headline-div">
+            <h4 className="headline">Innkjøper</h4>
+          </div>
+          <p><b>Oppdragsgiver:</b> {procurementData.oppdragsgiver}</p>
+          <p><b>Org nr.:</b>{procurementData.orgnr}</p>
+          <p>
+              <b>Adresse:</b> {procurementData.adresse} {procurementData.postkode}
+            {', '} {procurementData.sted} {procurementData.land}
+          </p>
+        </div>
+        <div className="info-right-bar-article">
+          <div className="headline-div">
+            <h4 className="headline">Nettsted</h4>
+          </div>
+          <Link to={procurementData.url_oppdragsgiver}>Oppdragsgiver</Link> <br/>
+          <Link to={procurementData.url_kjoperprofil}>Kjøperprofil</Link>
+        </div>
       </div>
     </div>
   )

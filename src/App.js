@@ -1,5 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import Header from './components/Header'
+import Footer from './components/Footer'
 import Home from './pages/Home'
 import DetailedList from './pages/DetailedList'
 import DetailedInfo from './pages/DetailedInfo'
@@ -12,9 +14,9 @@ require('firebase/firestore')
 function App() {
   return (
     <>
-      <header />
-      <main>
-        <BrowserRouter basename='/doffindata'>
+      <BrowserRouter basename='/doffindata'>
+        <Header />
+        <main>
           <Switch>
             <Route exact path={'/'} component={Home} />
             <Route exact path={'/:category'} component={Categories} />
@@ -35,8 +37,9 @@ function App() {
               component={DetailedInfo}
             ></Route>
           </Switch>
-        </BrowserRouter>
-      </main>
+        </main>
+        <Footer />
+      </BrowserRouter>
     </>
   )
 }
