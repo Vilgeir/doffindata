@@ -5,7 +5,6 @@ const firebase = require('firebase')
 const firestore = require('firebase/firestore')
 // const firebaseConfig = require('./firebaseConfig')
 
-
 const fb =
   firebase.apps.length > 0
     ? firebase.app()
@@ -128,15 +127,16 @@ const writeData = (data) => {
         url_oppdragsgiver: data.url_oppdragsgiver,
         documents: null,
       })
-  writeToFirestore(data, docs)
+  // writeToFirestore(data, docs)
+  // console.log(docs)
 }
 
-// const writeToFirestore = async (data, docs) => {
+const writeToFirestore = async (data, docs) => {
   // console.log(docs)
 
-  let documents = db.collection('anbud').doc(docs.id)
+  let documents = db.collection('tendre').doc(docs.id)
   try {
-    await documents.update(docs)
+    await documents.set(docs)
     console.log('Document successfully written!')
   } catch (error) {
     console.error('Error writing document: ', error)

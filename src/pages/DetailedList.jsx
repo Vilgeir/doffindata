@@ -8,6 +8,8 @@ import data from '../data/doffin-form2.json'
 import { Link } from 'react-router-dom'
 import { getData, getProcurements } from '../helpers/handleData'
 import { StateContext } from '../context/StateProvider'
+import fylkerKommuner from '../data/fylkerkommuner.json'
+import { capitalize } from '../helpers/functions'
 
 function DetailedList() {
   const { checkedCategories, setcheckedCategories } = useContext(StateContext)
@@ -16,7 +18,7 @@ function DetailedList() {
   const [checked, setChecked] = useState([])
   const [saveSearch, setSaveSearch] = useState(false)
   const [openModal, setOpenModal] = useState(false)
-
+  const [kommuner, setKommuner] = useState([])
   const [documents, setDocuments] = useState([])
 
   const { category, details } = useParams()
@@ -52,7 +54,6 @@ function DetailedList() {
   }, [])
 
   useEffect(() => {
-    // getData('anbud', 'cpvnumbermain', categorycpv, setDocuments)
     setDocuments([])
     let category = []
     let subcat = []
@@ -61,8 +62,6 @@ function DetailedList() {
         ? category.push(i)
         : i.substring(4, 8) === '0000' && subcat.push(i)
     )
-    // console.log(category)
-    // console.log(subcat)
 
     subcat.map((i) =>
       category.map(
@@ -79,14 +78,6 @@ function DetailedList() {
       subcat.map((i) =>
         getProcurements('anbud', 'cpvnumbersubsub', i, setDocuments, documents)
       )
-      // } else if (subcat.length > 0) {
-      //   category.map((i) =>
-      //     getProcurements('anbud', 'cpvnumbersub', i, setDocuments)
-      //   )
-
-      //   subcat.map((i) =>
-      //     getProcurements('anbud', 'cpvnumbersubsub', i, setDocuments)
-      //   )
     } else {
       getProcurements(
         'anbud',
@@ -99,6 +90,16 @@ function DetailedList() {
   }, [checked])
 
   let newArray = []
+
+  const byCity = (arr, secondArr) =>
+    secondArr.length > 0
+      ? arr.filter((item) =>
+          secondArr
+            .flat()
+            .map((kom) => kom.Kommune)
+            .includes(capitalize(item.sted))
+        )
+      : arr
 
   Object.entries(documents).map((i) => newArray.push(i[1]))
 
@@ -159,6 +160,9 @@ function DetailedList() {
     <div className='detail-container'>
       <div className='search'>
         <Filter
+          kommuner={kommuner}
+          setKommuner={setKommuner}
+          fylkerKommuner={fylkerKommuner}
           openModal={openModal}
           setOpenModal={setOpenModal}
           details={categorycpv}
@@ -210,9 +214,8 @@ function DetailedList() {
             <option value='date'>Publisert</option>
           </select>
         </div>
-
         {checkedCategories.length > 0
-          ? sortedArray.map((i) =>
+          ? byCity(sortedArray, kommuner).map((i) =>
               checkedCategories.map((checked) =>
                 Object.values(checked)[0].length > 0
                   ? Object.values(checked)[0].map(
@@ -234,7 +237,7 @@ function DetailedList() {
                     )
               )
             )
-          : sortedArray.map(
+          : byCity(sortedArray, kommuner).map(
               (i) =>
                 i.cpvnumber.substring(0, 2) === categorycpv.substring(0, 2) && (
                   <Link
