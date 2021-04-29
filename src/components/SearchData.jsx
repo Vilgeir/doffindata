@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const SearchData = ({ searchData = [] }) => {
   return (
@@ -9,12 +9,12 @@ const SearchData = ({ searchData = [] }) => {
             <div>
               <h3>{data}</h3>
             </div>
-          )
+          );
         }
-        return null
+        return null;
       })}
     </>
-  )
-}
+  );
+};
 
-export default SearchData
+export default SearchData;
