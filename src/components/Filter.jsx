@@ -19,6 +19,9 @@ function Filter({
   setSaveSearch,
   setOpenModal,
   openModal,
+  fylkerKommuner,
+  kommuner,
+  setKommuner,
 }) {
   const handleClick = (e) => {
     checkedCategories.map(
@@ -60,6 +63,7 @@ function Filter({
   const removeFilters = () => {
     setcheckedCategories([])
     setChecked([])
+    setKommuner([])
   }
 
   const handleCheck = (e) => {
@@ -70,8 +74,23 @@ function Filter({
     )
   }
 
-  // console.log(JSON.parse(window.localStorage.map((i) => i)))
-  // console.log(window.localStorage.key(i))
+  const handleClickFylker = (e) => {
+    if (
+      kommuner
+        .flat()
+        .map((kom) => kom.Fylke)
+        .includes(e.target.value)
+    ) {
+      setKommuner((prev) => [
+        ...prev.flat().filter((p) => p.Fylke !== e.target.value),
+      ])
+    } else {
+      setKommuner((prev) => [
+        ...prev,
+        fylkerKommuner.filter((i) => i.Fylke === e.target.value),
+      ])
+    }
+  }
 
   const handleChange = (e) => {
     e.target.checked === false &&
@@ -249,7 +268,12 @@ function Filter({
       </div>
       {fylker.map((item, i) => (
         <div className='checkboxes'>
-          <input key={i} type='checkbox' value={item.navn}></input>
+          <input
+            key={i}
+            type='checkbox'
+            onClick={handleClickFylker}
+            value={item.navn}
+          ></input>
           <label>{item.navn}</label>
         </div>
       ))}
