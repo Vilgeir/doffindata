@@ -134,7 +134,7 @@ const writeData = (data) => {
 // const writeToFirestore = async (data, docs) => {
   // console.log(docs)
 
-  let documents = db.collection('anbud').doc(docs.id)
+  let documents = db.collection('tendre').doc(docs.id)
   try {
     await documents.update(docs)
     console.log('Document successfully written!')
@@ -143,4 +143,4 @@ const writeData = (data) => {
   }
 }
 let data
-getData('anbud', data)
+getData('tendre', data)

@@ -27,6 +27,8 @@ function Home(props) {
     structure.map((i) => i.main)
   );
 
+  console.log(structure.map((i) => i.main));
+
   const [serverData, setServerData] = useState([]);
 
   //children.map((it, index) => it.code)  .flat()
@@ -42,7 +44,7 @@ function Home(props) {
 
   Object.entries(serverData).map((i) => arrrray.push(i));
 
-  console.log(serverData);
+  // console.log(serverData);
 
   const updateInput = (input) => {
     const filtered = searchDataDefault.filter((main) => {
