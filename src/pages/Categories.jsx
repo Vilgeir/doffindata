@@ -4,6 +4,8 @@ import structure from '../data/withMainCategories'
 import { useParams } from 'react-router-dom'
 import Footer from '../components/Footer'
 import { StateContext } from '../context/StateProvider'
+import { homeIcons } from '../helpers/functions'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Categories() {
   const { checkedCategories, setcheckedCategories } = useContext(StateContext)
@@ -18,12 +20,20 @@ function Categories() {
       <div className='head'>
         <div>
           <input
-            className="searchbar"
-            placeholder="Søk etter anbud eller CPV-koder"
-            src="../../public/iconer/search.png"
+            className='searchbar'
+            placeholder='Søk etter anbud eller CPV-koder'
+            src='../../public/iconer/search.png'
           />
         </div>
-        <h3>{category}</h3>
+        <div className='categories-head'>
+          <div className='homeicon-container' style={homeIcons(category).style}>
+            <FontAwesomeIcon
+              id='homeicon-icon'
+              icon={homeIcons(category).icon}
+            />
+          </div>
+          <h3>{category}</h3>
+        </div>
       </div>
       <div className='categories'>
         {structure.map(
@@ -32,12 +42,13 @@ function Categories() {
             i.children.map((item, idx) => (
               <div className='category-card'>
                 <Link to={'/' + category + '/' + item.code} key={idx}>
-                  <p className="sub-category">
+                  <p className='sub-category'>
                     {item.name} ({item.countWithChildren})
                   </p>
                 </Link>
                 {item.children.map((items, index) => (
                   <Link
+                    className='sub-sub-category'
                     to={'/' + category + '/' + item.code + '+' + items.code}
                     key={index}
                   >
