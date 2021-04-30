@@ -1,22 +1,22 @@
-import React, { useContext, useEffect, useState } from "react";
-import structure from "../data/withMainCategories";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
-import { ScrollArea } from "@material-ui/data-grid";
-import { StateContext } from "../context/StateProvider";
+import React, { useContext, useEffect, useState } from 'react'
+import structure from '../data/withMainCategories'
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link } from 'react-router-dom'
+import { ScrollArea } from '@material-ui/data-grid'
+import { StateContext } from '../context/StateProvider'
 
 function SavedSearch() {
-  const [last, setLast] = useState([]);
-  const [openLast, setOpenLast] = useState(false);
-  const [saved, setSaved] = useState([]);
-  const [openSaved, setOpenSaved] = useState(false);
-  const { checkedCategories, setcheckedCategories } = useContext(StateContext);
+  const [last, setLast] = useState([])
+  const [openLast, setOpenLast] = useState(false)
+  const [saved, setSaved] = useState([])
+  const [openSaved, setOpenSaved] = useState(false)
+  const { checkedCategories, setcheckedCategories } = useContext(StateContext)
 
-  let category = structure.map((i) => i.main);
+  let category = structure.map((i) => i.main)
   let arr = Object.keys(localStorage).filter(
-    (elem) => elem !== "ally-supports-cache" && elem !== "lastSearch"
-  );
+    (elem) => elem !== 'ally-supports-cache' && elem !== 'lastSearch'
+  )
 
   // useEffect(() => {
   //   arr.map((elem) =>
@@ -28,56 +28,66 @@ function SavedSearch() {
   // }, []);
 
   useEffect(() => {
-    let data = JSON.parse(localStorage.getItem("lastSearch"));
-    let arr = [];
+    let data = JSON.parse(localStorage.getItem('lastSearch'))
+    let arr = []
     data &&
       (arr = [
         data.category,
         data.cpv,
         Object.values(data.checkedCategories).map((i) =>
-          Object.entries(i).flat().join(" - ")
+          Object.entries(i).flat().join(' - ')
         ),
-      ]);
+      ])
 
-    setLast(arr);
-  }, []);
+    setLast(arr)
+  }, [])
 
   const handleClick = (i) => {
     Object.values(i).map(
       (item) =>
         item.checkedCategories && setcheckedCategories(item.checkedCategories)
-    );
-  };
+    )
+  }
 
   return (
-    <div className="home-buttons">
+    <div className='home-buttons'>
       <button
-        className="home-button"
+        className='home-button'
         onClick={() => setOpenLast((prev) => !prev)}
       >
-        Siste søk <FontAwesomeIcon icon={faChevronDown} />
+        Siste søk{' '}
+        {openLast ? (
+          <FontAwesomeIcon icon={faChevronUp} />
+        ) : (
+          <FontAwesomeIcon icon={faChevronDown} />
+        )}
       </button>
 
       {openLast && (
         <Link
-          to={"/" + Object.values(last)[0] + "/" + Object.values(last)[1]}
+          to={'/' + Object.values(last)[0] + '/' + Object.values(last)[1]}
           onClick={() => handleClick(last)}
         >
-          {Object.values(last).flat().join(" - ")}
+          {Object.values(last).flat().join(' - ')}
         </Link>
       )}
       <button
-        className="home-button"
+        className='home-button'
         onClick={() => setOpenSaved((prev) => !prev)}
       >
-        Lagrede søk <FontAwesomeIcon icon={faChevronDown} />
+        Lagrede søk{' '}
+        {openSaved ? (
+          <FontAwesomeIcon icon={faChevronUp} />
+        ) : (
+          <FontAwesomeIcon icon={faChevronDown} />
+        )}
       </button>
 
       {openSaved &&
         saved.map((i, index) => (
           <Link
             to={
-              "/" + Object.values(i)[0].category + "/" + Object.values(i)[0].cpv
+              '/' + Object.values(i)[0].category + '/' + Object.values(i)[0].cpv
             }
             key={index}
             onClick={() => handleClick(i)}
@@ -86,7 +96,7 @@ function SavedSearch() {
           </Link>
         ))}
     </div>
-  );
+  )
 }
 
-export default SavedSearch;
+export default SavedSearch
