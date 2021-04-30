@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
   --darkBlue: #36498a;
@@ -14,7 +14,7 @@ body {
 }
 
 main {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 1rem;
@@ -93,7 +93,7 @@ a {
 .header {
   grid-column: full;
   color: white;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   background-color: #36498a;
   width: 100%;
   padding-top: 1vh;
@@ -125,7 +125,7 @@ code {
 }
 
 .footer {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   color: #535353;
   margin-bottom: 0;
   background-color: #f2f2f2;
@@ -175,7 +175,6 @@ button {
 
 .headline {
   margin-bottom: 0.3rem;
-  border-top: 1px solid black;
   padding-top: 1rem;
   padding-bottom: 1rem;
   padding-left: 0.4rem;
@@ -221,6 +220,7 @@ button {
 }
 
 .home-container {
+  /* width: 70%; */
   padding-top: 2rem;
 }
 
@@ -228,11 +228,9 @@ button {
   display: flex;
 }
 
-.head {
-  margin-left: 0rem;
-  width: 96%;
+.home-head {
+  display: flex;
 }
-
 .box-container {
   display: flex;
   flex-direction: row;
@@ -299,54 +297,7 @@ button {
   border-radius: 50px;
 }
 
-#main-boxes-0 .homeicon-container {
-  background-color: #36498a;
-  color: #81b3ee;
-}
-
-#main-boxes-1 .homeicon-container {
-  background-color: #d1bcff;
-  color: #4b00eb;
-}
-
-#main-boxes-2 .homeicon-container {
-  background-color: #c8ffdb;
-  color: #00840d;
-}
-
-#main-boxes-3 .homeicon-container {
-  background-color: #fff59c;
-  color: #efbe0e;
-}
-
-#main-boxes-4 .homeicon-container {
-  background-color: #ffe6cf;
-  color: #ff8a00;
-}
-
-#main-boxes-5 .homeicon-container {
-  background-color: #c8d4ff;
-  color: #004393;
-}
-
-#main-boxes-6 .homeicon-container {
-  background-color: #ffcdca;
-  color: #e20e00;
-}
-
-#main-boxes-7 .homeicon-container {
-  background-color: #c0eee6;
-  color: #007965;
-}
-
-#main-boxes-8 .homeicon-container {
-  background-color: #f2ceff;
-  color: #9a00cc;
-}
-
-#main-boxes-9 .homeicon-container {
-  background-color: #ffd3f8;
-  color: #d8009b;
+#homeicon-icon {
 }
 
 /* Card */
@@ -407,6 +358,15 @@ input {
   column-gap: 1em;
 }
 
+.categories-head {
+  display: flex;
+  align-items: center;
+}
+
+.categories-head h3 {
+  margin: 1rem;
+}
+
 .category-card {
   background-color: var(--lightBlue);
   display: inline-block;
@@ -423,6 +383,14 @@ p {
   color: black;
 }
 
+.sub-sub-category :hover {
+  background-color: #4dbfac;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
 .category-card h3 {
   color: var(--darkBlue);
   padding-bottom: 1rem;
@@ -432,18 +400,27 @@ p {
   color: var(--gray);
 }
 
-.filter-header h4 {
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-top: 1px solid black;
+}
+
+.filter-header h4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
   padding-left: 0.4rem;
 }
 
-.filter-header :hover {
+.filter-header:hover {
   background-color: #e3f5f2;
   cursor: pointer;
 }
 
+.filter-header svg {
+  margin-right: 1rem;
+}
 .save-search {
   display: flex;
   justify-content: space-between;
@@ -454,13 +431,13 @@ p {
   width: 10rem;
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
   position: relative;
   cursor: pointer;
 }
 
-input[type="checkbox"]:before {
-  content: "";
+input[type='checkbox']:before {
+  content: '';
   display: block;
   position: absolute;
   width: 16px;
@@ -472,8 +449,8 @@ input[type="checkbox"]:before {
   background-color: white;
 }
 
-input[type="checkbox"]:checked:after {
-  content: "";
+input[type='checkbox']:checked:after {
+  content: '';
   display: block;
   width: 5px;
   height: 10px;
@@ -553,8 +530,7 @@ input[type="checkbox"]:checked:after {
 }
 
 .check-container {
-  margin-top: 1rem;
-  margin-bottom: 4rem;
+  margin-bottom: 1rem;
 }
 
 .check-container .checkmark {
@@ -630,7 +606,11 @@ input[type="checkbox"]:checked:after {
   display: flex;
   flex-direction: column;
   /* background-color: #e3f5f2; */
-  width: 30%;
+  width: 40%;
+}
+
+.home-button:first-child {
+  margin-top: 0;
 }
 
 .home-button {
@@ -735,4 +715,10 @@ input[type="checkbox"]:checked:after {
   padding: 1rem;
   font-weight: 500;
   color: white;
+}
+
+.filter-navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
 }
