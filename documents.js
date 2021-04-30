@@ -143,4 +143,4 @@ const writeToFirestore = async (data, docs) => {
   }
 }
 let data
-getData('anbud', data)
+getData('tendre', data)

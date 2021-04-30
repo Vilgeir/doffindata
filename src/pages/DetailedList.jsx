@@ -124,7 +124,7 @@ function DetailedList() {
     setSort(event.target.value);
   };
 
-  // console.log(newArray.map((i) => i));
+  console.log(newArray.map((i) => i));
   // console.log("sorted: " + sortedArray);
 
   const handleChange = (e) => {

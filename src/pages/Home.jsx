@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import structure from '../data/withMainCategories'
-import '../index.css'
-import SavedSearch from '../components/SavedSearch'
-import Footer from '../components/Footer'
-import Search from '../components/Search'
-import SearchData from '../components/SearchData'
-import AlgoliaSearch from '../components/AlgoliaSearch'
-import { homeIcons } from '../helpers/functions'
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import structure from "../data/withMainCategories";
+import "../index.css";
+import SavedSearch from "../components/SavedSearch";
+import Footer from "../components/Footer";
+import Search from "../components/Search";
+import SearchData from "../components/SearchData";
+import AlgoliaSearch from "../components/AlgoliaSearch";
+import { homeIcons } from "../helpers/functions";
 import {
   faArrowRight,
   faPlug,
@@ -20,45 +20,45 @@ import {
   faClipboardList,
   faShippingFast,
   faShoppingCart,
-} from '@fortawesome/free-solid-svg-icons'
+} from "@fortawesome/free-solid-svg-icons";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { getData } from '../helpers/handleData'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getData } from "../helpers/handleData";
 
 function Home(props) {
-  const [input, setInput] = useState('')
-  const [searchData, setSearchData] = useState()
+  const [input, setInput] = useState("");
+  const [searchData, setSearchData] = useState();
   const [searchDataDefault, setSearchDataDefault] = useState(
     structure.map((i) => i.main)
-  )
+  );
 
-  const [serverData, setServerData] = useState([])
+  const [serverData, setServerData] = useState([]);
 
   //children.map((it, index) => it.code)  .flat()
 
   // console.log(searchDataDefault);
 
-  let arrrray = []
-  let mainCpv = ''
+  let arrrray = [];
+  let mainCpv = "";
 
   useEffect(() => {
-    getData('F02_2014', 'cpv', mainCpv, setServerData)
-  }, [])
+    getData("F02_2014", "cpv", mainCpv, setServerData);
+  }, []);
 
-  Object.entries(serverData).map((i) => arrrray.push(i))
+  Object.entries(serverData).map((i) => arrrray.push(i));
 
-  console.log(serverData)
+  //console.log(serverData)
 
   const updateInput = (input) => {
     const filtered = searchDataDefault.filter((main) => {
       if (isNaN()) {
-        return main.toLowerCase().includes(input.toLowerCase())
+        return main.toLowerCase().includes(input.toLowerCase());
       }
-      return main
-    })
-    if (input === '') return setInput(input), setSearchData([])
-    return setInput(input), setSearchData(filtered)
-  }
+      return main;
+    });
+    if (input === "") return setInput(input), setSearchData([]);
+    return setInput(input), setSearchData(filtered);
+  };
 
   //console.log(searchData);
 
@@ -90,11 +90,11 @@ function Home(props) {
   // }
 
   return (
-    <div className='errthing'>
-      <div className='home-container'>
+    <div className="errthing">
+      <div className="home-container">
         <div>
-          <div className='home-head'>
-            <div className='aSearch'>
+          <div className="home-head">
+            <div>
               <AlgoliaSearch />
             </div>
             <SavedSearch />
@@ -102,7 +102,7 @@ function Home(props) {
 
           {/* <Search input={input} onChange={updateInput} />
           <SearchData searchData={searchData} /> */}
-          <h3 className='headline'>Alle kategorier</h3>
+          <h3 className="headline">Alle kategorier</h3>
         </div>
       </div>
       <div>
@@ -113,37 +113,37 @@ function Home(props) {
           return null;
         })} */}
       </div>
-      <div class='content-container'>
-        <div className='box-container'>
+      <div class="content-container">
+        <div className="box-container">
           {structure.map((i, index) => (
             <Link
-              className='main-boxes'
+              className="main-boxes"
               to={i.main}
               key={index}
-              id={'main-boxes-' + index}
+              id={"main-boxes-" + index}
             >
               <div
                 style={homeIcons(i.main).style}
-                className='homeicon-container'
+                className="homeicon-container"
               >
                 <FontAwesomeIcon
-                  id='homeicon-icon'
+                  id="homeicon-icon"
                   icon={homeIcons(i.main).icon}
                 />
               </div>
-              <div className='main-box-text'>
-                <p className='main-boxes-title'>{i.main}</p>
-                <p className='main-boxes-cpv'>CPV {i.children[0].code}</p>
+              <div className="main-box-text">
+                <p className="main-boxes-title">{i.main}</p>
+                <p className="main-boxes-cpv">CPV {i.children[0].code}</p>
               </div>
-              <div className='main-boxes-arrow'>
-                <FontAwesomeIcon icon={faArrowRight} color='#4DBFAC' />
+              <div className="main-boxes-arrow">
+                <FontAwesomeIcon icon={faArrowRight} color="#4DBFAC" />
               </div>
             </Link>
           ))}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

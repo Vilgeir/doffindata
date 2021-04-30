@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import algoliasearch from "algoliasearch/lite";
-import {
-  InstantSearch,
-  SearchBox,
-  Hits,
-  connectAutoComplete,
-} from "react-instantsearch-dom";
+import Text from "react";
 
 function AlgoliaSearch() {
   const [query, setQuery] = useState("");
   const [hits, setHits] = useState([]);
+
+  const { category } = useParams();
 
   const searchClient = algoliasearch(
     "QG9J28HNQ9",
@@ -19,59 +17,64 @@ function AlgoliaSearch() {
 
   let index;
 
-  // const handleChange = (e) => {
-  //   setQuery(e.target.value);
-  //   search();
-  // };
-
-  const search = async (e) => {
+  const handleChange = (e) => {
     setQuery(e.target.value);
-
-    if (e.target.value) {
-      index = searchClient.initIndex("tendre");
-      const result = await index.search(query);
-      setHits(result.hits);
-    } else {
-      setHits([]);
-    }
   };
 
-  //console.log(hits.length > 0 ? hits.map((i) => i.cpv) : null);
+  useEffect(() => {
+    const search = async () => {
+      if (query) {
+        index = searchClient.initIndex("tendre");
+        const result = await index.search(query);
+        setHits(result.hits);
+      } else {
+        setHits([]);
+      }
+    };
+    search();
+  }, [query]);
+
+  const substring = query;
+  const original = hits;
+
+  //original.replace(query.query);
+
+  const highlight = () => {
+    return hits[0].toString().replace(query, "e");
+  };
+
+  const str = () => {
+    return;
+  };
 
   return (
-    <div>
+    <div className="search-container">
       <input
         className="searchbar"
         type="text"
-        onChange={search}
+        onChange={handleChange}
         placeholder="Søk på anbud"
       />
       <div className="a-search">
         {hits.map((i) => (
-          <div>
-            <p>{i.cpvmain}</p>
-            <p>CPV: {i.cpv}</p>
+          <div className="search-result">
+            <Link to={"/" + category + "/" + i.cpvsearch}>
+              <h3>{i.cpvmainsearch}</h3>
+            </Link>
+            <Link to={"/" + category + "/" + i.cpvnumber + "/" + i.objectID}>
+              {/* <p>
+                {i.tittel.replace(query, () => {
+                  return query.bold();
+                })}
+              </p> */}
+              <h4>{i.cpvnumber}</h4>
+              <p>{i.tittel}</p>
+            </Link>
           </div>
         ))}
       </div>
-      {/* <InstantSearch searchClient={searchClient} indexName="tendre">
-        <SearchBox translations={{ placehoder: "Søøøøøk" }} />
-        <Hits hitComponent={Hit} />
-      </InstantSearch> */}
     </div>
   );
 }
 
 export default AlgoliaSearch;
-
-// const Hit = ({ hit }) => {
-//   console.log(hit.cpvmain);
-//   return (
-//     <Link to={hit.cpv}>
-//       <div className="contentAlgo">
-//         <p>{hit.cpvmain}</p>
-//         <p>{hit.cpv}</p>
-//       </div>
-//     </Link>
-//   );
-// };
