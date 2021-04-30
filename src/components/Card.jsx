@@ -1,11 +1,7 @@
 import React from 'react'
+import { capitalize } from '../helpers/functions'
 
 function Card({ i }) {
-  const capitalize = (str) => {
-    let lower = str.toLowerCase()
-    return str.charAt(0).toUpperCase() + lower.slice(1)
-  }
-
   const reverse = (date) => {
     return date.split('-').reverse().join('.')
   }

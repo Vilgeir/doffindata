@@ -377,7 +377,7 @@ button {
   display: grid;
   grid-template-columns:
     [start] minmax(1rem, 8rem) [middle] minmax(1rem, 1fr)
-    [second] minmax(1rem, 1fr) [last] minmax(1rem, 1fr);
+    [last] minmax(1rem, 1fr);
   padding-top: 1rem;
 }
 

@@ -90,9 +90,7 @@ function Home(props) {
     <div className="errthing">
       <div className="home-container">
         <div className="head">
-          <div className="aSearch">
-            <AlgoliaSearch />
-          </div>
+          <AlgoliaSearch />
 
           {/* <Search input={input} onChange={updateInput} />
           <SearchData searchData={searchData} /> */}

@@ -4,6 +4,7 @@ import structure from "../data/withMainCategories";
 import { useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import { StateContext } from "../context/StateProvider";
+import AlgoliaSearch from "../components/AlgoliaSearch";
 
 function Categories() {
   const { checkedCategories, setcheckedCategories } = useContext(StateContext);
@@ -16,13 +17,7 @@ function Categories() {
   return (
     <div className="home-container">
       <div className="head">
-        <div>
-          <input
-            className="searchbar"
-            placeholder="Søk etter anbud eller CPV-koder"
-            src="../../public/iconer/search.png"
-          />
-        </div>
+        <AlgoliaSearch />
         <h3>{category}</h3>
       </div>
       <div className="categories">
