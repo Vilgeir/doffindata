@@ -1,12 +1,14 @@
-import React, { useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
-import structure from "../data/withMainCategories";
-import { useParams } from "react-router-dom";
-import Footer from "../components/Footer";
-import { StateContext } from "../context/StateProvider";
-import { homeIcons } from "../helpers/functions";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect, useContext } from 'react'
+import { Link } from 'react-router-dom'
+import structure from '../data/withMainCategories'
+import { useParams } from 'react-router-dom'
+import Footer from '../components/Footer'
+import { StateContext } from '../context/StateProvider'
+import { homeIcons, mapFunction } from '../helpers/functions'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import CategoryCards from '../components/CategoryCards'
 import AlgoliaSearch from "../components/AlgoliaSearch";
+
 
 function Categories() {
   const { checkedCategories, setcheckedCategories } = useContext(StateContext);
@@ -40,28 +42,10 @@ function Categories() {
           (i) =>
             i.main === category &&
             i.children.map((item, idx) => (
-              <div className="category-card">
-                <Link to={"/" + category + "/" + item.code} key={idx}>
-                  <p className="sub-category">
-                    {item.name} ({item.countWithChildren})
-                  </p>
-                </Link>
-                {item.children.map((items, index) => (
-                  <Link
-                    className="sub-sub-category"
-                    to={"/" + category + "/" + item.code + "+" + items.code}
-                    key={index}
-                  >
-                    <p>
-                      {items.name} ({items.countWithChildren})
-                    </p>
-                  </Link>
-                ))}
-              </div>
+              <CategoryCards item={item} idx={idx} category={category} />
             ))
         )}
       </div>
-      {/* <Footer /> */}
     </div>
   );
 }
