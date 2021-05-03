@@ -8,8 +8,8 @@ function Card({ i }) {
 
   return (
     <div className='card'>
-      <h4 className='publishedby'>{capitalize(i.oppdragsgiver)}</h4>
-      <h5>{i.tittel}</h5>
+      <h5 className='publishedby'>{i.tittel}</h5>
+      <h4>{capitalize(i.oppdragsgiver)}</h4>
       <p>{i.beskrivelse}</p>
       <div className='dates'>
         {/*

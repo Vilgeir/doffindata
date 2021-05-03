@@ -10,6 +10,8 @@ import { getData, getProcurements } from '../helpers/handleData'
 import { StateContext } from '../context/StateProvider'
 import fylkerKommuner from '../data/fylkerkommuner.json'
 import { capitalize } from '../helpers/functions'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 function DetailedList() {
   const { checkedCategories, setcheckedCategories } = useContext(StateContext)
@@ -120,7 +122,7 @@ function DetailedList() {
     setSort(event.target.value)
   }
 
-  console.log(newArray.map((i) => i));
+  console.log(newArray.map((i) => i))
   // console.log("sorted: " + sortedArray);
 
   const handleChange = (e) => {
@@ -161,108 +163,118 @@ function DetailedList() {
   }
 
   return (
-    <div className='detail-container'>
-      <div className='search'>
-        <Filter
-          kommuner={kommuner}
-          setKommuner={setKommuner}
-          fylkerKommuner={fylkerKommuner}
-          openModal={openModal}
-          setOpenModal={setOpenModal}
-          details={categorycpv}
-          subcategory={subcategory}
-          category={category}
-          setcheckedCategories={setcheckedCategories}
-          checkedCategories={checkedCategories}
-          removeChecked={removeChecked}
-          setRemoveChecked={setRemoveChecked}
-          checked={checked}
-          setChecked={setChecked}
-          saveSearch={saveSearch}
-          setSaveSearch={setSaveSearch}
-        />
+    <>
+      <div className='breadcrums'>
+        <Link to={'/'}>Hjem</Link>
+        <FontAwesomeIcon icon={faChevronRight} />
+        <Link to={'/' + category}>Kategori</Link>
+        <FontAwesomeIcon icon={faChevronRight} />
+        <Link to={'/' + category + '/' + categorycpv}>Resultat</Link>
       </div>
-      <div className='list-container'>
-        {subcategory
-          ? structure.map(
-              (item) =>
-                item.main === category &&
-                item.children.map((it) =>
-                  it.children.map(
+      <div className='detail-container'>
+        <div className='search'>
+          <Filter
+            kommuner={kommuner}
+            setKommuner={setKommuner}
+            fylkerKommuner={fylkerKommuner}
+            openModal={openModal}
+            setOpenModal={setOpenModal}
+            details={categorycpv}
+            subcategory={subcategory}
+            category={category}
+            setcheckedCategories={setcheckedCategories}
+            checkedCategories={checkedCategories}
+            removeChecked={removeChecked}
+            setRemoveChecked={setRemoveChecked}
+            checked={checked}
+            setChecked={setChecked}
+            saveSearch={saveSearch}
+            setSaveSearch={setSaveSearch}
+          />
+        </div>
+        <div className='list-container'>
+          {subcategory
+            ? structure.map(
+                (item) =>
+                  item.main === category &&
+                  item.children.map((it) =>
+                    it.children.map(
+                      (i) =>
+                        i.code === subcategory && (
+                          <h1 key={i}>
+                            {i.name} (CPV {i.code})
+                          </h1>
+                        )
+                    )
+                  )
+              )
+            : structure.map(
+                (item) =>
+                  item.main === category &&
+                  item.children.map(
                     (i) =>
-                      i.code === subcategory && (
+                      i.code === categorycpv && (
                         <h1 key={i}>
                           {i.name} (CPV {i.code})
                         </h1>
                       )
                   )
+              )}
+          <div className='select-box-title'>
+            <p className='sorting'>Sorter etter: </p>
+            <select className='select-box' onChange={onChange}>
+              <option value='asc'>ASC</option>
+              <option value='desc'>DESC</option>
+              <option value='date'>Publisert</option>
+            </select>
+          </div>
+          {checkedCategories.length > 0
+            ? byCity(sortedArray, kommuner).map((i) =>
+                checkedCategories.map((checked) =>
+                  Object.values(checked)[0].length > 0
+                    ? Object.values(checked)[0].map(
+                        (check) =>
+                          i.cpvnumber
+                            .substring(0, 4)
+                            .includes(check.substring(0, 4)) && <Card i={i} />
+                      )
+                    : i.cpvnumber
+                        .substring(0, 3)
+                        .includes(Object.keys(checked)[0].substring(0, 3)) && (
+                        <Link
+                          style={{ textDecoration: 'none', color: 'black' }}
+                          to={'/' + category + '/' + categorycpv + '/' + i.id}
+                          i={i}
+                        >
+                          <Card i={i} />
+                        </Link>
+                      )
                 )
-            )
-          : structure.map(
-              (item) =>
-                item.main === category &&
-                item.children.map(
-                  (i) =>
-                    i.code === categorycpv && (
-                      <h1 key={i}>
-                        {i.name} (CPV {i.code})
-                      </h1>
-                    )
-                )
-            )}
-        <div className='select-box-title'>
-          <p className='sorting'>Sorter etter: </p>
-          <select className='select-box' onChange={onChange}>
-            <option value='asc'>ASC</option>
-            <option value='desc'>DESC</option>
-            <option value='date'>Publisert</option>
-          </select>
-        </div>
-        {checkedCategories.length > 0
-          ? byCity(sortedArray, kommuner).map((i) =>
-              checkedCategories.map((checked) =>
-                Object.values(checked)[0].length > 0
-                  ? Object.values(checked)[0].map(
-                      (check) =>
-                        i.cpvnumber
-                          .substring(0, 4)
-                          .includes(check.substring(0, 4)) && <Card i={i} />
-                    )
-                  : i.cpvnumber
-                      .substring(0, 3)
-                      .includes(Object.keys(checked)[0].substring(0, 3)) && (
-                      <Link
-                        style={{ textDecoration: 'none', color: 'black' }}
-                        to={'/' + category + '/' + categorycpv + '/' + i.id}
-                        i={i}
-                      >
-                        <Card i={i} />
-                      </Link>
-                    )
               )
-            )
-          : byCity(sortedArray, kommuner).map(
-              (i) =>
-                i.cpvnumber.substring(0, 2) === categorycpv.substring(0, 2) && (
-                  <Link
-                    style={{ textDecoration: 'none', color: 'black' }}
-                    to={'/' + category + '/' + categorycpv + '/' + i.id}
-                    i={i}
-                  >
-                    <Card i={i} />
-                  </Link>
-                )
-            )}
+            : byCity(sortedArray, kommuner).map(
+                (i) =>
+                  i.cpvnumber.substring(0, 2) ===
+                    categorycpv.substring(0, 2) && (
+                    <Link
+                      style={{ textDecoration: 'none', color: 'black' }}
+                      to={'/' + category + '/' + categorycpv + '/' + i.id}
+                      i={i}
+                    >
+                      <Card i={i} />
+                    </Link>
+                  )
+              )}
+        </div>
+        {saveSearch && (
+          <SaveSearch
+            setSaveSearch={setSaveSearch}
+            checkedCategories={checkedCategories}
+            category={category}
+            categorycpv={categorycpv}
+          />
+        )}
       </div>
-      {saveSearch && (
-        <SaveSearch
-          setSaveSearch={setSaveSearch}
-          checkedCategories={checkedCategories}
-          category={category}
-          categorycpv={categorycpv}
-        />
-      )}
-    </div>
+    </>
   )
 }
 

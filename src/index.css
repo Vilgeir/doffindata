@@ -86,6 +86,8 @@ a {
 }
 
 .publishedby {
+  font-size: 1.2rem;
+  color: #000;
   margin: 0.5rem 0 0.5rem 0;
 }
 
@@ -394,6 +396,7 @@ p {
 .sub-sub-category :hover {
   background-color: #4dbfac;
   color: #fff;
+  margin: 0.5rem -0.5rem;
   /* font-weight: 700; */
   padding: 0.5rem;
   border-radius: 10px;
@@ -737,4 +740,18 @@ input[type='checkbox']:checked:after {
   align-items: end;
   justify-content: space-around;
   height: 5rem;
+}
+
+.breadcrums {
+  color: #36498a;
+  font-weight: 600;
+  margin-top: 2rem;
+}
+
+.breadcrums a {
+  margin: 0 0.5rem;
+}
+
+.breadcrums a:first-child {
+  margin-left: 0;
 }
