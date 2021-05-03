@@ -11,51 +11,52 @@ import { homeIcons } from '../helpers/functions'
 import HomeIcons from '../components/homeIcons'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getData } from "../helpers/handleData";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { getData } from '../helpers/handleData'
 
 function Home(props) {
-  const [input, setInput] = useState("");
-  const [searchData, setSearchData] = useState();
+  const [input, setInput] = useState('')
+  const [searchData, setSearchData] = useState()
   const [searchDataDefault, setSearchDataDefault] = useState(
     structure.map((i) => i.main)
-  );
+  )
 
-  const [serverData, setServerData] = useState([]);
-
+  const [serverData, setServerData] = useState([])
 
   //children.map((it, index) => it.code)  .flat()
 
   // console.log(searchDataDefault);
 
-  let arrrray = [];
-  let mainCpv = "";
+  let arrrray = []
+  let mainCpv = ''
 
   useEffect(() => {
-    getData("F02_2014", "cpv", mainCpv, setServerData);
-  }, []);
+    getData('F02_2014', 'cpv', mainCpv, setServerData)
+  }, [])
 
-  Object.entries(serverData).map((i) => arrrray.push(i));
+  Object.entries(serverData).map((i) => arrrray.push(i))
 
   //console.log(serverData)
 
   const updateInput = (input) => {
     const filtered = searchDataDefault.filter((main) => {
       if (isNaN()) {
-        return main.toLowerCase().includes(input.toLowerCase());
+        return main.toLowerCase().includes(input.toLowerCase())
       }
-      return main;
-    });
-    if (input === "") return setInput(input), setSearchData([]);
-    return setInput(input), setSearchData(filtered);
-  };
+      return main
+    })
+    if (input === '') return setInput(input), setSearchData([])
+    return setInput(input), setSearchData(filtered)
+  }
 
   return (
-    <div className="errthing">
-      <div className="home-container">
+    <div className='errthing'>
+      <div className='breadcrums'>
+        <Link to={'/'}>Hjem</Link>
+      </div>
+      <div className='home-container'>
         <div>
-          <div className="home-head">
+          <div className='home-head'>
             <div>
               <AlgoliaSearch />
             </div>
@@ -73,7 +74,7 @@ function Home(props) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home
