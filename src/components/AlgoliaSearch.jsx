@@ -68,7 +68,7 @@ function AlgoliaSearch() {
                 })}
               </p> */}
               <h4>{i.cpvnumber}</h4>
-              <p>{i.tittel}</p>
+              <p className="text-search">{i.tittel}</p>
             </Link>
           </div>
         ))}

@@ -90,17 +90,18 @@ a {
 }
 
 .header {
-  width: 100%;
   color: white;
   font-family: "Inter", sans-serif;
   background-color: #36498a;
+  padding: 3vh;
+}
 
 .footer {
   font-family: "Inter", sans-serif;
   color: #535353;
   margin-bottom: 0;
   background-color: #f2f2f2;
-  padding: 0rem;
+  padding: 4vh;
   margin-top: 15rem;
 }
 
@@ -204,6 +205,10 @@ button {
   padding: 2rem;
   margin-top: -2rem;
   border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.text-search {
+  margin-top: 0.2rem;
 }
 
 .a-search:empty {
@@ -698,9 +703,9 @@ input[type="checkbox"]:checked:after {
   color: white;
 }
 
-.aSearch {
+/* .aSearch {
   width: 100%;
-}
+} */
 
 .saved-modal {
   padding: 1rem;
