@@ -205,8 +205,9 @@ function Filter({
                               key={i}
                               value={item.code}
                               onChange={handleClick}
-                              className={"checkbox"}
-                              // handleCheck={handleCheck}
+
+                              className={'checkbox'}
+
                               checked={
                                 checked.includes(item.code) ? true : false
                               }
@@ -226,8 +227,9 @@ function Filter({
                                     key={index}
                                     value={it.code}
                                     onChange={handleChange}
+
                                     className={"checkbox"}
-                                    // handleCheck={handleCheck}
+
                                     checked={
                                       checked.includes(it.code) ? true : false
                                     }
