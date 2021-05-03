@@ -1,9 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
-import structure from '../data/withMainCategories'
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
-import { ScrollArea } from '@material-ui/data-grid'
 import { StateContext } from '../context/StateProvider'
 
 function SavedSearch() {
@@ -11,21 +9,20 @@ function SavedSearch() {
   const [openLast, setOpenLast] = useState(false)
   const [saved, setSaved] = useState([])
   const [openSaved, setOpenSaved] = useState(false)
-  const { checkedCategories, setcheckedCategories } = useContext(StateContext)
+  const { setcheckedCategories } = useContext(StateContext)
 
-  let category = structure.map((i) => i.main)
   let arr = Object.keys(localStorage).filter(
     (elem) => elem !== 'ally-supports-cache' && elem !== 'lastSearch'
   )
 
-  // useEffect(() => {
-  //   arr.map((elem) =>
-  //     setSaved((prevstate) => [
-  //       ...prevstate,
-  //       { [elem]: JSON.parse(localStorage.getItem(elem)) },
-  //     ])
-  //   );
-  // }, []);
+  useEffect(() => {
+    arr.map((elem) =>
+      setSaved((prevstate) => [
+        ...prevstate,
+        { [elem]: JSON.parse(localStorage.getItem(elem)) },
+      ])
+    )
+  }, [])
 
   useEffect(() => {
     let data = JSON.parse(localStorage.getItem('lastSearch'))
