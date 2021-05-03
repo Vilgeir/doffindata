@@ -7,36 +7,37 @@ import { StateContext } from '../context/StateProvider'
 import { homeIcons, mapFunction } from '../helpers/functions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CategoryCards from '../components/CategoryCards'
+import AlgoliaSearch from "../components/AlgoliaSearch";
+
 
 function Categories() {
-  const { checkedCategories, setcheckedCategories } = useContext(StateContext)
-  const { category } = useParams()
+  const { checkedCategories, setcheckedCategories } = useContext(StateContext);
+  const { category, details } = useParams();
 
   useEffect(() => {
-    setcheckedCategories([])
-  }, [])
+    setcheckedCategories([]);
+  }, []);
 
   return (
-    <div className='home-container'>
-      <div className='head'>
+    <div className="home-container">
+      <div className="head">
         <div>
-          <input
-            className='searchbar'
-            placeholder='Søk etter anbud eller CPV-koder'
-            src='../../public/iconer/search.png'
-          />
-        </div>
-        <div className='categories-head'>
-          <div className='homeicon-container' style={homeIcons(category).style}>
-            <FontAwesomeIcon
-              id='homeicon-icon'
-              icon={homeIcons(category).icon}
-            />
+          <AlgoliaSearch />
+          <div className="categories-head">
+            <div
+              className="homeicon-container"
+              style={homeIcons(category).style}
+            >
+              <FontAwesomeIcon
+                id="homeicon-icon"
+                icon={homeIcons(category).icon}
+              />
+            </div>
+            <h3>{category}</h3>
           </div>
-          <h3>{category}</h3>
         </div>
       </div>
-      <div className='categories'>
+      <div className="categories">
         {structure.map(
           (i) =>
             i.main === category &&
@@ -46,7 +47,7 @@ function Categories() {
         )}
       </div>
     </div>
-  )
+  );
 }
 
-export default Categories
+export default Categories;

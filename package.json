@@ -18,6 +18,7 @@
     "axios": "^0.21.1",
     "dom-parser": "^0.1.6",
     "firebase": "^8.2.6",
+    "firebase-functions": "^3.13.2",
     "fs": "^0.0.1-security",
     "node-fetch": "^2.6.1",
     "node-html-parser": "^3.1.4",

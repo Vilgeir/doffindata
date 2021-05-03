@@ -180,16 +180,14 @@ button {
   padding-bottom: 1rem;
 }
 
-.search {
-  width: 32rem;
-  padding-left: 0rem;
-  padding-right: 1rem;
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
+/* ---- Searchbar ---- */
+
+.search-container {
+  width: 39rem;
 }
 
 .searchbar {
-  width: 39rem;
+  width: 100%;
   padding: 1.2rem;
   border: 2px;
   margin-bottom: 2rem;
@@ -202,22 +200,25 @@ button {
   font-size: 1rem;
 }
 
-/* ---- homePage ----*/
-
 .a-search {
   position: absolute;
   z-index: 99;
   background-color: white;
   border: black 1px solid;
-  width: 37rem;
+  width: 37.25rem;
   padding: 2rem;
   margin-top: -2rem;
-  border-radius: 0.5rem;
+  border-radius: 0 0 0.5rem 0.5rem;
 }
 
 .a-search:empty {
   display: none;
 }
+
+.search-result {
+}
+
+/* ---- homePage ----*/
 
 .home-container {
   /* width: 70%; */
