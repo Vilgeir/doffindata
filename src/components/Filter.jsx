@@ -27,6 +27,8 @@ function Filter({
   fylkerKommuner,
   kommuner,
   setKommuner,
+  checkedFylker,
+  setCheckedFylker,
 }) {
   const [openCategory, setOpenCategory] = useState(true)
   const [openCounty, setOpenCounty] = useState(true)
@@ -71,6 +73,7 @@ function Filter({
     setcheckedCategories([])
     setChecked([])
     setKommuner([])
+    setCheckedFylker([])
   }
 
   const handleCheck = (e) => {
@@ -81,9 +84,14 @@ function Filter({
     )
   }
 
+  useEffect(() => {
+    let flereFylker = kommuner.flat().map((x) => x.Fylke)
+    setCheckedFylker([...new Set(flereFylker)])
+  }, [kommuner])
   // console.log(kommuner.flat().map((x) => [...new Set(x.Fylke)]))
-  let flereFylker = kommuner.flat().map((x) => x.Fylke)
-  console.log([...new Set(flereFylker)])
+  // let flereFylker = kommuner.flat().map((x) => x.Fylke)
+  // console.log([...new Set(flereFylker)])
+  console.log(checkedFylker)
   const handleClickFylker = (e) => {
     if (
       kommuner
@@ -140,7 +148,6 @@ function Filter({
     window.history.back()
   }
 
-  // localStorage.clear()
   return (
     <div>
       <div className='save-search'>
@@ -173,7 +180,7 @@ function Filter({
         <Link className='go-back' onClick={goBack}>
           <FontAwesomeIcon icon={faArrowLeft} /> {category}
         </Link>
-        {checkedCategories.length > 0 && (
+        {(checkedCategories.length > 0 || checkedFylker.length > 0) && (
           <button className='cpv-button' onClick={removeFilters}>
             Nullstill filter
           </button>
@@ -302,6 +309,7 @@ function Filter({
               type='checkbox'
               onClick={handleClickFylker}
               value={item.navn}
+              checked={checkedFylker.includes(item.navn) ? true : false}
             ></input>
             <label>{item.navn}</label>
           </div>
