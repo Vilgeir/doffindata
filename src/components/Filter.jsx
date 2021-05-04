@@ -91,7 +91,7 @@ function Filter({
   // console.log(kommuner.flat().map((x) => [...new Set(x.Fylke)]))
   // let flereFylker = kommuner.flat().map((x) => x.Fylke)
   // console.log([...new Set(flereFylker)])
-  console.log(checkedFylker)
+
   const handleClickFylker = (e) => {
     if (
       kommuner

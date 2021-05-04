@@ -9,7 +9,9 @@ function SavedSearch() {
   const [openLast, setOpenLast] = useState(false)
   const [saved, setSaved] = useState([])
   const [openSaved, setOpenSaved] = useState(false)
-  const { setcheckedCategories } = useContext(StateContext)
+  const { setcheckedCategories, setCheckedFylker, setKommuner } = useContext(
+    StateContext
+  )
 
   let arr = Object.keys(localStorage).filter(
     (elem) => elem !== 'ally-supports-cache' && elem !== 'lastSearch'
@@ -44,6 +46,9 @@ function SavedSearch() {
       (item) =>
         item.checkedCategories && setcheckedCategories(item.checkedCategories)
     )
+    Object.values(i).map((item) => item.fylker && setCheckedFylker(item.fylker))
+    Object.values(i).map((item) => item.kommuner && setKommuner(item.kommuner))
+    console.log(Object.values(i).map((item) => item.fylker))
   }
 
   return (
