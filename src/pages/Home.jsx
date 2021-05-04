@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import structure from '../data/withMainCategories'
+import structure from '../data/withNorwegianNames'
 import '../index.css'
 import SavedSearch from '../components/SavedSearch'
 import Footer from '../components/Footer'

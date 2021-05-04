@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import structure from '../data/withMainCategories'
+import structure from '../data/withNorwegianNames'
 
 function SaveSearch({
   setSaveSearch,

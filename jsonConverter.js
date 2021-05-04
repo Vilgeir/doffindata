@@ -94,11 +94,12 @@ fs.readFile(
     firstEight.forEach((i) => (countEight[i] = (countEight[i] || 0) + 1))
 
     // console.log(countEight)
-    fs.readFile('./src/data/cpv.json', 'utf8', (err, cpvname) => {
+    // fs.readFile('./src/data/cpv.json', 'utf8', (err, cpvname) => {
+    fs.readFile('./src/data/newjson.json', 'utf8', (err, cpvname) => {
       err && console.log(err)
       let cpvName = JSON.parse(cpvname)
       let arr = []
-
+      // console.log(cpvName)
       mainCateogies.map((i) => {
         obj = {
           main: i,
@@ -106,15 +107,20 @@ fs.readFile(
         }
         arr.push(obj)
       })
+      let cpvCodeandName = cpvName.map((i) => [i.id, i.label.substring(9)])
 
       for (let [key, value] of Object.entries(count)) {
         obj = {
           code: key,
-          name: cpvName[key],
+          name: cpvCodeandName
+            .map((i) => i[0] == key && i[1])
+            .filter((it) => it !== false)
+            .join(''),
           countWithoutChildren: countEight[key],
           countWithChildren: value,
           children: [],
         }
+
         arr.map(
           (i) =>
             i.main === 'IT' &&
@@ -181,7 +187,10 @@ fs.readFile(
       for (const [k, v] of Object.entries(countThree)) {
         obj = {
           code: k,
-          name: cpvName[k],
+          name: cpvCodeandName
+            .map((i) => i[0] == k && i[1])
+            .filter((it) => it !== false)
+            .join(''),
           countWithoutChildren: countEight[k],
           countWithChildren: v,
           children: [],
@@ -200,7 +209,10 @@ fs.readFile(
       for (const [k, v] of Object.entries(countFour)) {
         obj = {
           code: k,
-          name: cpvName[k],
+          name: cpvCodeandName
+            .map((i) => i[0] == k && i[1])
+            .filter((it) => it !== false)
+            .join(''),
           countWithoutChildren: countEight[k],
           countWithChildren: v,
           children: [],
@@ -220,7 +232,10 @@ fs.readFile(
       for (const [k, v] of Object.entries(countFive)) {
         obj = {
           code: k,
-          name: cpvName[k],
+          name: cpvCodeandName
+            .map((i) => i[0] == k && i[1])
+            .filter((it) => it !== false)
+            .join(''),
           countWithoutChildren: countEight[k],
           countWithChildren: v,
           children: [],
@@ -243,7 +258,10 @@ fs.readFile(
       for (const [k, v] of Object.entries(countSix)) {
         obj = {
           code: k,
-          name: cpvName[k],
+          name: cpvCodeandName
+            .map((i) => i[0] == k && i[1])
+            .filter((it) => it !== false)
+            .join(''),
           countWithoutChildren: countEight[k],
           countWithChildren: v,
           children: [],
@@ -268,7 +286,10 @@ fs.readFile(
       for (const [k, v] of Object.entries(countSeven)) {
         obj = {
           code: k,
-          name: cpvName[k],
+          name: cpvCodeandName
+            .map((i) => i[0] == k && i[1])
+            .filter((it) => it !== false)
+            .join(''),
           countWithoutChildren: countEight[k],
           countWithChildren: v,
           children: [],
@@ -295,7 +316,10 @@ fs.readFile(
       for (const [k, v] of Object.entries(countEight)) {
         obj = {
           code: k,
-          name: cpvName[k],
+          name: cpvCodeandName
+            .map((i) => i[0] == k && i[1])
+            .filter((it) => it !== false)
+            .join(''),
           count: v,
         }
 
@@ -318,9 +342,9 @@ fs.readFile(
           )
         })
       }
-
+      console.log(arr.map((i) => i.children))
       fs.writeFile(
-        './src/data/withMainCategories.jsx',
+        './src/data/withNorwegianNames.jsx',
         JSON.stringify(arr),
         (err) => {
           err && console.log('error', err)

@@ -25,6 +25,7 @@ const getData = async (nameCollection) => {
 }
 
 const writeData = (data) => {
+  let docs
   data.url_dokumentasjon.substring(8, 17) === 'permalink'
     ? axios.get(data.url_dokumentasjon).then((res) => {
         const dom = parse(res.data)
@@ -58,7 +59,7 @@ const writeData = (data) => {
         //   })),
         // }
 
-        let docs = {
+        docs = {
           form: data.form,
           kunngjoringsdato: data.kunngjoringsdato,
           tilleggsCPV: data.tilleggsCPV,
@@ -92,7 +93,9 @@ const writeData = (data) => {
             name: node.text,
             url: node.getAttribute('href'),
           })),
+          pris: data.pris,
         }
+        // console.log(docs)
         writeToFirestore(data, docs)
       })
     : (docs = {
@@ -126,21 +129,33 @@ const writeData = (data) => {
         url_kjoperprofil: data.url_kjoperprofil,
         url_oppdragsgiver: data.url_oppdragsgiver,
         documents: null,
+        pris: data.pris,
       })
-  // writeToFirestore(data, docs)
+
+  writeToFirestore(data, docs)
   // console.log(docs)
 }
+
+// const writeToFirestore = async (data, docs) => {
+//   let documents = db.collection('test').doc(docs.id)
+//   try {
+//     await documents.set(docs)
+//     console.log('Document successfully written!')
+//   } catch (error) {
+//     console.error('Error writing document: ', error)
+//   }
+// }
 
 const writeToFirestore = async (data, docs) => {
-  // console.log(docs)
-
-  let documents = db.collection('tendre').doc(docs.id)
-  try {
-    await documents.set(docs)
-    console.log('Document successfully written!')
-  } catch (error) {
-    console.error('Error writing document: ', error)
-  }
+  db.collection('tendre')
+    .doc(docs.id)
+    .set(docs)
+    .then(() => {
+      console.log('Document successfully written!')
+    })
+    .catch((error) => {
+      console.error('Error writing document: ', error)
+    })
 }
 let data
-getData('tendre', data)
+getData('anbud', data)
