@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import structure from '../data/withMainCategories'
+import structure from '../data/withNorwegianNames'
 import { useParams } from 'react-router-dom'
 import Footer from '../components/Footer'
 import { StateContext } from '../context/StateProvider'

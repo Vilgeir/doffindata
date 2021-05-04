@@ -3,7 +3,7 @@ import Filter from '../components/Filter'
 import SaveSearch from '../components/SaveSearch'
 import Card from '../components/Card'
 import { useParams } from 'react-router-dom'
-import structure from '../data/withMainCategories'
+import structure from '../data/withNorwegianNames'
 import data from '../data/doffin-form2.json'
 import { Link } from 'react-router-dom'
 import { getData, getProcurements } from '../helpers/handleData'
@@ -75,15 +75,15 @@ function DetailedList() {
     )
     if (category.length > 0 || subcat.length > 0) {
       category.map((i) =>
-        getProcurements('anbud', 'cpvnumbersub', i, setDocuments, documents)
+        getProcurements('tendre', 'cpvnumbersub', i, setDocuments, documents)
       )
 
       subcat.map((i) =>
-        getProcurements('anbud', 'cpvnumbersubsub', i, setDocuments, documents)
+        getProcurements('tendre', 'cpvnumbersubsub', i, setDocuments, documents)
       )
     } else {
       getProcurements(
-        'anbud',
+        'tendre',
         'cpvnumbermain',
         categorycpv,
         setDocuments,

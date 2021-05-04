@@ -14,7 +14,7 @@ function DetailedInfo({ i }) {
   let subcategory = newdetails[1]
 
   useEffect(() => {
-    getProcurement('anbud', procurement, setProcurement)
+    getProcurement('tendre', procurement, setProcurement)
     // setProcurement(data.filter((i) => i.tittel === procurement))
   }, [])
 
