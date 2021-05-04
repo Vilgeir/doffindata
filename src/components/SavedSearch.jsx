@@ -48,7 +48,6 @@ function SavedSearch() {
     )
     Object.values(i).map((item) => item.fylker && setCheckedFylker(item.fylker))
     Object.values(i).map((item) => item.kommuner && setKommuner(item.kommuner))
-    console.log(Object.values(i).map((item) => item.fylker))
   }
 
   return (
