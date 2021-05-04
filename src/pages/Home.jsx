@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import structure from '../data/withNorwegianNames'
 import '../index.css'
 import SavedSearch from '../components/SavedSearch'
-import Footer from '../components/Footer'
-import Search from '../components/Search'
-import SearchData from '../components/SearchData'
 import AlgoliaSearch from '../components/AlgoliaSearch'
-import { homeIcons } from '../helpers/functions'
 import HomeIcons from '../components/homeIcons'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getData } from '../helpers/handleData'
+import { StateContext } from '../context/StateProvider'
 
 function Home(props) {
+  const {
+    checkedCategories,
+    setcheckedCategories,
+    setCheckedFylker,
+    setKommuner,
+  } = useContext(StateContext)
+
   const [input, setInput] = useState('')
   const [searchData, setSearchData] = useState()
   const [searchDataDefault, setSearchDataDefault] = useState(
@@ -23,6 +24,11 @@ function Home(props) {
 
   const [serverData, setServerData] = useState([])
 
+  useEffect(() => {
+    setcheckedCategories([])
+    setCheckedFylker([])
+    setKommuner([])
+  }, [])
   //children.map((it, index) => it.code)  .flat()
 
   // console.log(searchDataDefault);

@@ -4,28 +4,35 @@ import SaveSearch from '../components/SaveSearch'
 import Card from '../components/Card'
 import { useParams } from 'react-router-dom'
 import structure from '../data/withNorwegianNames'
-import data from '../data/doffin-form2.json'
-import { Link } from 'react-router-dom'
-import { getData, getProcurements } from '../helpers/handleData'
 import { StateContext } from '../context/StateProvider'
+import { Link } from 'react-router-dom'
+import { getProcurements } from '../helpers/handleData'
 import fylkerKommuner from '../data/fylkerkommuner.json'
 import { capitalize } from '../helpers/functions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 function DetailedList() {
-  const { checkedCategories, setcheckedCategories } = useContext(StateContext)
+  const {
+    checkedCategories,
+    setcheckedCategories,
+    checkedFylker,
+    setCheckedFylker,
+    kommuner,
+    setKommuner,
+  } = useContext(StateContext)
+  // const { checkedFylker, setCheckedFylker}
   const [removeChecked, setRemoveChecked] = useState([])
   const [sort, setSort] = useState()
   const [checked, setChecked] = useState([])
   const [saveSearch, setSaveSearch] = useState(false)
   const [openModal, setOpenModal] = useState(false)
-  const [kommuner, setKommuner] = useState([])
+
   const [documents, setDocuments] = useState([])
-  const [checkedFylker, setCheckedFylker] = useState([])
-
+  // const [checkedFylker, setCheckedFylker] = useState([])
+  console.log(kommuner)
   const { category, details } = useParams()
-
+  console.log(checkedFylker)
   useEffect(() => {
     let arr = []
     Object.values(checkedCategories)
@@ -42,6 +49,8 @@ function DetailedList() {
       checkedCategories,
       category: category,
       cpv: categorycpv,
+      fylker: checkedFylker,
+      kommuner: kommuner,
     }
 
     window.localStorage.setItem('lastSearch', JSON.stringify(obj))
@@ -268,6 +277,7 @@ function DetailedList() {
         </div>
         {saveSearch && (
           <SaveSearch
+            checkedFylker={checkedFylker}
             setSaveSearch={setSaveSearch}
             checkedCategories={checkedCategories}
             category={category}
