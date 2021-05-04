@@ -22,6 +22,7 @@ function DetailedList() {
   const [openModal, setOpenModal] = useState(false)
   const [kommuner, setKommuner] = useState([])
   const [documents, setDocuments] = useState([])
+  const [checkedFylker, setCheckedFylker] = useState([])
 
   const { category, details } = useParams()
 
@@ -122,11 +123,9 @@ function DetailedList() {
     setSort(event.target.value)
   }
 
-  console.log(newArray.map((i) => i))
   // console.log("sorted: " + sortedArray);
 
   const handleChange = (e) => {
-    console.log(e.target.value)
     let value = e.target.value
       .split('')
       .filter((item) => item === '0')
@@ -190,6 +189,8 @@ function DetailedList() {
             setChecked={setChecked}
             saveSearch={saveSearch}
             setSaveSearch={setSaveSearch}
+            checkedFylker={checkedFylker}
+            setCheckedFylker={setCheckedFylker}
           />
         </div>
         <div className='list-container'>
