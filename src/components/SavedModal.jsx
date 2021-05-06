@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
-import structure from '../data/withNorwegianNames'
+// import structure from '../data/withNorwegianNames'
 import { Link } from 'react-router-dom'
 import { StateContext } from '../context/StateProvider'
 
 function SavedModal() {
-  const { checkedCategories, setcheckedCategories } = useContext(StateContext)
+  const { setcheckedCategories } = useContext(StateContext)
   const [saved, setSaved] = useState([])
   let arr = Object.keys(localStorage).filter(
     (elem) => elem !== 'ally-supports-cache' && elem !== 'lastSearch'

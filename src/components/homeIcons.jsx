@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { homeIcons } from '../helpers/functions'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,7 +13,6 @@ const HomeIcons = ({ i }) => {
       <div className='main-box'>
         <div className='main-box-text'>
           <p className='main-boxes-title'>{i.main}</p>
-          {/* <p className='main-boxes-cpv'>CPV {i.children[0].code}</p> */}
         </div>
         <div className='main-boxes-arrow'>
           <FontAwesomeIcon icon={faArrowRight} color='#4DBFAC' />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import structure from '../data/withNorwegianNames'
 import fylker from '../data/fylker'
 import {
@@ -11,13 +11,12 @@ import Checkboxes from './Checkboxes'
 import { Link } from 'react-router-dom'
 import SavedModal from '../components/SavedModal'
 import AlgoliaSearch from '../components/AlgoliaSearch'
+import { StateContext } from '../context/StateProvider'
 
 function Filter({
   category,
   details,
   subcategory,
-  checkedCategories,
-  setcheckedCategories,
   removeChecked,
   checked,
   setChecked,
@@ -25,11 +24,15 @@ function Filter({
   setOpenModal,
   openModal,
   fylkerKommuner,
-  kommuner,
-  setKommuner,
-  checkedFylker,
-  setCheckedFylker,
 }) {
+  const {
+    checkedCategories,
+    setcheckedCategories,
+    checkedFylker,
+    setCheckedFylker,
+    kommuner,
+    setKommuner,
+  } = useContext(StateContext)
   const [openCategory, setOpenCategory] = useState(true)
   const [openCounty, setOpenCounty] = useState(true)
   const handleClick = (e) => {
@@ -288,7 +291,7 @@ function Filter({
       )}
 
       <div
-        onClick={() => setOpenCounty((prev) => !prev)}
+        onChange={() => setOpenCounty((prev) => !prev)}
         className='filter-header'
       >
         <h4>Fylker </h4>
@@ -303,7 +306,7 @@ function Filter({
           <div className='checkboxes' key={i}>
             <input
               type='checkbox'
-              onClick={handleClickFylker}
+              onChange={handleClickFylker}
               value={item.navn}
               checked={checkedFylker.includes(item.navn) ? true : false}
             ></input>

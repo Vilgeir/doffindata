@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useContext } from 'react'
-import structure from '../data/withNorwegianNames'
+import React, { useState, useContext } from 'react'
 import { StateContext } from '../context/StateProvider'
+import jsonData from '../data/newjson.json'
 
 function SaveSearch({
   setSaveSearch,
@@ -8,8 +8,9 @@ function SaveSearch({
   category,
   categorycpv,
   checkedFylker,
+  checked,
 }) {
-  const { kommuner, setKommuner } = useContext(StateContext)
+  const { kommuner } = useContext(StateContext)
   const [nameSearch, setNameSearch] = useState()
   const handleChange = (e) => {
     setNameSearch(e.target.value)
@@ -28,21 +29,24 @@ function SaveSearch({
     setSaveSearch(false)
   }
 
+  const getName = (cpvnumber) => {
+    return jsonData
+      .map((i) => i.id === cpvnumber && i.label)
+      .filter((it) => it !== false)
+      .join()
+      .substring(9)
+  }
+
+  console.log(checked)
   return (
     <div className='modal'>
       <div className='modal-elements'>
         <h1 className=''>Lagre søk</h1>
         <h2>Filter</h2>
-        {structure.map((item) => {
-          item.main === category &&
-            item.children.map(
-              (it) => (it.code === categorycpv ? <h3>{it.name}</h3> : '')
-              // (it) => it.code === categorycpv && <h3>{it.name}</h3>
-            )
-        })}
-
-        <p>{category}</p>
-
+        {category} - {getName(categorycpv)}
+        {checked.map((cpv) => ' - ' + getName(cpv))}{' '}
+        {checkedFylker.length > 0 ? ' - ' : ''}
+        {checkedFylker.map((fylke) => fylke)}
         <h2>Navngi søk *</h2>
         <input
           type='text'

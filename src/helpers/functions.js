@@ -1,5 +1,4 @@
 import {
-  faArrowRight,
   faPlug,
   faTools,
   faUserMd,

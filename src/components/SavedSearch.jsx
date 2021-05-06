@@ -13,20 +13,22 @@ function SavedSearch() {
     StateContext
   )
 
-  let arr = Object.keys(localStorage).filter(
-    (elem) => elem !== 'ally-supports-cache' && elem !== 'lastSearch'
-  )
-
-  useEffect(() => {
+  const getSaved = () => {
+    let arr = Object.keys(localStorage).filter(
+      (elem) => elem !== 'ally-supports-cache' && elem !== 'lastSearch'
+    )
     arr.map((elem) =>
       setSaved((prevstate) => [
         ...prevstate,
         { [elem]: JSON.parse(localStorage.getItem(elem)) },
       ])
     )
+  }
+  useEffect(() => {
+    getSaved()
   }, [])
 
-  useEffect(() => {
+  const getLast = () => {
     let data = JSON.parse(localStorage.getItem('lastSearch'))
     let arr = []
     data &&
@@ -39,6 +41,9 @@ function SavedSearch() {
       ])
 
     setLast(arr)
+  }
+  useEffect(() => {
+    getLast()
   }, [])
 
   const handleClick = (i) => {
