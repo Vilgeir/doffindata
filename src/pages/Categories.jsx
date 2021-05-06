@@ -11,11 +11,16 @@ import AlgoliaSearch from '../components/AlgoliaSearch'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 function Categories() {
-  const { checkedCategories, setcheckedCategories } = useContext(StateContext)
+  const {
+    checkedCategories,
+    setcheckedCategories,
+    setCheckedFylker,
+  } = useContext(StateContext)
   const { category, details } = useParams()
 
   useEffect(() => {
     setcheckedCategories([])
+    setCheckedFylker([])
   }, [])
 
   return (

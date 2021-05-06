@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import structure from '../data/withNorwegianNames'
+import { StateContext } from '../context/StateProvider'
 
 function SaveSearch({
   setSaveSearch,
   checkedCategories,
   category,
   categorycpv,
+  checkedFylker,
 }) {
+  const { kommuner, setKommuner } = useContext(StateContext)
   const [nameSearch, setNameSearch] = useState()
   const handleChange = (e) => {
     setNameSearch(e.target.value)
@@ -16,9 +19,10 @@ function SaveSearch({
     checkedCategories,
     category: category,
     cpv: categorycpv,
+    fylker: checkedFylker,
+    kommuner: kommuner,
   }
-  // console.log(obj)
-  // console.log(category + categorycpv)
+
   const handleClick = () => {
     window.localStorage.setItem(nameSearch, JSON.stringify(obj))
     setSaveSearch(false)
