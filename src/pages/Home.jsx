@@ -1,78 +1,75 @@
-import React, { useEffect, useState, useContext } from 'react'
-import { Link } from 'react-router-dom'
-import structure from '../data/withNorwegianNames'
-import '../index.css'
-import SavedSearch from '../components/SavedSearch'
-import AlgoliaSearch from '../components/AlgoliaSearch'
-import HomeIcons from '../components/homeIcons'
-import { getData } from '../helpers/handleData'
-import { StateContext } from '../context/StateProvider'
+import React, { useEffect, useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import structure from "../data/withNorwegianNames";
+import "../index.css";
+import SavedSearch from "../components/SavedSearch";
+import AlgoliaSearch from "../components/AlgoliaSearch";
+import HomeIcons from "../components/homeIcons";
+import { getData } from "../helpers/handleData";
+import { StateContext } from "../context/StateProvider";
 
 function Home(props) {
   const { setcheckedCategories, setCheckedFylker, setKommuner } = useContext(
     StateContext
-  )
+  );
 
-  const [input, setInput] = useState('')
-  const [searchData, setSearchData] = useState()
+  const [input, setInput] = useState("");
+  const [searchData, setSearchData] = useState();
   const [searchDataDefault, setSearchDataDefault] = useState(
     structure.map((i) => i.main)
-  )
+  );
 
-  const [serverData, setServerData] = useState([])
-
-  useEffect(() => {
-    setcheckedCategories([])
-    setCheckedFylker([])
-    setKommuner([])
-  }, [])
-
-  let arrrray = []
-  let mainCpv = ''
+  const [serverData, setServerData] = useState([]);
 
   useEffect(() => {
-    getData('F02_2014', 'cpv', mainCpv, setServerData)
-  }, [])
+    setcheckedCategories([]);
+    setCheckedFylker([]);
+    setKommuner([]);
+  }, []);
 
-  Object.entries(serverData).map((i) => arrrray.push(i))
+  let arrrray = [];
+  let mainCpv = "";
+
+  useEffect(() => {
+    getData("F02_2014", "cpv", mainCpv, setServerData);
+  }, []);
+
+  Object.entries(serverData).map((i) => arrrray.push(i));
 
   const updateInput = (input) => {
     const filtered = searchDataDefault.filter((main) => {
       if (isNaN()) {
-        return main.toLowerCase().includes(input.toLowerCase())
+        return main.toLowerCase().includes(input.toLowerCase());
       }
-      return main
-    })
-    if (input === '') return setInput(input), setSearchData([])
-    return setInput(input), setSearchData(filtered)
-  }
+      return main;
+    });
+    if (input === "") return setInput(input), setSearchData([]);
+    return setInput(input), setSearchData(filtered);
+  };
 
   return (
-    <div className='errthing'>
-      <div className='breadcrums'>
-        <Link to={'/'}>Hjem</Link>
+    <div className="errthing">
+      <div className="breadcrums">
+        <Link to={"/"}>Hjem</Link>
       </div>
-      <div className='home-container'>
+      <div className="home-container">
         <div>
-          <div className='home-head'>
-            <div>
+          <div className="home-head">
+            <div className="search-home">
               <AlgoliaSearch />
             </div>
             <SavedSearch />
           </div>
-          <h3 className='headline'>Alle kategorier</h3>
+          <h3 className="headline">Alle kategorier</h3>
         </div>
       </div>
-      <div></div>
-      <div class='content-container'>
-        <div className='box-container'>
-          {structure.map((i, index) => (
-            <HomeIcons i={i} key={index} />
-          ))}
-        </div>
+      <div className="box-container">
+        {structure.map((i, index) => (
+          <HomeIcons i={i} key={index} />
+        ))}
       </div>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
