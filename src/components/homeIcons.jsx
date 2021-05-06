@@ -1,12 +1,12 @@
 import React from 'react'
-import { homeIcons } from '../helpers/functions'
+import { homeIcons, toLowerCaseAndReplace } from '../helpers/functions'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 const HomeIcons = ({ i }) => {
   return (
-    <Link className='main-boxes' to={i.main}>
+    <Link className='main-boxes' to={toLowerCaseAndReplace(i.main)}>
       <div style={homeIcons(i.main).style} className='homeicon-container'>
         <FontAwesomeIcon id='homeicon-icon' icon={homeIcons(i.main).icon} />
       </div>

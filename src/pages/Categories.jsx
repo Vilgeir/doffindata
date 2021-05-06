@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CategoryCards from '../components/CategoryCards'
 import AlgoliaSearch from '../components/AlgoliaSearch'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { capitalizeAndReplace } from '../helpers/functions'
 
 function Categories() {
   const { setcheckedCategories, setCheckedFylker } = useContext(StateContext)
@@ -18,6 +19,9 @@ function Categories() {
     setcheckedCategories([])
     setCheckedFylker([])
   }, [])
+
+  console.log(capitalizeAndReplace(category))
+  console.log(category)
 
   return (
     <>
@@ -40,14 +44,14 @@ function Categories() {
                   icon={homeIcons(category).icon}
                 />
               </div>
-              <h3>{category}</h3>
+              <h3>{capitalizeAndReplace(category)}</h3>
             </div>
           </div>
         </div>
         <div className='categories'>
           {structure.map(
             (i) =>
-              i.main === category &&
+              i.main === capitalizeAndReplace(category) &&
               i.children.map((item, idx) => (
                 <CategoryCards item={item} idx={idx} category={category} />
               ))

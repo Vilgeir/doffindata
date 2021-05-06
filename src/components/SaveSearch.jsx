@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { StateContext } from '../context/StateProvider'
 import jsonData from '../data/newjson.json'
+import { capitalizeAndReplace } from '../helpers/functions'
 
 function SaveSearch({
   setSaveSearch,
@@ -37,13 +38,12 @@ function SaveSearch({
       .substring(9)
   }
 
-  console.log(checked)
   return (
     <div className='modal'>
       <div className='modal-elements'>
         <h1 className=''>Lagre søk</h1>
         <h2>Filter</h2>
-        {category} - {getName(categorycpv)}
+        {capitalizeAndReplace(category)} - {getName(categorycpv)}
         {checked.map((cpv) => ' - ' + getName(cpv))}{' '}
         {checkedFylker.length > 0 ? ' - ' : ''}
         {checkedFylker.map((fylke) => fylke)}

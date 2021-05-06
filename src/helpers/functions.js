@@ -13,7 +13,17 @@ import {
 
 export const capitalize = (str) => {
   let lower = str.toLowerCase()
-  return str.charAt(0).toUpperCase() + lower.slice(1)
+  return str.length > 2
+    ? str.charAt(0).toUpperCase() + lower.slice(1)
+    : str.toUpperCase()
+}
+
+export const capitalizeAndReplace = (str) => {
+  return capitalize(str.split('-').join(' '))
+}
+
+export const toLowerCaseAndReplace = (str) => {
+  return str.split(' ').join('-').toLowerCase()
 }
 
 export const homeIcons = (icon) => {
