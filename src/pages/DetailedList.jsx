@@ -6,7 +6,10 @@ import { useParams } from 'react-router-dom'
 import structure from '../data/withNorwegianNames'
 import { StateContext } from '../context/StateProvider'
 import { Link } from 'react-router-dom'
-import { getProcurements } from '../helpers/handleData'
+import {
+  getProcurements,
+  getProcurementsWithCounty,
+} from '../helpers/handleData'
 import fylkerKommuner from '../data/fylkerkommuner.json'
 import { capitalize } from '../helpers/functions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -21,7 +24,6 @@ function DetailedList() {
     kommuner,
     setKommuner,
   } = useContext(StateContext)
-  // const { checkedFylker, setCheckedFylker}
   const [removeChecked, setRemoveChecked] = useState([])
   const [sort, setSort] = useState()
   const [checked, setChecked] = useState([])
@@ -29,10 +31,8 @@ function DetailedList() {
   const [openModal, setOpenModal] = useState(false)
 
   const [documents, setDocuments] = useState([])
-  // const [checkedFylker, setCheckedFylker] = useState([])
-  console.log(kommuner)
   const { category, details } = useParams()
-  console.log(checkedFylker)
+
   useEffect(() => {
     let arr = []
     Object.values(checkedCategories)
@@ -67,6 +67,7 @@ function DetailedList() {
 
   useEffect(() => {
     setDocuments([])
+    console.log(documents)
     let category = []
     let subcat = []
 
@@ -83,7 +84,37 @@ function DetailedList() {
           category.splice(index, 1)
       )
     )
-    if (category.length > 0 || subcat.length > 0) {
+
+    let kommunerFlat = kommuner.flat().map((i) => i.Kommune)
+    if ((category.length > 0 || subcat.length > 0) && kommunerFlat.length > 0) {
+      kommunerFlat.map((kommune) => {
+        category.map((cpv) =>
+          getProcurementsWithCounty(
+            'tendre',
+            'cpvnumbersub',
+            cpv,
+            'sted',
+            kommune,
+            setDocuments,
+            documents
+          )
+        )
+        subcat.map((cpv) =>
+          getProcurementsWithCounty(
+            'tendre',
+            'cpvnumbersubsub',
+            cpv,
+            'sted',
+            kommune,
+            setDocuments,
+            documents
+          )
+        )
+      })
+    } else if (
+      (category.length > 0 || subcat.length > 0) &&
+      kommunerFlat.length === 0
+    ) {
       category.map((i) =>
         getProcurements('tendre', 'cpvnumbersub', i, setDocuments, documents)
       )
@@ -91,7 +122,28 @@ function DetailedList() {
       subcat.map((i) =>
         getProcurements('tendre', 'cpvnumbersubsub', i, setDocuments, documents)
       )
-    } else {
+    } else if (
+      kommunerFlat.length > 0 &&
+      category.length === 0 &&
+      subcat.length === 0
+    ) {
+      console.log(kommuner)
+      kommunerFlat.forEach((kommune) =>
+        getProcurementsWithCounty(
+          'tendre',
+          'cpvnumbermain',
+          categorycpv,
+          'sted',
+          kommune,
+          setDocuments,
+          documents
+        )
+      )
+    } else if (
+      kommunerFlat.length === 0 &&
+      category.length === 0 &&
+      subcat.length === 0
+    ) {
       getProcurements(
         'tendre',
         'cpvnumbermain',
@@ -101,7 +153,6 @@ function DetailedList() {
       )
     }
   }, [checked])
-
   let newArray = []
 
   const byCity = (arr, secondArr) =>
@@ -209,9 +260,9 @@ function DetailedList() {
                   item.main === category &&
                   item.children.map((it) =>
                     it.children.map(
-                      (i) =>
+                      (i, index) =>
                         i.code === subcategory && (
-                          <h1 key={i}>
+                          <h1 key={index}>
                             {i.name} (CPV {i.code})
                           </h1>
                         )
@@ -222,9 +273,9 @@ function DetailedList() {
                 (item) =>
                   item.main === category &&
                   item.children.map(
-                    (i) =>
+                    (i, index) =>
                       i.code === categorycpv && (
-                        <h1 key={i}>
+                        <h1 key={index}>
                           {i.name} (CPV {i.code})
                         </h1>
                       )
@@ -246,12 +297,24 @@ function DetailedList() {
                         (check) =>
                           i.cpvnumber
                             .substring(0, 4)
-                            .includes(check.substring(0, 4)) && <Card i={i} />
+                            .includes(check.substring(0, 4)) && (
+                            <Link
+                              style={{ textDecoration: 'none', color: 'black' }}
+                              to={
+                                '/' + category + '/' + categorycpv + '/' + i.id
+                              }
+                              i={i}
+                              key={i.id}
+                            >
+                              <Card i={i} />
+                            </Link>
+                          )
                       )
                     : i.cpvnumber
                         .substring(0, 3)
                         .includes(Object.keys(checked)[0].substring(0, 3)) && (
                         <Link
+                          key={i.id}
                           style={{ textDecoration: 'none', color: 'black' }}
                           to={'/' + category + '/' + categorycpv + '/' + i.id}
                           i={i}
@@ -266,6 +329,7 @@ function DetailedList() {
                   i.cpvnumber.substring(0, 2) ===
                     categorycpv.substring(0, 2) && (
                     <Link
+                      key={i.id}
                       style={{ textDecoration: 'none', color: 'black' }}
                       to={'/' + category + '/' + categorycpv + '/' + i.id}
                       i={i}

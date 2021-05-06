@@ -22,7 +22,7 @@ function SaveSearch({
     fylker: checkedFylker,
     kommuner: kommuner,
   }
-  console.log(obj)
+
   const handleClick = () => {
     window.localStorage.setItem(nameSearch, JSON.stringify(obj))
     setSaveSearch(false)

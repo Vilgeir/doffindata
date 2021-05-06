@@ -207,12 +207,11 @@ function Filter({
                 (i) =>
                   i.code === details &&
                   i.children.map((item, i) => (
-                    <div className='checkboxes'>
+                    <div className='checkboxes' key={i}>
                       {subcategory && subcategory === item.code ? (
                         <div>
                           <div>
                             <Checkboxes
-                              key={i}
                               value={item.code}
                               onChange={handleClick}
                               className={'checkbox'}
@@ -230,9 +229,8 @@ function Filter({
                             (check) =>
                               Object.keys(check).includes(item.code) &&
                               item.children.map((it, index) => (
-                                <div key={it} className='subcheckboxes'>
+                                <div className='subcheckboxes' key={index}>
                                   <Checkboxes
-                                    key={index}
                                     value={it.code}
                                     onChange={handleChange}
                                     className={'checkbox'}
@@ -264,9 +262,8 @@ function Filter({
                             (check) =>
                               Object.keys(check).includes(item.code) &&
                               item.children.map((it, index) => (
-                                <div className='subcheckboxes'>
+                                <div className='subcheckboxes' key={index}>
                                   <Checkboxes
-                                    key={index}
                                     value={it.code}
                                     onChange={handleChange}
                                     className={'checkbox'}
@@ -303,9 +300,8 @@ function Filter({
       </div>
       {openCounty &&
         fylker.map((item, i) => (
-          <div className='checkboxes'>
+          <div className='checkboxes' key={i}>
             <input
-              key={i}
               type='checkbox'
               onClick={handleClickFylker}
               value={item.navn}
