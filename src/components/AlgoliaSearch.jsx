@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import algoliasearch from "algoliasearch/lite";
 import Text from "react";
+import structure from "../data/withNorwegianNames";
 
 function AlgoliaSearch() {
   const [query, setQuery] = useState("");
@@ -20,6 +21,10 @@ function AlgoliaSearch() {
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
+
+  console.log(
+    structure.map((item) => item.children.map((it) => it.code.substring(0, 2)))
+  );
 
   useEffect(() => {
     const search = async () => {
@@ -47,6 +52,24 @@ function AlgoliaSearch() {
     return;
   };
 
+  const test = () => {
+    if (
+      hits.map((i) =>
+        structure.map((item) =>
+          item.children.map(
+            (it) => it.code.substring(0, 2) === i.cpvnumber.substring(0, 2)
+          )
+        )
+      )
+    ) {
+      console.log("worked!");
+    } else {
+      console.log("didnt work");
+    }
+  };
+
+  console.log(test());
+
   return (
     <div className="search-container">
       <input
@@ -58,17 +81,37 @@ function AlgoliaSearch() {
       <div className="a-search">
         {hits.map((i) => (
           <div className="search-result">
+            {structure.map((item) =>
+              item.children.map((it) =>
+                it.code.substring(0, 2) === i.cpvnumber.substring(0, 2) ? (
+                  <div className="">
+                    <Link
+                      to={
+                        "/" +
+                        item.main +
+                        "/" +
+                        i.cpvnumbermain +
+                        "/" +
+                        i.objectID
+                      }
+                    >
+                      <p className="p-search">{i.tittel}</p>
+                      <p className="place-search">
+                        Sted: {i.sted.toUpperCase()}
+                      </p>
+                      <h4 className="h4-search">CPV: {i.cpvnumber}</h4>
+                    </Link>
+                  </div>
+                ) : undefined
+              )
+            )}
             <Link to={"/" + category + "/" + i.cpvsearch}>
               <h3>{i.cpvmainsearch}</h3>
-            </Link>
-            <Link to={"/" + category + "/" + i.cpvnumber + "/" + i.objectID}>
               {/* <p>
                 {i.tittel.replace(query, () => {
                   return query.bold();
                 })}
               </p> */}
-              <h4>{i.cpvnumber}</h4>
-              <p>{i.tittel}</p>
             </Link>
           </div>
         ))}
