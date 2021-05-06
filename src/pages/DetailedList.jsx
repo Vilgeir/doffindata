@@ -67,6 +67,7 @@ function DetailedList() {
 
   useEffect(() => {
     setDocuments([])
+    console.log(documents)
     let category = []
     let subcat = []
 
@@ -86,34 +87,30 @@ function DetailedList() {
 
     let kommunerFlat = kommuner.flat().map((i) => i.Kommune)
     if ((category.length > 0 || subcat.length > 0) && kommunerFlat.length > 0) {
-      kommunerFlat.map(
-        (kommune) => {
-          category.map((cpv) =>
-            // kommunerFlat.map((kommune) =>
-            getProcurementsWithCounty(
-              'tendre',
-              'cpvnumbersub',
-              cpv,
-              'sted',
-              kommune,
-              setDocuments,
-              documents
-            )
+      kommunerFlat.map((kommune) => {
+        category.map((cpv) =>
+          getProcurementsWithCounty(
+            'tendre',
+            'cpvnumbersub',
+            cpv,
+            'sted',
+            kommune,
+            setDocuments,
+            documents
           )
-          subcat.map((cpv) =>
-            getProcurementsWithCounty(
-              'tendre',
-              'cpvnumbersubsub',
-              cpv,
-              'sted',
-              kommune,
-              setDocuments,
-              documents
-            )
+        )
+        subcat.map((cpv) =>
+          getProcurementsWithCounty(
+            'tendre',
+            'cpvnumbersubsub',
+            cpv,
+            'sted',
+            kommune,
+            setDocuments,
+            documents
           )
-        }
-        // )
-      )
+        )
+      })
     } else if (
       (category.length > 0 || subcat.length > 0) &&
       kommunerFlat.length === 0
@@ -155,7 +152,7 @@ function DetailedList() {
         documents
       )
     }
-  }, [checked, kommuner])
+  }, [checked])
   let newArray = []
 
   const byCity = (arr, secondArr) =>
