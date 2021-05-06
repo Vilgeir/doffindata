@@ -2,21 +2,17 @@ import React, { useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import structure from '../data/withNorwegianNames'
 import { useParams } from 'react-router-dom'
-import Footer from '../components/Footer'
+
 import { StateContext } from '../context/StateProvider'
-import { homeIcons, mapFunction } from '../helpers/functions'
+import { homeIcons } from '../helpers/functions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CategoryCards from '../components/CategoryCards'
 import AlgoliaSearch from '../components/AlgoliaSearch'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 function Categories() {
-  const {
-    checkedCategories,
-    setcheckedCategories,
-    setCheckedFylker,
-  } = useContext(StateContext)
-  const { category, details } = useParams()
+  const { setcheckedCategories, setCheckedFylker } = useContext(StateContext)
+  const { category } = useParams()
 
   useEffect(() => {
     setcheckedCategories([])

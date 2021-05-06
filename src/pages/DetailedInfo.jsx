@@ -9,14 +9,14 @@ function DetailedInfo({ i }) {
   const [procurementData, setProcurement] = useState([])
   const { category, details, procurement } = useParams()
 
+  const getData = () => {
+    getProcurement('tendre', procurement, setProcurement)
+  }
+  useEffect(() => {
+    getData()
+  }, [])
   let newdetails = details.split('+')
   let categorycpv = newdetails[0]
-  let subcategory = newdetails[1]
-
-  useEffect(() => {
-    getProcurement('tendre', procurement, setProcurement)
-    // setProcurement(data.filter((i) => i.tittel === procurement))
-  }, [])
 
   return (
     <>

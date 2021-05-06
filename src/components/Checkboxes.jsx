@@ -12,7 +12,7 @@ const Checkboxes = ({
     type={type}
     value={value}
     checked={checked}
-    onClick={onChange}
+    onChange={onChange}
   />
 )
 

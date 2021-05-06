@@ -9,12 +9,9 @@ import { getData } from '../helpers/handleData'
 import { StateContext } from '../context/StateProvider'
 
 function Home(props) {
-  const {
-    checkedCategories,
-    setcheckedCategories,
-    setCheckedFylker,
-    setKommuner,
-  } = useContext(StateContext)
+  const { setcheckedCategories, setCheckedFylker, setKommuner } = useContext(
+    StateContext
+  )
 
   const [input, setInput] = useState('')
   const [searchData, setSearchData] = useState()
@@ -29,9 +26,6 @@ function Home(props) {
     setCheckedFylker([])
     setKommuner([])
   }, [])
-  //children.map((it, index) => it.code)  .flat()
-
-  // console.log(searchDataDefault);
 
   let arrrray = []
   let mainCpv = ''
@@ -41,8 +35,6 @@ function Home(props) {
   }, [])
 
   Object.entries(serverData).map((i) => arrrray.push(i))
-
-  //console.log(serverData)
 
   const updateInput = (input) => {
     const filtered = searchDataDefault.filter((main) => {

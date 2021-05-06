@@ -29,7 +29,6 @@ export const getProcurements = async (
     .limit(10)
     .get()
     .then((querySnapshot) => {
-      const arr = []
       querySnapshot.forEach((doc) => {
         state.push({ ...doc.data() })
       })
@@ -53,7 +52,6 @@ export const getProcurementsWithCounty = async (
     .limit(10)
     .get()
     .then((querySnapshot) => {
-      const arr = []
       querySnapshot.forEach((doc) => {
         state.push({ ...doc.data() })
       })

@@ -20,9 +20,7 @@ function DetailedList() {
     checkedCategories,
     setcheckedCategories,
     checkedFylker,
-    setCheckedFylker,
     kommuner,
-    setKommuner,
   } = useContext(StateContext)
   const [removeChecked, setRemoveChecked] = useState([])
   const [sort, setSort] = useState()
@@ -60,14 +58,16 @@ function DetailedList() {
   let categorycpv = newdetails[0]
   let subcategory = newdetails[1]
 
-  useEffect(() => {
+  const initialCagetory = () => {
     subcategory && setcheckedCategories([{ [subcategory]: [] }])
     subcategory && setChecked([subcategory])
+  }
+  useEffect(() => {
+    initialCagetory()
   }, [])
 
   useEffect(() => {
     setDocuments([])
-    console.log(documents)
     let category = []
     let subcat = []
 
@@ -127,7 +127,6 @@ function DetailedList() {
       category.length === 0 &&
       subcat.length === 0
     ) {
-      console.log(kommuner)
       kommunerFlat.forEach((kommune) =>
         getProcurementsWithCounty(
           'tendre',
@@ -152,6 +151,7 @@ function DetailedList() {
         documents
       )
     }
+    return documents
   }, [checked])
   let newArray = []
 
@@ -183,44 +183,6 @@ function DetailedList() {
     setSort(event.target.value)
   }
 
-  // console.log("sorted: " + sortedArray);
-
-  const handleChange = (e) => {
-    let value = e.target.value
-      .split('')
-      .filter((item) => item === '0')
-      .join('')
-
-    if (value.length === 5) {
-      checkedCategories.map(
-        (i) =>
-          Object.keys(i).join() === e.target.value &&
-          setcheckedCategories((prevstate) => [
-            ...prevstate.filter(
-              (item) => Object.keys(item).join() != [e.target.value]
-            ),
-          ])
-      )
-    } else {
-      setcheckedCategories((prevState) =>
-        prevState.map((i) =>
-          Object.keys(i).join().substring(0, 3) ===
-          e.target.value.substring(0, 3)
-            ? {
-                [Object.keys(i).join()]: [
-                  ...Object.values(i)[0].filter(
-                    (item) => item !== e.target.value
-                  ),
-                ],
-              }
-            : i
-        )
-      )
-    }
-
-    setRemoveChecked(e.target.value)
-  }
-
   return (
     <>
       <div className='breadcrums'>
@@ -233,24 +195,18 @@ function DetailedList() {
       <div className='detail-container'>
         <div className='search'>
           <Filter
-            kommuner={kommuner}
-            setKommuner={setKommuner}
             fylkerKommuner={fylkerKommuner}
             openModal={openModal}
             setOpenModal={setOpenModal}
             details={categorycpv}
             subcategory={subcategory}
             category={category}
-            setcheckedCategories={setcheckedCategories}
-            checkedCategories={checkedCategories}
             removeChecked={removeChecked}
             setRemoveChecked={setRemoveChecked}
             checked={checked}
             setChecked={setChecked}
             saveSearch={saveSearch}
             setSaveSearch={setSaveSearch}
-            checkedFylker={checkedFylker}
-            setCheckedFylker={setCheckedFylker}
           />
         </div>
         <div className='list-container'>
@@ -346,6 +302,7 @@ function DetailedList() {
             checkedCategories={checkedCategories}
             category={category}
             categorycpv={categorycpv}
+            checked={checked}
           />
         )}
       </div>
