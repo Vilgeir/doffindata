@@ -20,9 +20,6 @@ function Categories() {
     setCheckedFylker([])
   }, [])
 
-  console.log(capitalizeAndReplace(category))
-  console.log(category)
-
   return (
     <>
       <div className='breadcrums'>
