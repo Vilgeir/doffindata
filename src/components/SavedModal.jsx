@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-// import structure from '../data/withNorwegianNames'
 import { Link } from 'react-router-dom'
 import { StateContext } from '../context/StateProvider'
 
