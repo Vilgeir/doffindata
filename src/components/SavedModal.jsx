@@ -15,6 +15,7 @@ function SavedModal() {
         { [elem]: JSON.parse(localStorage.getItem(elem)) },
       ])
     )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleClick = (i) => {

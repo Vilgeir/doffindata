@@ -27,7 +27,6 @@ function DetailedList() {
   const [checked, setChecked] = useState([])
   const [saveSearch, setSaveSearch] = useState(false)
   const [openModal, setOpenModal] = useState(false)
-
   const [documents, setDocuments] = useState([])
   const { category, details } = useParams()
 
@@ -52,6 +51,7 @@ function DetailedList() {
     }
 
     window.localStorage.setItem('lastSearch', JSON.stringify(obj))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkedCategories])
 
   let newdetails = details.split('+')
@@ -64,6 +64,7 @@ function DetailedList() {
   }
   useEffect(() => {
     initialCagetory()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -152,6 +153,7 @@ function DetailedList() {
       )
     }
     return documents
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checked])
   let newArray = []
 

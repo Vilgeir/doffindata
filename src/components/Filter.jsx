@@ -48,7 +48,6 @@ function Filter({
           ),
         ])
     )
-
     e.target.checked === true &&
       setcheckedCategories((prevState) => [
         ...prevState,
