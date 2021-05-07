@@ -286,7 +286,7 @@ function Filter({
       )}
 
       <div
-        onChange={() => setOpenCounty((prev) => !prev)}
+        onClick={() => setOpenCounty((prev) => !prev)}
         className='filter-header'
       >
         <h4>Fylker </h4>
