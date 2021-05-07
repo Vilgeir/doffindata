@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
   --darkBlue: #36498a;
@@ -14,7 +14,7 @@ body {
 }
 
 main {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 1rem;
@@ -93,14 +93,14 @@ a {
 
 .header {
   color: white;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   background-color: #36498a;
   padding: 1rem;
   display: flex;
   justify-content: center;
 }
 .footer {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   color: #535353;
   margin-bottom: 0;
   background-color: #f2f2f2;
@@ -142,8 +142,8 @@ button {
 }
 
 .button {
-  color: white;
-  background-color: #36498a;
+  color: #000;
+  background-color: #4dbfac;
   border: 0;
 
   font-size: 1rem;
@@ -174,9 +174,8 @@ button {
 }
 
 .headline {
-  margin-bottom: 0.3rem;
   padding-top: 1rem;
-  padding-bottom: 1rem;
+  font-weight: 400;
 }
 
 /* ---- Searchbar ---- */
@@ -361,7 +360,10 @@ button {
 .dates {
   display: grid;
   grid-template-columns:
-    [start] minmax(1rem, 8rem) [middle] minmax(1rem, 1fr)
+    [start] minmax(1rem, 8rem) [first-middle] minmax(1rem, 2fr) [second-middle] minmax(
+      1rem,
+      1fr
+    )
     [last] minmax(1rem, 1fr);
   padding-top: 1rem;
 }
@@ -474,13 +476,13 @@ p {
   margin-right: 1rem;
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
   position: relative;
   cursor: pointer;
 }
 
-input[type="checkbox"]:before {
-  content: "";
+input[type='checkbox']:before {
+  content: '';
   display: block;
   position: absolute;
   width: 16px;
@@ -492,8 +494,8 @@ input[type="checkbox"]:before {
   background-color: white;
 }
 
-input[type="checkbox"]:checked:after {
-  content: "";
+input[type='checkbox']:checked:after {
+  content: '';
   display: block;
   width: 5px;
   height: 10px;
@@ -589,6 +591,11 @@ input[type="checkbox"]:checked:after {
   margin-right: 2rem;
 }
 
+.info-left-bar h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
 .info-right-bar {
   padding-top: 8rem;
   margin-left: 2rem;
@@ -596,7 +603,11 @@ input[type="checkbox"]:checked:after {
 }
 
 .info-right-bar-article {
-  margin-top: 4rem;
+  margin-top: 1rem;
+}
+
+.email {
+  word-break: break-all;
 }
 
 .info-right-bar-article a {
@@ -613,7 +624,6 @@ input[type="checkbox"]:checked:after {
 }
 
 .info-card {
-  /* border: 1px solid grey; */
   margin-top: 1.4rem;
   margin-bottom: 1.4rem;
   margin-left: -1rem;
@@ -633,6 +643,10 @@ input[type="checkbox"]:checked:after {
   color: black;
 }
 
+.info-card p {
+  margin: 0.3rem 0rem;
+}
+
 .info-card:nth-child(even) {
   background: #f5f7ff;
   border-radius: 2px;
@@ -643,6 +657,21 @@ input[type="checkbox"]:checked:after {
   background-color: #a5b5e5;
   padding: 1rem;
   border-radius: 2px;
+}
+
+.ytelsestyper {
+  display: flex;
+}
+
+.ytelsestyper p {
+  margin: 0.3rem 0;
+}
+
+.cpv {
+  color: var(--darkBlue);
+  font-weight: 700;
+
+  width: 90px;
 }
 
 .home-buttons {
