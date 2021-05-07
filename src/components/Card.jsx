@@ -17,6 +17,12 @@ function Card({ i }) {
           <h4>Tildelingskriterier</h4>
           <p>{i.tildelingskriterier}</p>
         </div>
+        {i.pris && (
+          <div>
+            <h4>Pris</h4>
+            <p>{i.pris}</p>
+          </div>
+        )}
 
         <div className='town'>
           <p>{capitalize(i.sted)}</p>
