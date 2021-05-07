@@ -7,6 +7,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import { StateContext } from '../context/StateProvider'
+import { getCpvName, capitalizeAndReplace } from '../helpers/functions'
 
 function SavedSearch() {
   const [last, setLast] = useState([])
@@ -77,13 +78,23 @@ function SavedSearch() {
           <FontAwesomeIcon icon={faChevronDown} />
         )}
       </button>
-
       {openLast && (
         <Link
           to={'/' + Object.values(last)[0] + '/' + Object.values(last)[1]}
           onClick={() => handleClick(last)}
         >
-          {Object.values(last).flat().join(' - ')}
+          {last
+            .flat()
+            .join(' ')
+            .split(' ')
+            .filter((i) => i !== '-' && i !== '')
+            .map((i, index) =>
+              getCpvName(i) !== ''
+                ? ' - ' + getCpvName(i)
+                : index !== 0
+                ? ' - ' + capitalizeAndReplace(i)
+                : capitalizeAndReplace(i)
+            )}
         </Link>
       )}
       <button
@@ -97,10 +108,9 @@ function SavedSearch() {
           <FontAwesomeIcon icon={faChevronDown} />
         )}
       </button>
-
       {openSaved &&
         saved.map((i, index) => (
-          <div className='saved-searches'>
+          <div className='saved-searches' key={index}>
             <Link
               to={
                 '/' +

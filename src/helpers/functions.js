@@ -10,6 +10,7 @@ import {
   faShippingFast,
   faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons'
+import jsonData from '../data/newjson.json'
 
 export const capitalize = (str) => {
   let lower = str.toLowerCase()
@@ -20,6 +21,14 @@ export const capitalize = (str) => {
 
 export const capitalizeAndReplace = (str) => {
   return capitalize(str.split('-').join(' '))
+}
+
+export const getCpvName = (cpvnumber) => {
+  return jsonData
+    .map((i) => i.id === cpvnumber && i.label)
+    .filter((it) => it !== false)
+    .join()
+    .substring(9)
 }
 
 export const toLowerCaseAndReplace = (str) => {
