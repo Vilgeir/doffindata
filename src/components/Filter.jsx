@@ -72,6 +72,7 @@ function Filter({
           return [...prevState, removeChecked]
         }
       })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [removeChecked])
 
   const removeFilters = () => {
@@ -92,10 +93,8 @@ function Filter({
   useEffect(() => {
     let flereFylker = kommuner.flat().map((x) => x.Fylke)
     setCheckedFylker([...new Set(flereFylker)])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [kommuner])
-  // console.log(kommuner.flat().map((x) => [...new Set(x.Fylke)]))
-  // let flereFylker = kommuner.flat().map((x) => x.Fylke)
-  // console.log([...new Set(flereFylker)])
 
   const handleClickFylker = (e) => {
     if (
