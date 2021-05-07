@@ -66,7 +66,7 @@ h6 {
 }
 
 p {
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 a {
@@ -88,6 +88,7 @@ a {
 .publishedby {
   font-size: 1.2rem;
   color: #000;
+  font-weight: 600;
   margin: 0.5rem 0 0.5rem 0;
 }
 
@@ -144,6 +145,8 @@ main > * {
   border: 0;
   font-size: 1rem;
   padding: 1rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
   margin-top: 1rem;
   width: 100%;
 }
@@ -340,29 +343,34 @@ main > * {
   flex-direction: column;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  width: 103%;
 }
 
 .card h4 {
   font-size: 0.8rem;
+  margin-top: -0.5rem;
+  margin-right: 1rem;
 }
 
 .card p {
-  font-size: 0.8rem;
+  font-size: 1rem;
+  margin-right: 1rem;
 }
 
-/* .card:nth-child(odd) {
-  background: #f5f7ff;
-} */
-
 .dates {
-  display: grid;
-  grid-template-columns:
-    [start] minmax(1rem, 8rem) [first-middle] minmax(1rem, 2fr) [second-middle] minmax(
-      1rem,
-      1fr
-    )
-    [last] minmax(1rem, 1fr);
-  padding-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.dates-1 {
+  display: flex;
+  flex-direction: row;
+}
+
+.dates-2 {
+  display: flex;
+  align-self: flex-end;
 }
 
 .town {
@@ -525,7 +533,7 @@ input[type='checkbox']:checked:after {
 /* --- detailed list --- */
 
 .list-container {
-  padding-left: 2rem;
+  padding-left: 1.5rem;
 }
 
 .select-box {
@@ -533,12 +541,10 @@ input[type='checkbox']:checked:after {
   background-color: #f5f7ff;
   border-radius: 2px;
   border: 0;
-
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-
   margin-left: 1rem;
 }
 
