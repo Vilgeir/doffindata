@@ -37,8 +37,7 @@ function SaveSearch({
         <h2>Filter</h2>
         {capitalizeAndReplace(category)} - {getCpvName(categorycpv)}
         {checked.map((cpv) => ' - ' + getCpvName(cpv))}{' '}
-        {checkedFylker.length > 0 ? ' - ' : ''}
-        {checkedFylker.map((fylke) => fylke)}
+        {checkedFylker.map((fylke) => ' - ' + fylke)}
         <h2>Navngi søk *</h2>
         <input
           type='text'
