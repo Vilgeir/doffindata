@@ -48,25 +48,27 @@ function Home(props) {
   };
 
   return (
-    <div className="errthing">
-      <div className="breadcrums">
-        <Link to={"/"}>Hjem</Link>
-      </div>
-      <div className="home-container">
-        <div>
+    <div className="home-main-container">
+      <div>
+        <div className="breadcrums">
+          <Link to={"/"}>Hjem</Link>
+        </div>
+        <div className="home-container">
           <div className="home-head">
             <div className="search-home">
               <AlgoliaSearch />
             </div>
-            <SavedSearch />
           </div>
           <h3 className="headline">Alle kategorier</h3>
         </div>
+        <div className="box-container">
+          {structure.map((i, index) => (
+            <HomeIcons i={i} key={index} />
+          ))}
+        </div>
       </div>
-      <div className="box-container">
-        {structure.map((i, index) => (
-          <HomeIcons i={i} key={index} />
-        ))}
+      <div className="home-saved-search">
+        <SavedSearch />
       </div>
     </div>
   );
