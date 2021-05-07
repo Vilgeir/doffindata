@@ -11,21 +11,19 @@ function AlgoliaSearch() {
 
   const { category } = useParams();
 
-  const searchClient = algoliasearch(
-    "QG9J28HNQ9",
-    "bdf4769c7a050792225f3a0613a4bec4"
-  );
-
-  let index;
-
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
 
   useEffect(() => {
     const search = async () => {
+      const searchClient = algoliasearch(
+        "QG9J28HNQ9",
+        "bdf4769c7a050792225f3a0613a4bec4"
+      );
+
       if (query) {
-        index = searchClient.initIndex("tendre");
+        let index = searchClient.initIndex("tendre");
         const result = await index.search(query);
         setHits(result.hits);
       } else {
@@ -48,12 +46,12 @@ function AlgoliaSearch() {
         placeholder="Søk på anbud"
       />
       <div className="a-search">
-        {hits.map((i) => (
-          <div className="search-result">
+        {hits.map((i, index) => (
+          <div key={index} className="search-result">
             {structure.map((item) =>
               item.children.map((it) =>
                 it.code.substring(0, 2) === i.cpvnumber.substring(0, 2) ? (
-                  <div className="">
+                  <div key={index}>
                     <Link
                       to={
                         "/" +
