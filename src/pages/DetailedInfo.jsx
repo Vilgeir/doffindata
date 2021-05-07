@@ -1,41 +1,41 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router'
-import { Link } from 'react-router-dom'
-import { getProcurement } from '../helpers/handleData'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import { getProcurement } from "../helpers/handleData";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 function DetailedInfo({ i }) {
-  const [procurementData, setProcurement] = useState([])
-  const { category, details, procurement } = useParams()
+  const [procurementData, setProcurement] = useState([]);
+  const { category, details, procurement } = useParams();
 
   const getData = () => {
-    getProcurement('tendre', procurement, setProcurement)
-  }
+    getProcurement("tendre", procurement, setProcurement);
+  };
   useEffect(() => {
-    getData()
-  }, [])
-  let newdetails = details.split('+')
-  let categorycpv = newdetails[0]
+    getData();
+  }, []);
+  let newdetails = details.split("+");
+  let categorycpv = newdetails[0];
 
   return (
     <>
-      <div className='breadcrums'>
-        <Link to={'/'}>Hjem</Link>
+      <div className="breadcrums">
+        <Link to={"/"}>Hjem</Link>
         <FontAwesomeIcon icon={faChevronRight} />
-        <Link to={'/' + category}>Kategori</Link>
+        <Link to={"/" + category}>Kategori</Link>
         <FontAwesomeIcon icon={faChevronRight} />
-        <Link to={'/' + category + '/' + categorycpv}>Resultat</Link>
+        <Link to={"/" + category + "/" + categorycpv}>Resultat</Link>
         <FontAwesomeIcon icon={faChevronRight} />
-        <Link to={'/' + category + '/' + categorycpv + '/' + procurement}>
+        <Link to={"/" + category + "/" + categorycpv + "/" + procurement}>
           Anbud
         </Link>
       </div>
-      <div className='info-container'>
-        <div className='info-left-bar'>
+      <div className="info-container">
+        <div className="info-left-bar">
           <p>{procurementData.oppdragsgiver}</p>
           <h1>{procurementData.tittel}</h1>
-          <div className='info-card'>
+          <div className="info-card">
             <p>
               <b>Publiseringsdato: </b> {procurementData.kunngjoringsdato}
             </p>
@@ -48,12 +48,12 @@ function DetailedInfo({ i }) {
 
             <p>{procurementData.beskrivelse}</p>
           </div>
-          <div className='info-card'>
+          <div className="info-card">
             <h6>Dokumenter</h6>
 
             {procurementData.documents ? (
               procurementData.documents.map((i, index) => (
-                <a key={index} href={'https://www.mercell.com' + i.url}>
+                <a key={index} href={"https://www.mercell.com" + i.url}>
                   {i.name}
                 </a>
               ))
@@ -66,24 +66,24 @@ function DetailedInfo({ i }) {
               </>
             )}
           </div>
-          <div className='info-card'>
+          <div className="info-card">
             <h6>Ytelsestype</h6>
             {procurementData.tilleggsCPV &&
               procurementData.tilleggsCPV.map(
-                (i) =>
+                (i, index) =>
                   i !== null && (
-                    <p>
-                      {Object.keys(i)} {Object.values(i)}{' '}
+                    <p key={index}>
+                      {Object.keys(i)} {Object.values(i)}{" "}
                     </p>
                   )
               )}
           </div>
         </div>
-        <div className='info-right-bar'>
-          <button className='button'>Meld interesse</button>
-          <div className='info-right-bar-article'>
-            <div className='headline-div'>
-              <h4 className='headline border'>Kontakt</h4>
+        <div className="info-right-bar">
+          <button className="button">Meld interesse</button>
+          <div className="info-right-bar-article">
+            <div className="headline-div">
+              <h4 className="headline border">Kontakt</h4>
             </div>
             <p>
               <b>Spørsmålsfrist: </b>
@@ -101,9 +101,9 @@ function DetailedInfo({ i }) {
               <b>E-post: </b> {procurementData.epost}
             </p>
           </div>
-          <div className='info-right-bar-article'>
-            <div className='headline-div'>
-              <h4 className='headline border'>Innkjøper</h4>
+          <div className="info-right-bar-article">
+            <div className="headline-div">
+              <h4 className="headline border">Innkjøper</h4>
             </div>
             <p>
               <b>Oppdragsgiver: </b> {procurementData.oppdragsgiver}
@@ -115,13 +115,13 @@ function DetailedInfo({ i }) {
             <p>
               <b>Adresse: </b> {procurementData.adresse} <br></br>
               {procurementData.postkode}
-              {', '} {procurementData.sted}
+              {", "} {procurementData.sted}
               <br></br> {procurementData.land}
             </p>
           </div>
-          <div className='info-right-bar-article'>
-            <div className='headline-div'>
-              <h4 className='headline border'>Nettsted</h4>
+          <div className="info-right-bar-article">
+            <div className="headline-div">
+              <h4 className="headline border">Nettsted</h4>
             </div>
             <p>
               <a href={procurementData.url_oppdragsgiver}>Oppdragsgiver</a>
@@ -133,7 +133,7 @@ function DetailedInfo({ i }) {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default DetailedInfo
+export default DetailedInfo;
