@@ -14,11 +14,11 @@ function DetailedInfo({ i }) {
   }
   useEffect(() => {
     getData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   let newdetails = details.split('+')
   let categorycpv = newdetails[0]
 
-  console.log(procurementData)
   return (
     <>
       <div className='breadcrums'>

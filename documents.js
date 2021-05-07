@@ -1,7 +1,7 @@
 const axios = require('axios')
 const { parse } = require('node-html-parser')
 const fs = require('fs')
-const firebase = require('firebase')
+const firebase = require('firebase/app')
 const firestore = require('firebase/firestore')
 // const firebaseConfig = require('./firebaseConfig')
 

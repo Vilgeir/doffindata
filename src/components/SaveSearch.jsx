@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react'
 import { StateContext } from '../context/StateProvider'
-import jsonData from '../data/newjson.json'
 import { capitalizeAndReplace, getCpvName } from '../helpers/functions'
 
 function SaveSearch({
