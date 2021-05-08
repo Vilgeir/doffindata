@@ -3,17 +3,12 @@ import Filter from '../components/Filter'
 import SaveSearch from '../components/SaveSearch'
 import Card from '../components/Card'
 import { useParams } from 'react-router-dom'
-import structure from '../data/withNorwegianNames'
 import { StateContext } from '../context/StateProvider'
 import { Link } from 'react-router-dom'
-import {
-  getProcurements,
-  getProcurementsWithCounty,
-} from '../helpers/handleData'
+import { getProcurements } from '../helpers/handleData'
 import fylkerKommuner from '../data/fylkerkommuner.json'
-import { capitalize } from '../helpers/functions'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { capitalize, getTitle } from '../helpers/functions'
+import { Breadcrums } from '../components/Breadcrums'
 
 function DetailedList() {
   const {
@@ -32,12 +27,12 @@ function DetailedList() {
 
   useEffect(() => {
     let arr = []
-    Object.values(checkedCategories)
-      .map((i) => arr.push(Object.keys(i)))
-      .flat()
-    Object.values(checkedCategories)
-      .map((i) => Object.values(i).map((item) => arr.push(item)))
-      .flat()
+
+    Object.values(checkedCategories).map(
+      (i) =>
+        arr.push(Object.keys(i)) &&
+        Object.values(i).map((item) => arr.push(item))
+    )
     checkedCategories && setChecked(arr.flat())
   }, [checkedCategories])
 
@@ -68,7 +63,7 @@ function DetailedList() {
   }, [])
 
   useEffect(() => {
-    setDocuments([])
+    // setDocuments([])
     let category = []
     let subcat = []
 
@@ -86,73 +81,18 @@ function DetailedList() {
       )
     )
 
-    let kommunerFlat = kommuner.flat().map((i) => i.Kommune)
-    if ((category.length > 0 || subcat.length > 0) && kommunerFlat.length > 0) {
-      kommunerFlat.map((kommune) => {
-        category.map((cpv) =>
-          getProcurementsWithCounty(
-            'tendre',
-            'cpvnumbersub',
-            cpv,
-            'sted',
-            kommune,
-            setDocuments,
-            documents
-          )
-        )
-        subcat.map((cpv) =>
-          getProcurementsWithCounty(
-            'tendre',
-            'cpvnumbersubsub',
-            cpv,
-            'sted',
-            kommune,
-            setDocuments,
-            documents
-          )
-        )
-      })
-    } else if (
-      (category.length > 0 || subcat.length > 0) &&
-      kommunerFlat.length === 0
-    ) {
-      category.map((i) =>
-        getProcurements('tendre', 'cpvnumbersub', i, setDocuments, documents)
+    // let kommunerFlat = kommuner.flat().map((i) => i.Kommune)
+    let arr = []
+    if (category.length > 0 || subcat.length > 0) {
+      category.map((cpv) =>
+        getProcurements('tendre', 'cpvnumbersub', cpv, setDocuments, arr)
       )
-
-      subcat.map((i) =>
-        getProcurements('tendre', 'cpvnumbersubsub', i, setDocuments, documents)
+      subcat.map((cpv) =>
+        getProcurements('tendre', 'cpvnumbersubsub', cpv, setDocuments, arr)
       )
-    } else if (
-      kommunerFlat.length > 0 &&
-      category.length === 0 &&
-      subcat.length === 0
-    ) {
-      kommunerFlat.forEach((kommune) =>
-        getProcurementsWithCounty(
-          'tendre',
-          'cpvnumbermain',
-          categorycpv,
-          'sted',
-          kommune,
-          setDocuments,
-          documents
-        )
-      )
-    } else if (
-      kommunerFlat.length === 0 &&
-      category.length === 0 &&
-      subcat.length === 0
-    ) {
-      getProcurements(
-        'tendre',
-        'cpvnumbermain',
-        categorycpv,
-        setDocuments,
-        documents
-      )
+    } else {
+      getProcurements('tendre', 'cpvnumbermain', categorycpv, setDocuments, arr)
     }
-    return documents
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checked])
   let newArray = []
@@ -187,13 +127,7 @@ function DetailedList() {
 
   return (
     <>
-      <div className='breadcrums'>
-        <Link to={'/'}>Hjem</Link>
-        <FontAwesomeIcon icon={faChevronRight} />
-        <Link to={'/' + category}>Kategori</Link>
-        <FontAwesomeIcon icon={faChevronRight} />
-        <Link to={'/' + category + '/' + categorycpv}>Resultat</Link>
-      </div>
+      <Breadcrums category={category} categorycpv={categorycpv} />
       <div className='detail-container'>
         <div className='search'>
           <Filter
@@ -212,33 +146,8 @@ function DetailedList() {
           />
         </div>
         <div className='list-container'>
-          {subcategory
-            ? structure.map(
-                (item) =>
-                  item.main === category &&
-                  item.children.map((it) =>
-                    it.children.map(
-                      (i, index) =>
-                        i.code === subcategory && (
-                          <h1 key={index}>
-                            {i.name} (CPV {i.code})
-                          </h1>
-                        )
-                    )
-                  )
-              )
-            : structure.map(
-                (item) =>
-                  item.main === category &&
-                  item.children.map(
-                    (i, index) =>
-                      i.code === categorycpv && (
-                        <h1 key={index}>
-                          {i.name} (CPV {i.code})
-                        </h1>
-                      )
-                  )
-              )}
+          {subcategory ? getTitle(subcategory) : getTitle(categorycpv)}
+
           <div className='select-box-title'>
             <p className='sorting'>Sorter etter: </p>
             <select className='select-box' onChange={onChange}>
@@ -247,55 +156,16 @@ function DetailedList() {
               <option value='date'>Publisert</option>
             </select>
           </div>
-          {checkedCategories.length > 0
-            ? byCity(sortedArray, kommuner).map((i) =>
-                checkedCategories.map((checked) =>
-                  Object.values(checked)[0].length > 0
-                    ? Object.values(checked)[0].map(
-                        (check) =>
-                          i.cpvnumber
-                            .substring(0, 4)
-                            .includes(check.substring(0, 4)) && (
-                            <Link
-                              style={{ textDecoration: 'none', color: 'black' }}
-                              to={
-                                '/' + category + '/' + categorycpv + '/' + i.id
-                              }
-                              i={i}
-                              key={i.id}
-                            >
-                              <Card i={i} />
-                            </Link>
-                          )
-                      )
-                    : i.cpvnumber
-                        .substring(0, 3)
-                        .includes(Object.keys(checked)[0].substring(0, 3)) && (
-                        <Link
-                          key={i.id}
-                          style={{ textDecoration: 'none', color: 'black' }}
-                          to={'/' + category + '/' + categorycpv + '/' + i.id}
-                          i={i}
-                        >
-                          <Card i={i} />
-                        </Link>
-                      )
-                )
-              )
-            : byCity(sortedArray, kommuner).map(
-                (i) =>
-                  i.cpvnumber.substring(0, 2) ===
-                    categorycpv.substring(0, 2) && (
-                    <Link
-                      key={i.id}
-                      style={{ textDecoration: 'none', color: 'black' }}
-                      to={'/' + category + '/' + categorycpv + '/' + i.id}
-                      i={i}
-                    >
-                      <Card i={i} />
-                    </Link>
-                  )
-              )}
+          {byCity(sortedArray, kommuner).map((i) => (
+            <Link
+              style={{ textDecoration: 'none', color: 'black' }}
+              to={'/' + category + '/' + categorycpv + '/' + i.id}
+              i={i}
+              key={i.id}
+            >
+              <Card i={i} />
+            </Link>
+          ))}
         </div>
         {saveSearch && (
           <SaveSearch

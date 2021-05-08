@@ -21,7 +21,7 @@ export const getProcurements = async (
   where,
   value,
   setState,
-  state
+  arr
 ) => {
   await db
     .collection(collection)
@@ -30,10 +30,10 @@ export const getProcurements = async (
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        state.push({ ...doc.data() })
+        arr.push({ ...doc.data() })
       })
 
-      setState(state)
+      setState(arr)
     })
 }
 export const getProcurementsWithCounty = async (

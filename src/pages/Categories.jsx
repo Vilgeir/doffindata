@@ -1,15 +1,13 @@
 import React, { useEffect, useContext } from 'react'
-import { Link } from 'react-router-dom'
 import structure from '../data/withNorwegianNames'
 import { useParams } from 'react-router-dom'
-
 import { StateContext } from '../context/StateProvider'
 import { homeIcons } from '../helpers/functions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CategoryCards from '../components/CategoryCards'
 import AlgoliaSearch from '../components/AlgoliaSearch'
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { capitalizeAndReplace } from '../helpers/functions'
+import { Breadcrums } from '../components/Breadcrums'
 
 function Categories() {
   const { setcheckedCategories, setCheckedFylker } = useContext(StateContext)
@@ -23,11 +21,7 @@ function Categories() {
 
   return (
     <>
-      <div className='breadcrums'>
-        <Link to={'/'}>Hjem</Link>
-        <FontAwesomeIcon icon={faChevronRight} />
-        <Link to={{ category }}>Kategori</Link>
-      </div>
+      <Breadcrums category={category} />
       <div className='home-container'>
         <div className='head'>
           <div className='search-home'>
