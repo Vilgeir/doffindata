@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import structure from '../data/withNorwegianNames'
 import fylker from '../data/fylker'
 
@@ -14,6 +14,7 @@ import SavedModal from '../components/SavedModal'
 import AlgoliaSearch from '../components/AlgoliaSearch'
 import { StateContext } from '../context/StateProvider'
 import { capitalizeAndReplace } from '../helpers/functions'
+import { useToggle } from '../hooks/useToggle'
 
 function Filter({
   category,
@@ -35,8 +36,8 @@ function Filter({
     kommuner,
     setKommuner,
   } = useContext(StateContext)
-  const [openCategory, setOpenCategory] = useState(true)
-  const [openCounty, setOpenCounty] = useState(true)
+  const [openCategory, setOpenCategory] = useToggle(true)
+  const [openCounty, setOpenCounty] = useToggle(true)
 
   const handleClick = (e) => {
     checkedCategories.map(
@@ -183,10 +184,7 @@ function Filter({
         )}
       </div>
 
-      <div
-        onClick={() => setOpenCategory((prev) => !prev)}
-        className='filter-header'
-      >
+      <div onClick={setOpenCategory.toggle} className='filter-header'>
         <h4>Kategorier </h4>
         {openCategory ? (
           <FontAwesomeIcon icon={faChevronUp} />
@@ -283,10 +281,7 @@ function Filter({
         </div>
       )}
 
-      <div
-        onClick={() => setOpenCounty((prev) => !prev)}
-        className='filter-header'
-      >
+      <div onClick={setOpenCounty.toggle} className='filter-header'>
         <h4>Fylker </h4>
         {openCounty ? (
           <FontAwesomeIcon icon={faChevronUp} />
