@@ -9,6 +9,7 @@ import { getProcurements } from '../helpers/handleData'
 import fylkerKommuner from '../data/fylkerkommuner.json'
 import { capitalize, getTitle } from '../helpers/functions'
 import { Breadcrums } from '../components/Breadcrums'
+import { useToggle } from '../hooks/useToggle'
 
 function DetailedList() {
   const {
@@ -21,7 +22,7 @@ function DetailedList() {
   const [sort, setSort] = useState()
   const [checked, setChecked] = useState([])
   const [saveSearch, setSaveSearch] = useState(false)
-  const [openModal, setOpenModal] = useState(false)
+  const [openModal, setOpenModal] = useToggle(false)
   const [documents, setDocuments] = useState([])
   const { category, details } = useParams()
 
