@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { StateContext } from '../context/StateProvider'
+import { StateContext } from '../../context/StateProvider'
 
 function SavedModal() {
   const { setcheckedCategories } = useContext(StateContext)

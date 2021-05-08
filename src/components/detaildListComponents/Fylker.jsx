@@ -1,15 +1,10 @@
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useContext } from 'react'
-import { StateContext } from '../context/StateProvider'
+import { StateContext } from '../../context/StateProvider'
 import Checkboxes from './Checkboxes'
 
-const FylkerCheckbox = ({
-  setOpenCounty,
-  openCounty,
-  fylker,
-  fylkerKommuner,
-}) => {
+const Fylker = ({ setOpenCounty, openCounty, fylker, fylkerKommuner }) => {
   const { checkedFylker, kommuner, setKommuner } = useContext(StateContext)
   const handleClickFylker = (e) => {
     if (
@@ -48,4 +43,4 @@ const FylkerCheckbox = ({
   )
 }
 
-export default FylkerCheckbox
+export default Fylker

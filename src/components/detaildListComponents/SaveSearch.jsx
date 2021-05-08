@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
-import { StateContext } from '../context/StateProvider'
-import { capitalizeAndReplace, getCpvName } from '../helpers/functions'
+import { StateContext } from '../../context/StateProvider'
+import { capitalizeAndReplace, getCpvName } from '../../helpers/functions'
 
 function SaveSearch({
   setSaveSearch,

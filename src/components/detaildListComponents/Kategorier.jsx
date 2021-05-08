@@ -1,12 +1,12 @@
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useContext } from 'react'
-import { StateContext } from '../context/StateProvider'
-import structure from '../data/withNorwegianNames'
-import { capitalizeAndReplace } from '../helpers/functions'
+import { StateContext } from '../../context/StateProvider'
+import structure from '../../data/withNorwegianNames'
+import { capitalizeAndReplace } from '../../helpers/functions'
 import Checkboxes from './Checkboxes'
 
-const KategorierCheckbox = ({
+const Kategorier = ({
   setOpenCategory,
   openCategory,
   category,
@@ -15,6 +15,7 @@ const KategorierCheckbox = ({
   setChecked,
 }) => {
   const { setcheckedCategories, checkedCategories } = useContext(StateContext)
+
   const handleCheck = (e) => {
     setChecked((prevState) =>
       prevState.includes(e.target.value)
@@ -23,11 +24,10 @@ const KategorierCheckbox = ({
     )
   }
   const handleChange = (e) => {
-    e.target.checked === false &&
-      setcheckedCategories((prevState) =>
-        prevState.map((i) =>
-          Object.keys(i).join().substring(0, 3) ===
-          e.target.value.substring(0, 3)
+    setcheckedCategories((prevState) =>
+      prevState.map((i) =>
+        Object.keys(i).join().substring(0, 3) === e.target.value.substring(0, 3)
+          ? e.target.checked === false
             ? {
                 [Object.keys(i).join()]: [
                   ...Object.values(i)[0].filter(
@@ -35,24 +35,16 @@ const KategorierCheckbox = ({
                   ),
                 ],
               }
-            : i
-        )
-      )
-
-    e.target.checked === true &&
-      setcheckedCategories((prevState) =>
-        prevState.map((i) =>
-          Object.keys(i).join().substring(0, 3) ===
-          e.target.value.substring(0, 3)
-            ? {
+            : {
                 [Object.keys(i).join()]: [
                   ...Object.values(i)[0],
                   e.target.value,
                 ],
               }
-            : i
-        )
+          : i
       )
+    )
+
     handleCheck(e)
   }
 
@@ -120,4 +112,4 @@ const KategorierCheckbox = ({
   )
 }
 
-export default KategorierCheckbox
+export default Kategorier

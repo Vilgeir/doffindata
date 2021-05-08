@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import fylker from '../data/fylker'
-
+import fylker from '../../data/fylker'
 import {
   faArrowLeft,
   faChevronDown,
@@ -8,18 +7,17 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
-import SavedModal from '../components/SavedModal'
-import AlgoliaSearch from '../components/AlgoliaSearch'
-import { StateContext } from '../context/StateProvider'
-import { capitalizeAndReplace } from '../helpers/functions'
-import { useToggle } from '../hooks/useToggle'
-import FylkerCheckbox from './FylkerCheckbox'
-import KategorierCheckbox from './KategorierCheckbox'
+import SavedModal from './SavedModal'
+import AlgoliaSearch from '../AlgoliaSearch'
+import { StateContext } from '../../context/StateProvider'
+import { capitalizeAndReplace } from '../../helpers/functions'
+import { useToggle } from '../../hooks/useToggle'
+import Fylker from './Fylker'
+import Kategorier from './Kategorier'
 
 function Filter({
   category,
   details,
-  removeChecked,
   checked,
   setChecked,
   setSaveSearch,
@@ -37,25 +35,6 @@ function Filter({
   } = useContext(StateContext)
   const [openCategory, setOpenCategory] = useToggle(true)
   const [openCounty, setOpenCounty] = useToggle(true)
-
-  useEffect(() => {
-    removeChecked.length === 8 &&
-      setChecked((prevState) => {
-        if (prevState.includes(removeChecked)) {
-          if (removeChecked.substring(3, 8).includes('00000')) {
-            return [
-              ...prevState.filter(
-                (i) => i.substring(0, 3) !== removeChecked.substring(0, 3)
-              ),
-            ]
-          }
-          return [...prevState.filter((i) => i !== removeChecked)]
-        } else {
-          return [...prevState, removeChecked]
-        }
-      })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [removeChecked])
 
   const removeFilters = () => {
     setcheckedCategories([])
@@ -105,7 +84,7 @@ function Filter({
         )}
       </div>
 
-      <KategorierCheckbox
+      <Kategorier
         setOpenCategory={setOpenCategory}
         openCategory={openCategory}
         category={category}
@@ -114,7 +93,7 @@ function Filter({
         setChecked={setChecked}
       />
 
-      <FylkerCheckbox
+      <Fylker
         setOpenCounty={setOpenCounty}
         openCounty={openCounty}
         fylker={fylker}

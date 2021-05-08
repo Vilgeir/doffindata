@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
-import Filter from '../components/Filter'
-import SaveSearch from '../components/SaveSearch'
-import Card from '../components/Card'
+import Filter from '../components/detaildListComponents/Filter'
+import SaveSearch from '../components/detaildListComponents/SaveSearch'
+import Card from '../components/detaildListComponents/Card'
 import { useParams } from 'react-router-dom'
 import { StateContext } from '../context/StateProvider'
 import { Link } from 'react-router-dom'
@@ -18,7 +18,6 @@ function DetailedList() {
     checkedFylker,
     kommuner,
   } = useContext(StateContext)
-  const [removeChecked, setRemoveChecked] = useState([])
   const [sort, setSort] = useState()
   const [checked, setChecked] = useState([])
   const [saveSearch, setSaveSearch] = useState(false)
@@ -138,8 +137,6 @@ function DetailedList() {
             details={categorycpv}
             subcategory={subcategory}
             category={category}
-            removeChecked={removeChecked}
-            setRemoveChecked={setRemoveChecked}
             checked={checked}
             setChecked={setChecked}
             saveSearch={saveSearch}
