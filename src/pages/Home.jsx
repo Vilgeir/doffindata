@@ -1,18 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import structure from '../data/withNorwegianNames'
 import '../index.css'
 import SavedSearch from '../components/SavedSearch'
 import AlgoliaSearch from '../components/AlgoliaSearch'
 import HomeIcons from '../components/homeIcons'
+import { Breadcrums } from '../components/Breadcrums'
 
 function Home() {
   return (
     <div className='home-main-container'>
       <div>
-        <div className='breadcrums'>
-          <Link to={'/'}>Hjem</Link>
-        </div>
+        <Breadcrums />
         <div className='home-container'>
           <div className='home-head'>
             <div className='search-home'>

@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import { Link } from 'react-router-dom'
 import { getProcurement } from '../helpers/handleData'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { Breadcrums } from '../components/Breadcrums'
 
 function DetailedInfo({ i }) {
   const [procurementData, setProcurement] = useState([])
   const { category, details, procurement } = useParams()
 
-  const getData = () => {
-    getProcurement('tendre', procurement, setProcurement)
-  }
   useEffect(() => {
-    getData()
+    getProcurement('tendre', procurement, setProcurement)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   let newdetails = details.split('+')
@@ -21,17 +16,12 @@ function DetailedInfo({ i }) {
 
   return (
     <>
-      <div className='breadcrums'>
-        <Link to={'/'}>Hjem</Link>
-        <FontAwesomeIcon icon={faChevronRight} />
-        <Link to={'/' + category}>Kategori</Link>
-        <FontAwesomeIcon icon={faChevronRight} />
-        <Link to={'/' + category + '/' + categorycpv}>Resultat</Link>
-        <FontAwesomeIcon icon={faChevronRight} />
-        <Link to={'/' + category + '/' + categorycpv + '/' + procurement}>
-          Anbud
-        </Link>
-      </div>
+      <Breadcrums
+        category={category}
+        categorycpv={categorycpv}
+        procurement={procurement}
+      />
+
       <div className='info-container'>
         <div className='info-left-bar'>
           <h3>{procurementData.oppdragsgiver}</h3>

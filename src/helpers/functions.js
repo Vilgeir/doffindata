@@ -31,6 +31,12 @@ export const getCpvName = (cpvnumber) => {
     .substring(9)
 }
 
+export const getTitle = (code) => (
+  <h1>
+    {getCpvName(code)} ({code})
+  </h1>
+)
+
 export const toLowerCaseAndReplace = (str) => {
   return str.split(' ').join('-').toLowerCase()
 }
