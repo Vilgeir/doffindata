@@ -19,6 +19,10 @@ export const capitalize = (str) => {
     : str.toUpperCase()
 }
 
+export const capitalizeAll = (str) => {
+  return str.toUpperCase()
+}
+
 export const capitalizeAndReplace = (str) => {
   return capitalize(str.split('-').join(' '))
 }

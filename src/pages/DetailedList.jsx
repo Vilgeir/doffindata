@@ -149,8 +149,8 @@ function DetailedList() {
           <div className='select-box-title'>
             <p className='sorting'>Sorter etter: </p>
             <select className='select-box' onChange={onChange}>
-              <option value='asc'>ASC</option>
-              <option value='desc'>DESC</option>
+              <option value='asc'>Navn A-Å</option>
+              <option value='desc'>Navn Å-A</option>
               <option value='date'>Publisert</option>
             </select>
           </div>

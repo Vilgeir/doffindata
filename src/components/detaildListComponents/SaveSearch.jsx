@@ -33,16 +33,20 @@ function SaveSearch({
     <div className='modal'>
       <div className='modal-elements'>
         <h1 className=''>Lagre søk</h1>
-        <h2>Filter</h2>
-        {capitalizeAndReplace(category)} - {getCpvName(categorycpv)}
-        {checked.map((cpv) => ' - ' + getCpvName(cpv))}{' '}
-        {checkedFylker.map((fylke) => ' - ' + fylke)}
-        <h2>Navngi søk *</h2>
-        <input
-          type='text'
-          placeholder='Navngi søk'
-          onChange={handleChange}
-        ></input>
+        <div>
+          <h2>Filter</h2>
+          {capitalizeAndReplace(category)} - {getCpvName(categorycpv)}
+          {checked.map((cpv) => ' - ' + getCpvName(cpv))}{' '}
+          {checkedFylker.map((fylke) => ' - ' + fylke)}
+        </div>
+        <div>
+          <h2>Navngi søk *</h2>
+          <input
+            type='text'
+            placeholder='Navngi søk'
+            onChange={handleChange}
+          ></input>
+        </div>
         <div>
           <input type='checkbox' defaultChecked></input>
           <label>Ja, jeg ønsker å motta e-post med varsel om nye anbud</label>

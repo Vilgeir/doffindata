@@ -43,6 +43,11 @@ function Filter({
     setCheckedFylker([])
   }
 
+  // hæsh bængs
+  // sorter etter pris, frister osv
+  // fikse fontene i cards. gråfarge kanksje?
+  // Kjøper i grå
+
   useEffect(() => {
     let flereFylker = kommuner.flat().map((x) => x.Fylke)
     setCheckedFylker([...new Set(flereFylker)])

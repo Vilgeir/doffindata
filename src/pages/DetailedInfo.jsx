@@ -24,8 +24,9 @@ function DetailedInfo({ i }) {
 
       <div className='info-container'>
         <div className='info-left-bar'>
-          <h3>{procurementData.oppdragsgiver}</h3>
           <h1>{procurementData.tittel}</h1>
+          <h3>{procurementData.oppdragsgiver}</h3>
+
           <div className='info-card'>
             {procurementData.kunngjoringsdato && (
               <p>

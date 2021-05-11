@@ -66,11 +66,6 @@ const Kategorier = ({
     handleCheck(e)
   }
 
-  const mapChildren = (data, value) =>
-    data
-      .map((it) => it.main === value && it.children)
-      .filter((i) => i !== false)[0]
-
   return (
     <>
       <div onClick={setOpenCategory.toggle} className='filter-header'>
@@ -79,31 +74,39 @@ const Kategorier = ({
       </div>
       {openCategory && (
         <div className='check-container'>
-          {mapChildren(
-            mapChildren(structure, capitalizeAndReplace(category), details)
-          ).map((item, i) => (
-            <div className='checkboxes' key={i}>
-              <Checkboxes
-                onChange={handleClick}
-                checked={checked.includes(item.code) ? true : false}
-                data={item}
-              />
-
-              {checkedCategories.map(
-                (check) =>
-                  Object.keys(check).includes(item.code) &&
-                  item.children.map((it, index) => (
-                    <div className='subcheckboxes' key={index}>
+          {structure.map(
+            (it) =>
+              it.main === capitalizeAndReplace(category) &&
+              it.children.map(
+                (i) =>
+                  i.code === details &&
+                  i.children.map((item, i) => (
+                    <div className='checkboxes' key={i}>
                       <Checkboxes
-                        onChange={handleChange}
-                        data={it}
-                        checked={checked.includes(it.code) ? true : false}
+                        onChange={handleClick}
+                        checked={checked.includes(item.code) ? true : false}
+                        data={item}
                       />
+
+                      {checkedCategories.map(
+                        (check) =>
+                          Object.keys(check).includes(item.code) &&
+                          item.children.map((it, index) => (
+                            <div className='subcheckboxes' key={index}>
+                              <Checkboxes
+                                onChange={handleChange}
+                                data={it}
+                                checked={
+                                  checked.includes(it.code) ? true : false
+                                }
+                              />
+                            </div>
+                          ))
+                      )}
                     </div>
                   ))
-              )}
-            </div>
-          ))}
+              )
+          )}
         </div>
       )}
     </>
