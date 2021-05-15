@@ -31,34 +31,6 @@ const writeData = (data) => {
         const dom = parse(res.data)
         let files = dom.querySelector('#fileslist').querySelectorAll('a')
 
-        // let docs = {
-        //   form: data.form,
-        //   kunngjoringsdato: data.kunngjoringsdato,
-        //   tilleggsCPV: data.tilleggsCPV,
-        //   sted: data.sted,
-        //   epost: data.epost,
-        //   nettside: data.nettside,
-        //   url_deltakelse: data.url_deltakelse,
-        //   cpvnumber: data.cpvnumber,
-        //   cpvnumbermain: data.cpvnumber.substring(0, 2) + '000000',
-        //   cpvnumbersub: data.cpvnumber.substring(0, 3) + '00000',
-        //   url_dokumentasjon: data.url_dokumentasjon,
-        //   oppdragsgiver: data.oppdragsgiver,
-        //   cpv: data.cpv,
-        //   cpvmain: data.cpvmain,
-        //   tilbudsfrist: data.tilbudsfrist,
-        //   tittel: data.tittel,
-        //   orgnr: data.orgnr,
-        //   beskrivelse: data.beskrivelse,
-        //   adresse: data.adresse,
-        //   id: data.id,
-        //   documents: data.documents ? data.documents : null,
-        //   documents: files.map((node) => ({
-        //     name: node.text,
-        //     url: node.getAttribute('href'),
-        //   })),
-        // }
-
         docs = {
           form: data.form,
           kunngjoringsdato: data.kunngjoringsdato,

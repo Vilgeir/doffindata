@@ -7,17 +7,13 @@ import { StateContext } from '../context/StateProvider'
 import { Link } from 'react-router-dom'
 import { getProcurements } from '../helpers/handleData'
 import fylkerKommuner from '../data/fylkerkommuner.json'
-import { capitalize, getTitle } from '../helpers/functions'
+import { capitalize, getCpvName, getTitle } from '../helpers/functions'
 import { Breadcrums } from '../components/Breadcrums'
 import { useToggle } from '../hooks/useToggle'
 
 function DetailedList() {
-  const {
-    checkedCategories,
-    setcheckedCategories,
-    checkedFylker,
-    kommuner,
-  } = useContext(StateContext)
+  const { checkedCategories, setcheckedCategories, checkedFylker, kommuner } =
+    useContext(StateContext)
   const [sort, setSort] = useState()
   const [checked, setChecked] = useState([])
   const [saveSearch, setSaveSearch] = useState(false)
@@ -144,16 +140,20 @@ function DetailedList() {
           />
         </div>
         <div className='list-container'>
-          {subcategory ? getTitle(subcategory) : getTitle(categorycpv)}
+          {subcategory ? (
+            <h1>{getCpvName(subcategory)}</h1>
+          ) : (
+            <h1>{getCpvName(categorycpv)}</h1>
+          )}
 
-          <div className='select-box-title'>
+          {/* <div className='select-box-title'>
             <p className='sorting'>Sorter etter: </p>
             <select className='select-box' onChange={onChange}>
               <option value='asc'>Navn A-Å</option>
               <option value='desc'>Navn Å-A</option>
               <option value='date'>Publisert</option>
             </select>
-          </div>
+          </div> */}
           {byCity(sortedArray, kommuner).map((i) => (
             <Link
               style={{ textDecoration: 'none', color: 'black' }}

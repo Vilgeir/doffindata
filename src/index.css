@@ -190,11 +190,22 @@ main > * {
 }
 
 .searchbar {
-  font-size: 1rem;
+  /* font-family: FontAwesome; */
+  background-image: url(./iconer/search-solid.svg);
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: right;
+  vertical-align: middle;
+  background-origin: content-box;
   width: -webkit-fill-available;
   padding: 1.2rem;
   border: 2px;
   background-color: #f6f8fa;
+}
+
+.search-home label {
+  font-size: 25px;
+  font-weight: 300;
 }
 
 ::placeholder {
@@ -249,6 +260,10 @@ main > * {
 
 .home-container {
   padding-top: 2rem;
+}
+
+.home-container h2 {
+  padding-bottom: 1.5rem;
 }
 
 .search-home {

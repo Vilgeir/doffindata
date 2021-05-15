@@ -24,7 +24,7 @@ function Card({ i }) {
         </div>
         {i.pris && (
           <div>
-            <p>Pris</p>
+            <p>Ramme</p>
             <h4>{fixedPrice(i.pris)}</h4>
           </div>
         )}

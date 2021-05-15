@@ -19,6 +19,7 @@ function Categories() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  console.log(category)
   return (
     <>
       <Breadcrums category={category} />
@@ -29,11 +30,11 @@ function Categories() {
             <div className='categories-head'>
               <div
                 className='homeicon-container'
-                style={homeIcons(category).style}
+                style={homeIcons(capitalizeAndReplace(category)).style}
               >
                 <FontAwesomeIcon
                   id='homeicon-icon'
-                  icon={homeIcons(category).icon}
+                  icon={homeIcons(capitalizeAndReplace(category)).icon}
                 />
               </div>
               <h3>{capitalizeAndReplace(category)}</h3>

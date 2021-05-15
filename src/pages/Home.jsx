@@ -14,6 +14,10 @@ function Home() {
       <div>
         <Breadcrums />
         <div className='home-container'>
+          <h2>
+            Velkommen til Tendre! Tendre er en tjeneste for offentlige
+            anskaffelser.
+          </h2>
           <div className='home-head'>
             <div className='search-home'>
               <AlgoliaSearch />
