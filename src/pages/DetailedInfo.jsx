@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import { getProcurement } from '../helpers/handleData'
 import { Breadcrums } from '../components/Breadcrums'
+import { fixedPrice } from '../helpers/functions'
 
 function DetailedInfo({ i }) {
   const [procurementData, setProcurement] = useState([])
@@ -43,7 +44,7 @@ function DetailedInfo({ i }) {
             </p>
             {procurementData.pris && (
               <p>
-                <b>Pris: </b> {procurementData.pris}
+                <b>Pris: </b> {fixedPrice(procurementData.pris)}
               </p>
             )}
             <p>
