@@ -21,7 +21,7 @@ main {
   display: grid;
   grid-template-columns:
     [full-start] minmax(1rem, 1fr)
-    [main-start] minmax(0, 60rem)
+    [main-start] minmax(0, 70rem)
     [main-end] minmax(1em, 1fr)
     [full-end] minmax(0rem, 0);
 }
@@ -115,7 +115,7 @@ a {
 .logo {
   height: 7vh;
   fill: white;
-  padding-right: 54rem;
+  padding-right: 64rem;
 }
 
 main > * {
@@ -162,7 +162,7 @@ main > * {
   /* display: flex; */
   padding-top: 2rem;
   display: grid;
-  grid-template-columns: [left] 20rem [right] 40rem;
+  grid-template-columns: [left] 20rem [right] 50rem;
 }
 
 .border {
@@ -179,10 +179,6 @@ main > * {
 
 .search-filter {
   margin-bottom: 2rem;
-}
-
-.search-home .searchbar {
-  width: 100% !important;
 }
 
 .search-home .a-search {
@@ -204,6 +200,11 @@ main > * {
 }
 
 .search-home label {
+  font-size: 25px;
+  font-weight: 300;
+}
+
+.search-categories label {
   font-size: 25px;
   font-weight: 300;
 }
@@ -267,7 +268,12 @@ main > * {
 }
 
 .search-home {
-  width: 38.5rem;
+  width: 100%;
+  margin-right: 1.6rem;
+}
+
+.search-categories {
+  width: 37rem;
 }
 
 .home-saved-search {
@@ -300,8 +306,8 @@ main > * {
 }
 
 .main-boxes {
-  width: 12rem;
-  height: 5rem;
+  width: 14rem;
+  height: 6rem;
 
   margin-right: 1rem;
   margin-bottom: 1rem;
@@ -373,7 +379,7 @@ main > * {
 
 .dates-1 {
   display: grid;
-  grid-template-columns: [soknadsfrist] 110px [tildeling] 281px [pris] 124px [sted] 94px;
+  grid-template-columns: [soknadsfrist] 130px [tildeling] 300px [pris] 150px [sted] 195px;
 }
 
 .dates-1 p {
@@ -410,7 +416,7 @@ input {
 }
 
 .categories-head {
-  margin-top: 1rem;
+  margin: 1rem 0;
   display: flex;
   align-items: center;
 }
@@ -423,9 +429,8 @@ input {
   background-color: var(--lightBlue);
   display: inline-block;
   padding: 1rem;
-  margin: 1rem;
-  margin-left: 0rem;
-  width: 90%;
+  margin-bottom: 2rem;
+  width: 92%;
 }
 
 .category-card a,

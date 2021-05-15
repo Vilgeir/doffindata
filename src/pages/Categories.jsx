@@ -25,7 +25,7 @@ function Categories() {
       <Breadcrums category={category} />
       <div className='home-container'>
         <div className='head'>
-          <div className='search-home'>
+          <div className='search-categories'>
             <AlgoliaSearch />
             <div className='categories-head'>
               <div
