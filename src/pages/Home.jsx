@@ -7,11 +7,17 @@ import HomeIcons from '../components/homeIcons'
 import { Breadcrums } from '../components/Breadcrums'
 
 function Home() {
+  let sort = structure.map((i) => i.main).sort()
+
   return (
     <div className='home-main-container'>
       <div>
         <Breadcrums />
         <div className='home-container'>
+          <h2>
+            Velkommen til Tendre! Tendre er en tjeneste for offentlige
+            anskaffelser.
+          </h2>
           <div className='home-head'>
             <div className='search-home'>
               <AlgoliaSearch />
@@ -20,9 +26,7 @@ function Home() {
           <h3 className='headline'>Alle kategorier</h3>
         </div>
         <div className='box-container'>
-          {structure.map((i, index) => (
-            <HomeIcons i={i} key={index} />
-          ))}
+          {sort.map((i, index) => <HomeIcons i={i} key={index} />).sort()}
         </div>
       </div>
       <div className='home-saved-search'>

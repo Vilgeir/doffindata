@@ -8,12 +8,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import { StateContext } from '../context/StateProvider'
 import { getCpvName, capitalizeAndReplace } from '../helpers/functions'
+import { useToggle } from '../hooks/useToggle'
 
 function SavedSearch() {
   const [last, setLast] = useState([])
-  const [openLast, setOpenLast] = useState(false)
+  const [openLast, setOpenLast] = useToggle(false)
   const [saved, setSaved] = useState([])
-  const [openSaved, setOpenSaved] = useState(false)
+  const [openSaved, setOpenSaved] = useToggle(false)
   const { setcheckedCategories, setCheckedFylker, setKommuner } = useContext(
     StateContext
   )
@@ -67,10 +68,7 @@ function SavedSearch() {
 
   return (
     <div className='home-buttons'>
-      <button
-        className='home-button'
-        onClick={() => setOpenLast((prev) => !prev)}
-      >
+      <button className='home-button' onClick={setOpenLast.toggle}>
         Siste søk{' '}
         {openLast ? (
           <FontAwesomeIcon icon={faChevronUp} />
@@ -97,10 +95,7 @@ function SavedSearch() {
             )}
         </Link>
       )}
-      <button
-        className='home-button'
-        onClick={() => setOpenSaved((prev) => !prev)}
-      >
+      <button className='home-button' onClick={setOpenSaved.toggle}>
         Lagrede søk{' '}
         {openSaved ? (
           <FontAwesomeIcon icon={faChevronUp} />
