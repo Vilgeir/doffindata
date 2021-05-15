@@ -1,11 +1,5 @@
 import React from 'react'
-import { capitalize, capitalizeAll } from '../../helpers/functions'
-
-const fixedPrice = (price) => {
-  return (
-    parseInt(price.split(' ')[0]).toLocaleString() + ' ' + price.split(' ')[1]
-  )
-}
+import { capitalize, capitalizeAll, fixedPrice } from '../../helpers/functions'
 
 function Card({ i }) {
   return (
@@ -22,12 +16,11 @@ function Card({ i }) {
           <p>Tildelingskriterier</p>
           <h4>{i.tildelingskriterier}</h4>
         </div>
-        {i.pris && (
-          <div>
-            <p>Ramme</p>
-            <h4>{fixedPrice(i.pris)}</h4>
-          </div>
-        )}
+
+        <div>
+          <p>Ramme</p>
+          <h4>{i.pris ? fixedPrice(i.pris) : 'N/A'}</h4>
+        </div>
         <div className='dates-2'>
           <p>Sted</p>
           <h4>{capitalize(i.sted)}</h4>

@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import algoliasearch from 'algoliasearch/lite'

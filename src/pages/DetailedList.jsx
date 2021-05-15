@@ -7,7 +7,7 @@ import { StateContext } from '../context/StateProvider'
 import { Link } from 'react-router-dom'
 import { getProcurements } from '../helpers/handleData'
 import fylkerKommuner from '../data/fylkerkommuner.json'
-import { capitalize, getCpvName, getTitle } from '../helpers/functions'
+import { capitalize, getCpvName } from '../helpers/functions'
 import { Breadcrums } from '../components/Breadcrums'
 import { useToggle } from '../hooks/useToggle'
 
@@ -117,9 +117,9 @@ function DetailedList() {
   }
 
   const sortedArray = newArray.sort(sorting)
-  const onChange = (event) => {
-    setSort(event.target.value)
-  }
+  // const onChange = (event) => {
+  //   setSort(event.target.value)
+  // }
 
   return (
     <>

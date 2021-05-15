@@ -35,11 +35,11 @@ export const getCpvName = (cpvnumber) => {
     .substring(9)
 }
 
-// export const getTitle = (code) => (
-//   <h1>
-//     {getCpvName(code)} ({code})
-//   </h1>
-// )
+export const fixedPrice = (price) => {
+  return (
+    parseInt(price.split(' ')[0]).toLocaleString() + ' ' + price.split(' ')[1]
+  )
+}
 
 export const toLowerCaseAndReplace = (str) => {
   return str.split(' ').join('-').toLowerCase()
