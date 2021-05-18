@@ -182,7 +182,7 @@ main > * {
 }
 
 .search-home .a-search {
-  width: 37rem;
+  width: 43rem;
 }
 
 .searchbar {
@@ -692,6 +692,10 @@ input[type='checkbox']:checked:after {
   padding: 2rem 0 0 0;
   font-weight: 300;
   font-size: 18px;
+}
+
+.head .a-search {
+  width: 33rem;
 }
 
 .ytelsestyper {
